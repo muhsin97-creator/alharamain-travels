@@ -34,7 +34,7 @@ export function Services() {
                   <h3 className="text-xl font-semibold text-foreground mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-muted-foreground">{service.desc}</p>
+                  <p className="text-muted-foreground">{service.description}</p>
                 </CardContent>
               </Card>
             );
