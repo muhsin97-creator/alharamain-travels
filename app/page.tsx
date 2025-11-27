@@ -104,7 +104,7 @@ export default function Home() {
               Explore Packages
               <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-6 text-lg">
+            <Button size="lg" className="bg-white/10 border-2 border-white/40 text-white hover:bg-white/20 px-8 py-6 text-lg">
               <Phone className="mr-2 h-5 w-5" />
               Contact Us
             </Button>
@@ -128,9 +128,9 @@ export default function Home() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-2 bg-primary rounded-full animate-pulse" />
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce z-20">
+          <div className="w-7 h-12 border-2 border-white/50 rounded-full flex justify-center pt-2">
+            <div className="w-1.5 h-3 bg-primary rounded-full animate-pulse" />
           </div>
         </div>
       </section>
@@ -369,11 +369,11 @@ export default function Home() {
             Contact us today to book your Umrah or Hajj package. Our team is ready to assist you every step of the way.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg">
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-semibold">
               Book Your Package
               <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg">
+            <Button size="lg" className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-6 text-lg font-semibold">
               <Phone className="mr-2 h-5 w-5" />
               Call: +44 123 456 7890
             </Button>
