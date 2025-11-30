@@ -1,12 +1,20 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Phone, Mail, MapPin, ChevronRight, Instagram, Facebook } from "lucide-react";
-import { contactInfo } from "@/lib/data";
+import { Phone, Mail, MapPin, ChevronRight, Instagram, Facebook, MessageCircle } from "lucide-react";
+import { contactInfo, umrahTrips } from "@/lib/data";
 
 export function Contact() {
+  // Get only available trips for the dropdown
+  const availableTrips = umrahTrips.filter(trip => !trip.expired);
+
   return (
-    <section id="contact" className="py-24 bg-[#2D2D2D] text-white">
+    <section id="contact" className="py-24 bg-[#2D2D2D] text-white relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-10 right-10 w-20 h-[1px] bg-primary opacity-40" />
+      <div className="absolute bottom-10 left-10 w-20 h-[1px] bg-primary opacity-40" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
           <div>
@@ -16,13 +24,15 @@ export function Contact() {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Get in <span className="text-gradient">Touch</span>
             </h2>
-            <p className="text-white/70 text-lg mb-8">
-              Have questions about our packages? Our friendly team is here to
-              help you plan your perfect pilgrimage.
+            <p className="text-white/70 text-lg mb-8 leading-relaxed">
+              Have questions about our Umrah packages? Our friendly team is here to
+              help you plan your perfect pilgrimage. Reach out to us through any of the channels below.
             </p>
-            <div className="space-y-6">
+
+            {/* Contact Info */}
+            <div className="space-y-5">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
                   <Phone className="h-5 w-5 text-primary" />
                 </div>
                 <div>
@@ -30,8 +40,9 @@ export function Contact() {
                   <div className="font-semibold">{contactInfo.phone}</div>
                 </div>
               </div>
+
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
                   <Mail className="h-5 w-5 text-primary" />
                 </div>
                 <div>
@@ -39,70 +50,111 @@ export function Contact() {
                   <div className="font-semibold">{contactInfo.email}</div>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
-                  <MapPin className="h-5 w-5 text-primary" />
+
+              {/* Multiple Addresses */}
+              {contactInfo.addresses.map((address, i) => (
+                <div key={i} className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <div className="text-white/60 text-sm">Office - {address.state}</div>
+                    <div className="font-semibold">{address.location}</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-white/60 text-sm">Office</div>
-                  <div className="font-semibold">{contactInfo.address}</div>
-                </div>
-              </div>
+              ))}
             </div>
+
+            {/* Social Links */}
             <div className="flex gap-4 mt-8">
               <a
-                href="#"
-                className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
+                href={contactInfo.socials.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5 text-white" />
               </a>
               <a
-                href="#"
-                className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
+                href={contactInfo.socials.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5 text-white" />
               </a>
+              <a
+                href={contactInfo.socials.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="h-5 w-5 text-white" />
+              </a>
             </div>
+
+            <Button asChild variant="outline" className="mt-8 border-primary text-primary hover:bg-primary hover:text-white">
+              <Link href="/contact">
+                View Full Contact Page
+                <ChevronRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
+
+          {/* Contact Form */}
           <Card className="bg-white/5 border-white/10">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-6">Send us a Message</h3>
+              <h3 className="text-2xl font-bold mb-2">Send us a Message</h3>
+              <p className="text-white/60 text-sm mb-6">
+                Fill out the form below and we&apos;ll get back to you as soon as possible.
+              </p>
               <form className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <input
                     type="text"
-                    placeholder="First Name"
-                    className="bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary"
+                    placeholder="Name *"
+                    required
+                    className="bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
                   />
                   <input
-                    type="text"
-                    placeholder="Last Name"
-                    className="bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary"
+                    type="tel"
+                    placeholder="Number *"
+                    required
+                    className="bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
                   />
                 </div>
                 <input
                   type="email"
-                  placeholder="Email Address"
-                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary"
+                  placeholder="Email *"
+                  required
+                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
                 />
-                <input
-                  type="tel"
-                  placeholder="Phone Number"
-                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary"
-                />
-                <select className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white/50 focus:outline-none focus:border-primary">
-                  <option value="">Select Package Interest</option>
-                  <option value="economy">Economy Package</option>
-                  <option value="premium">Premium Package</option>
-                  <option value="vip">VIP Package</option>
+                <select 
+                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
+                  defaultValue=""
+                >
+                  <option value="" disabled className="text-gray-900">Select Trip Interest</option>
+                  {availableTrips.map((trip, i) => (
+                    <option key={i} value={trip.name} className="text-gray-900">
+                      {trip.name} - {trip.price}
+                    </option>
+                  ))}
+                  <option value="hajj-2026" className="text-gray-900">Hajj 2026</option>
+                  <option value="other" className="text-gray-900">Other / General Enquiry</option>
                 </select>
                 <textarea
                   placeholder="Your Message"
                   rows={4}
-                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary resize-none"
+                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary resize-none transition-colors"
                 />
-                <Button className="w-full bg-primary hover:bg-gold-dark text-white py-6">
-                  Send Message
+                <Button 
+                  type="submit"
+                  className="w-full bg-primary hover:bg-primary/90 text-white py-6 font-semibold"
+                >
+                  Submit
                   <ChevronRight className="ml-2 h-5 w-5" />
                 </Button>
               </form>
@@ -113,4 +165,3 @@ export function Contact() {
     </section>
   );
 }
-

@@ -95,7 +95,7 @@ export default function HeroSection() {
                                         asChild
                                         size="lg"
                                         className="bg-primary hover:bg-primary/90 px-8 text-base font-semibold">
-                                        <Link href="#umrah">
+                                        <Link href={heroSlides[currentSlide]?.link || "/services/umrah"}>
                                             <span className="text-nowrap">Book your trip</span>
                                         </Link>
                                     </Button>

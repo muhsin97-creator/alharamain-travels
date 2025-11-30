@@ -1,35 +1,52 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Phone, ChevronRight } from "lucide-react";
+import { ChevronRight, Sparkles } from "lucide-react";
 
 export function CTA() {
   return (
-    <section className="py-24 bg-gold-gradient">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-          Ready to Begin Your Sacred Journey?
+    <section className="py-24 bg-gold-gradient relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-10">
+        <div className="absolute top-10 left-10 w-32 h-32 border border-white rounded-full" />
+        <div className="absolute bottom-10 right-10 w-48 h-48 border border-white rounded-full" />
+        <div className="absolute top-1/2 left-1/4 w-20 h-20 border border-white rounded-full" />
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 mb-6">
+          <Sparkles className="h-4 w-4 text-white" />
+          <span className="text-white text-sm font-medium">Don&apos;t miss out on our trips!</span>
+        </div>
+
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          Book your trip!
         </h2>
-        <p className="text-white/90 text-xl mb-8 max-w-2xl mx-auto">
-          Contact us today to book your Umrah or Hajj package. Our team is ready
-          to assist you every step of the way.
+        <p className="text-white/90 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+          Embark on a Journey of Faith! Book your Umrah trip now and experience 
+          the spiritual journey of a lifetime. Don&apos;t wait—secure your spot today!
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button
+            asChild
             size="lg"
-            className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-semibold"
+            className="bg-white text-primary hover:bg-white/90 px-10 py-6 text-lg font-semibold"
           >
-            Book Your Package
-            <ChevronRight className="ml-2 h-5 w-5" />
+            <Link href="/services/umrah">
+              View Umrah Trips
+              <ChevronRight className="ml-2 h-5 w-5" />
+            </Link>
           </Button>
           <Button
+            asChild
             size="lg"
-            className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-6 text-lg font-semibold"
+            className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-10 py-6 text-lg font-semibold"
           >
-            <Phone className="mr-2 h-5 w-5" />
-            Call: +44 123 456 7890
+            <Link href="/hajj-2026">
+              Hajj 2026 Sign Up
+            </Link>
           </Button>
         </div>
       </div>
     </section>
   );
 }
-

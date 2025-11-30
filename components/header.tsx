@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Logo } from '@/components/logo'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -7,15 +8,22 @@ import React from 'react'
 
 const menuItems = [
     { name: 'Home', href: '/' },
-    { name: 'About us', href: '#about' },
-    { name: 'Umrah Services', href: '#umrah' },
-    { name: 'Hajj Services', href: '#hajj' },
-    { name: 'Blogs', href: '#blogs' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About us', href: '/about' },
+    { name: 'Umrah Services', href: '/services/umrah' },
+    { name: 'Hajj Services', href: '/services/hajj' },
+    { name: 'Blogs', href: '/blog' },
+    { name: 'Contact', href: '/contact' },
 ]
 
 export const HeroHeader = () => {
     const [menuState, setMenuState] = React.useState(false)
+    const pathname = usePathname()
+
+    const isActive = (href: string) => {
+        if (href === '/') return pathname === '/'
+        return pathname.startsWith(href)
+    }
+
     return (
         <header>
             <nav
@@ -45,7 +53,11 @@ export const HeroHeader = () => {
                                         <li key={index}>
                                             <Link
                                                 href={item.href}
-                                                className="text-muted-foreground hover:text-primary block font-medium duration-150">
+                                                className={`block font-medium duration-150 ${
+                                                    isActive(item.href)
+                                                        ? 'text-primary'
+                                                        : 'text-muted-foreground hover:text-primary'
+                                                }`}>
                                                 <span>{item.name}</span>
                                             </Link>
                                         </li>
@@ -62,7 +74,11 @@ export const HeroHeader = () => {
                                             <Link
                                                 href={item.href}
                                                 onClick={() => setMenuState(false)}
-                                                className="text-muted-foreground hover:text-primary block font-medium duration-150">
+                                                className={`block font-medium duration-150 ${
+                                                    isActive(item.href)
+                                                        ? 'text-primary'
+                                                        : 'text-muted-foreground hover:text-primary'
+                                                }`}>
                                                 <span>{item.name}</span>
                                             </Link>
                                         </li>
@@ -75,7 +91,7 @@ export const HeroHeader = () => {
                                     variant="outline"
                                     size="sm"
                                     className="border-primary text-primary hover:bg-primary hover:text-white">
-                                    <Link href="#hajj-2026">
+                                    <Link href="/hajj-2026">
                                         <span>Hajj 2026 Sign Up</span>
                                     </Link>
                                 </Button>
@@ -83,7 +99,7 @@ export const HeroHeader = () => {
                                     asChild
                                     size="sm"
                                     className="bg-primary hover:bg-primary/90">
-                                    <Link href="#contact">
+                                    <Link href="/contact">
                                         <span>Contact us</span>
                                     </Link>
                                 </Button>

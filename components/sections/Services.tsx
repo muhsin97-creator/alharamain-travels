@@ -1,5 +1,8 @@
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ChevronRight } from "lucide-react";
 import { services } from "@/lib/data";
 
 export function Services() {
@@ -40,8 +43,25 @@ export function Services() {
             );
           })}
         </div>
+
+        {/* CTA to Services */}
+        <div className="text-center mt-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild className="bg-primary hover:bg-primary/90">
+              <Link href="/services/umrah">
+                Umrah Services
+                <ChevronRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+              <Link href="/services/hajj">
+                Hajj Services
+                <ChevronRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
-
