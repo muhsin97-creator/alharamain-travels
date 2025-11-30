@@ -199,10 +199,10 @@ export default function HeroSection() {
                     </div>
 
                     {/* Scroll Indicator */}
-                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 animate-bounce">
+                    {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 animate-bounce">
                         <span className="text-xs uppercase tracking-widest">Scroll</span>
                         <ChevronDown className="h-5 w-5" />
-                    </div>
+                    </div> */}
 
                     {/* Bottom Gradient Transition */}
                     <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
