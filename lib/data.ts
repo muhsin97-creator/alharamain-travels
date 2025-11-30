@@ -763,10 +763,10 @@ export const contactInfo = {
     { location: "Lakemba, New South Wales 2195", state: "NSW" },
   ],
   socials: {
-    instagram: "https://instagram.com/alharamaintravels",
-    facebook: "https://facebook.com/alharamaintravels",
+    instagram: "https://instagram.com/alharamaintravels_",
+    facebook: "https://facebook.com/p/Al-Haramain-Travels-Australia-61564960723351",
     whatsapp: "https://wa.me/61477549505",
-    tiktok: "https://tiktok.com/@alharamaintravels",
+    tiktok: "https://tiktok.com/@alharamaintravels_",
   },
 };
 
