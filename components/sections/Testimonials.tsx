@@ -28,8 +28,8 @@ export function Testimonials() {
           {/* Circular Image - Takes 2 columns */}
           <div className="lg:col-span-2 relative flex justify-center">
             <CircularImageFrame
-              src="https://images.unsplash.com/photo-1580418827493-f2b22c0a76cb?w=800&q=80"
-              alt="Masjid an-Nabawi"
+              src="https://images.unsplash.com/photo-1564769625905-50e93615e769?w=800&q=80"
+              alt="Hajj pilgrims in ihram"
               size="lg"
               grayscale={true}
             />

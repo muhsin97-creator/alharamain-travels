@@ -44,8 +44,8 @@ export function UmrahTrips() {
           {/* Small circular image accent */}
           <div className="hidden lg:block">
             <CircularImageFrame
-              src="https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=400&q=80"
-              alt="Kaaba at night"
+              src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=400&q=80"
+              alt="Kaaba and pilgrims"
               size="sm"
               grayscale={true}
             />
