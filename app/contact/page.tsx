@@ -1,30 +1,56 @@
-import { Metadata } from "next";
-import Link from "next/link";
-import { HeroHeader } from "@/components/header";
-import { PageHeader } from "@/components/PageHeader";
-import { Footer } from "@/components/sections/Footer";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+'use client'
+
+import { useState } from "react"
+import Link from "next/link"
+import { HeroHeader } from "@/components/header"
+import { PageHeader } from "@/components/PageHeader"
+import { Footer } from "@/components/sections/Footer"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { 
   ChevronRight, 
   Phone, 
   Mail, 
-  MapPin, 
-  Clock,
+  MapPin,
   Instagram,
   Facebook,
   MessageCircle,
-} from "lucide-react";
-import { contactInfo, umrahTrips } from "@/lib/data";
-
-export const metadata: Metadata = {
-  title: "Contact Us | Al-Haramain Travels",
-  description: "Get in touch with Al-Haramain Travels. Contact us for Umrah and Hajj package enquiries, support, and more.",
-};
+  CheckCircle,
+  AlertCircle,
+  Loader2,
+} from "lucide-react"
+import { useContactForm } from "@/lib/useContactForm"
+import { contactInfo, umrahTrips } from "@/lib/data"
 
 export default function ContactPage() {
-  const availableTrips = umrahTrips.filter(trip => !trip.expired);
+  const { isSubmitting, isSuccess, isError, errorMessage, submitForm, reset } = useContactForm()
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    interest: '',
+    message: ''
+  })
+
+  const availableTrips = umrahTrips.filter(trip => !trip.expired)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    const success = await submitForm({
+      subject: `Contact Form: ${formData.interest || 'General Enquiry'}`,
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      interest: formData.interest,
+      message: formData.message
+    })
+
+    if (success) {
+      setFormData({ name: '', phone: '', email: '', interest: '', message: '' })
+    }
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -138,88 +164,132 @@ export default function ContactPage() {
             <div>
               <Card className="border-border/50 shadow-lg">
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Send us a Message</h3>
-                  <p className="text-muted-foreground text-sm mb-6">
-                    Fill out the form below and we&apos;ll get back to you as soon as possible.
-                  </p>
-                  <form className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">
-                          Name *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          className="w-full border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
-                          placeholder="Your name"
-                        />
+                  {isSuccess ? (
+                    <div className="text-center py-8">
+                      <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <CheckCircle className="h-8 w-8 text-green-500" />
                       </div>
-                      <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">
-                          Phone *
-                        </label>
-                        <input
-                          type="tel"
-                          required
-                          className="w-full border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
-                          placeholder="Your phone number"
-                        />
-                      </div>
+                      <h3 className="text-2xl font-bold text-foreground mb-2">Message Sent!</h3>
+                      <p className="text-muted-foreground mb-6">
+                        Thank you for reaching out. We&apos;ll get back to you as soon as possible.
+                      </p>
+                      <Button onClick={reset} variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+                        Send Another Message
+                      </Button>
                     </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Email *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        className="w-full border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
-                        placeholder="your@email.com"
-                      />
-                    </div>
+                  ) : (
+                    <>
+                      <h3 className="text-2xl font-bold text-foreground mb-2">Send us a Message</h3>
+                      <p className="text-muted-foreground text-sm mb-6">
+                        Fill out the form below and we&apos;ll get back to you as soon as possible.
+                      </p>
 
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Interest
-                      </label>
-                      <select 
-                        className="w-full border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
-                        defaultValue=""
-                      >
-                        <option value="" disabled>Select your interest</option>
-                        {availableTrips.map((trip, i) => (
-                          <option key={i} value={trip.name}>
-                            {trip.name} - {trip.price}
-                          </option>
-                        ))}
-                        <option value="hajj-2026">Hajj 2026</option>
-                        <option value="umrah-companion">Umrah Companion Services</option>
-                        <option value="custom">Custom Package</option>
-                        <option value="other">Other / General Enquiry</option>
-                      </select>
-                    </div>
+                      {isError && (
+                        <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/20 rounded-lg p-3 mb-4">
+                          <AlertCircle className="h-5 w-5 text-red-500 flex-shrink-0" />
+                          <span className="text-red-600 text-sm">{errorMessage}</span>
+                        </div>
+                      )}
 
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Message
-                      </label>
-                      <textarea
-                        placeholder="How can we help you?"
-                        rows={5}
-                        className="w-full border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary resize-none transition-colors"
-                      />
-                    </div>
+                      <form onSubmit={handleSubmit} className="space-y-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium text-foreground mb-2">
+                              Name *
+                            </label>
+                            <input
+                              type="text"
+                              required
+                              value={formData.name}
+                              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                              className="w-full border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                              placeholder="Your name"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-foreground mb-2">
+                              Phone *
+                            </label>
+                            <input
+                              type="tel"
+                              required
+                              value={formData.phone}
+                              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                              className="w-full border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                              placeholder="Your phone number"
+                            />
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <label className="block text-sm font-medium text-foreground mb-2">
+                            Email *
+                          </label>
+                          <input
+                            type="email"
+                            required
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            className="w-full border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                            placeholder="your@email.com"
+                          />
+                        </div>
 
-                    <Button 
-                      type="submit"
-                      className="w-full bg-primary hover:bg-primary/90 py-6 font-semibold"
-                    >
-                      Send Message
-                      <ChevronRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </form>
+                        <div>
+                          <label className="block text-sm font-medium text-foreground mb-2">
+                            Interest
+                          </label>
+                          <select 
+                            className="w-full border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                            value={formData.interest}
+                            onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
+                          >
+                            <option value="">Select your interest</option>
+                            {availableTrips.map((trip, i) => (
+                              <option key={i} value={trip.name}>
+                                {trip.name} - {trip.price}
+                              </option>
+                            ))}
+                            <option value="Hajj 2026">Hajj 2026</option>
+                            <option value="Umrah Companion Services">Umrah Companion Services</option>
+                            <option value="Custom Package">Custom Package</option>
+                            <option value="General Enquiry">Other / General Enquiry</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-foreground mb-2">
+                            Message
+                          </label>
+                          <textarea
+                            placeholder="How can we help you?"
+                            rows={5}
+                            value={formData.message}
+                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                            className="w-full border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary resize-none transition-colors"
+                          />
+                        </div>
+
+                        <Button 
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="w-full bg-primary hover:bg-primary/90 py-6 font-semibold disabled:opacity-50"
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                              Sending...
+                            </>
+                          ) : (
+                            <>
+                              Send Message
+                              <ChevronRight className="ml-2 h-5 w-5" />
+                            </>
+                          )}
+                        </Button>
+                      </form>
+                    </>
+                  )}
                 </CardContent>
               </Card>
             </div>
@@ -309,7 +379,7 @@ export default function ContactPage() {
               asChild
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white/10 px-10"
+              className="border-white text-black hover:bg-white/10 px-10"
             >
               <Link href="/hajj-2026">
                 Hajj 2026 Sign Up
@@ -321,6 +391,5 @@ export default function ContactPage() {
 
       <Footer />
     </div>
-  );
+  )
 }
-

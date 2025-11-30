@@ -19,9 +19,9 @@ import {
   Phone,
   Mail,
   Globe,
-  Calendar,
 } from "lucide-react";
 import { umrahTrips, contactInfo } from "@/lib/data";
+import { EnquiryForm } from "@/components/EnquiryForm";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -286,66 +286,7 @@ export default async function TripDetailPage({ params }: PageProps) {
 
       {/* Enquiry Form Section */}
       {!trip.expired && (
-        <section id="enquiry" className="py-24 bg-[#2D2D2D] text-white">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <Badge className="bg-primary/20 text-primary border-0 mb-4">
-                Get in Touch
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Enquire About This <span className="text-gradient">Trip</span>
-              </h2>
-              <p className="text-white/70">
-                Fill out the form below and our team will get back to you as soon as possible.
-              </p>
-            </div>
-
-            <Card className="bg-white/5 border-white/10">
-              <CardContent className="p-8">
-                <form className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input
-                      type="text"
-                      placeholder="Name *"
-                      required
-                      className="bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
-                    />
-                    <input
-                      type="tel"
-                      placeholder="Phone *"
-                      required
-                      className="bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
-                    />
-                  </div>
-                  <input
-                    type="email"
-                    placeholder="Email *"
-                    required
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Subject"
-                    defaultValue={`Enquiry: ${trip.name}`}
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
-                  />
-                  <textarea
-                    placeholder="Your Message"
-                    rows={4}
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary resize-none transition-colors"
-                  />
-                  <Button
-                    type="submit"
-                    className="w-full bg-primary hover:bg-primary/90 text-white py-6 font-semibold"
-                  >
-                    Send Message
-                    <ChevronRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
+        <EnquiryForm tripName={trip.name} subject={`Enquiry: ${trip.name}`} />
       )}
 
       {/* Related Trips */}
