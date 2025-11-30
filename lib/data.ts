@@ -737,12 +737,12 @@ May Allah accept your Umrah and grant you many more opportunities to visit His h
 
 // Partners
 export const partners: Partner[] = [
-  { name: "Marriott Hotels" },
-  { name: "Oman Air" },
-  { name: "Hilton Hotels & Resorts" },
-  { name: "Ministry of Hajj and Umrah" },
-  { name: "Pullman Hotels and Resorts" },
-  { name: "Qatar Airways" },
+  { name: "Marriott Hotels", logo: "/marriot.png" },
+  { name: "Oman Air", logo: "/omanair.png" },
+  { name: "Hilton Hotels & Resorts", logo: "/hilton.png" },
+  { name: "Ministry of Hajj and Umrah", logo: "/ministry.png" },
+  { name: "Pullman Hotels and Resorts", logo: "/pullman.png" },
+  { name: "Qatar Airways", logo: "/qatarairways.png" },
 ];
 
 // Stats
