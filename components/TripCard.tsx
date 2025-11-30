@@ -21,24 +21,31 @@ export function TripCard({ trip, featured = false }: TripCardProps) {
     >
       {/* Top Banner */}
       <div className={`bg-[#2D2D2D] p-6 relative ${featured ? "lg:p-8" : ""}`}>
-        {trip.expired && (
-          <Badge className="absolute top-4 right-4 bg-red-500/90 text-white border-0">
-            Expired
+        {/* Status Badge - Top Right */}
+        <div className="absolute top-4 right-4">
+          {trip.expired ? (
+            <Badge className="bg-red-500/90 text-white border-0">
+              Expired
+            </Badge>
+          ) : (
+            <Badge className="bg-green-500/90 text-white border-0">
+              Available
+            </Badge>
+          )}
+        </div>
+
+        {/* Tags Row - Featured + Subtitle */}
+        <div className="flex flex-wrap items-center gap-2 mb-4 pr-20">
+          {trip.featured && !trip.expired && (
+            <Badge className="bg-primary text-white border-0">
+              Featured
+            </Badge>
+          )}
+          <Badge className="bg-primary/20 text-primary border-0">
+            {trip.subtitle}
           </Badge>
-        )}
-        {!trip.expired && (
-          <Badge className="absolute top-4 right-4 bg-green-500/90 text-white border-0">
-            Available
-          </Badge>
-        )}
-        {trip.featured && !trip.expired && (
-          <Badge className="absolute top-4 left-4 bg-primary text-white border-0">
-            Featured
-          </Badge>
-        )}
-        <Badge className="bg-primary/20 text-primary border-0 mb-3">
-          {trip.subtitle}
-        </Badge>
+        </div>
+
         <h3 className={`font-bold text-white mb-2 ${featured ? "text-2xl lg:text-3xl" : "text-xl"}`}>
           {trip.name}
         </h3>
@@ -102,4 +109,3 @@ export function TripCard({ trip, featured = false }: TripCardProps) {
     </Card>
   );
 }
-
