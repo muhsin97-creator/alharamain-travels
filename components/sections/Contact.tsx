@@ -44,8 +44,8 @@ export function Contact() {
             {/* Circular Image */}
             <div className="hidden md:flex justify-start mb-8">
               <CircularImageFrame
-                src="https://images.unsplash.com/photo-1537031934600-096fbbb48a51?w=600&q=80"
-                alt="Kaaba and pilgrims"
+                src="https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?w=600&q=80"
+                alt="Islamic architecture"
                 size="md"
                 grayscale={true}
               />

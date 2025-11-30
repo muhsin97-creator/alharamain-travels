@@ -60,7 +60,7 @@ export function Services() {
           {/* Circular Image Frame - Right Side */}
           <div className="relative flex justify-center lg:justify-end">
             <CircularImageFrame
-              src="https://images.unsplash.com/photo-1564769625905-50e93615e769?w=800&q=80"
+              src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80"
               alt="Airplane in clouds"
               size="lg"
               grayscale={true}
