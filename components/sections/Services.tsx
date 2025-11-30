@@ -3,63 +3,92 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
+import { CircularImageFrame, GoldAccentBar, GoldLine, TrianglePattern, DiamondPattern } from "@/components/CircularImageFrame";
 import { services } from "@/lib/data";
 
 export function Services() {
   return (
-    <section id="services" className="py-24 bg-white">
+    <section id="services" className="py-24 bg-[#2D2D2D] text-white relative overflow-hidden">
+      {/* Decorative elements matching social media template (dark theme) */}
+      <GoldAccentBar position="top" />
+      <div className="absolute bottom-0 right-8 w-24 h-16 bg-primary" />
+      
+      {/* Gold lines */}
+      <GoldLine className="absolute top-20 right-8" />
+      <GoldLine className="absolute bottom-32 left-16" />
+      
+      {/* Triangle patterns */}
+      <TrianglePattern className="absolute top-1/4 left-8 opacity-40" direction="up" />
+      <TrianglePattern className="absolute bottom-1/4 right-8 opacity-40" direction="down" />
+      
+      {/* Diamond patterns */}
+      <DiamondPattern className="absolute top-1/3 right-1/4 opacity-30" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <Badge className="bg-primary/10 text-primary border-0 mb-4">
-            Our Services
-          </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Complete Travel <span className="text-gradient">Solutions</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            From visa processing to accommodation, we handle every detail of
-            your sacred journey
-          </p>
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
+          {/* Content - Left Side */}
+          <div>
+            <Badge className="bg-primary/20 text-primary border-0 mb-4">
+              Our Services
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Complete Travel{" "}
+              <span className="text-gradient">Solutions</span>
+            </h2>
+            <p className="text-white/70 text-lg leading-relaxed mb-8">
+              From visa processing to accommodation, we handle every detail of
+              your sacred journey. Let us take care of the logistics while you
+              focus on your spiritual connection.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button asChild className="bg-primary hover:bg-primary/90">
+                <Link href="/services/umrah">
+                  Umrah Services
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="border-white/30 text-white hover:bg-white/10">
+                <Link href="/services/hajj">
+                  Hajj Services
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+
+          {/* Circular Image Frame - Right Side */}
+          <div className="relative flex justify-center lg:justify-end">
+            <CircularImageFrame
+              src="https://images.unsplash.com/photo-1564769625905-50e93615e769?w=800&q=80"
+              alt="Airplane in clouds"
+              size="lg"
+              grayscale={true}
+            />
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => {
             const Icon = service.icon;
             return (
               <Card
                 key={i}
-                className="group hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/30 overflow-hidden"
+                className="group bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300"
               >
-                <CardContent className="p-8">
-                  <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
-                    <Icon className="h-7 w-7 text-primary group-hover:text-white transition-colors" />
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
+                    <Icon className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                  <h3 className="text-lg font-semibold text-white mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-muted-foreground">{service.description}</p>
+                  <p className="text-white/60 text-sm">{service.description}</p>
                 </CardContent>
               </Card>
             );
           })}
-        </div>
-
-        {/* CTA to Services */}
-        <div className="text-center mt-12">
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild className="bg-primary hover:bg-primary/90">
-              <Link href="/services/umrah">
-                Umrah Services
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-              <Link href="/services/hajj">
-                Hajj Services
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
         </div>
       </div>
     </section>

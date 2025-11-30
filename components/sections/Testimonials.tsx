@@ -3,28 +3,56 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Star, Quote, ChevronRight } from "lucide-react";
+import { CircularImageFrame, GoldAccentBar, GoldLine, TrianglePattern, PlayIndicators } from "@/components/CircularImageFrame";
 import { testimonials } from "@/lib/data";
 
 export function Testimonials() {
   return (
     <section className="py-24 bg-white relative overflow-hidden">
-      {/* Decorative background */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      {/* Decorative elements matching social media template (light theme) */}
+      <GoldAccentBar position="top" />
+      <div className="absolute bottom-0 right-8 w-24 h-16 bg-primary/20" />
+      
+      {/* Gold lines */}
+      <GoldLine className="absolute top-24 left-12" />
+      <GoldLine className="absolute bottom-24 right-20" />
+      
+      {/* Triangle patterns */}
+      <TrianglePattern className="absolute bottom-1/3 right-8 opacity-40" direction="down" />
+      
+      {/* Play indicators */}
+      <PlayIndicators className="absolute top-1/2 left-8 opacity-40" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <Badge className="bg-primary/10 text-primary border-0 mb-4">
-            Testimonials
-          </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            What Our <span className="text-gradient">Pilgrims Say</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Hear from our community of pilgrims who have experienced the journey of a lifetime with Al Haramain Travels.
-          </p>
+        <div className="grid lg:grid-cols-5 gap-12 items-center mb-16">
+          {/* Circular Image - Takes 2 columns */}
+          <div className="lg:col-span-2 relative flex justify-center">
+            <CircularImageFrame
+              src="https://images.unsplash.com/photo-1580418827493-f2b22c0a76cb?w=800&q=80"
+              alt="Masjid an-Nabawi"
+              size="lg"
+              grayscale={true}
+            />
+            
+            {/* Vertical decorative line */}
+            <div className="absolute top-0 right-0 w-[1px] h-16 bg-primary/40 hidden lg:block" />
+          </div>
+
+          {/* Content - Takes 3 columns */}
+          <div className="lg:col-span-3">
+            <Badge className="bg-primary/10 text-primary border-0 mb-4">
+              Testimonials
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              What Our <span className="text-gradient">Pilgrims Say</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-xl leading-relaxed">
+              Hear from our community of pilgrims who have experienced the journey of a lifetime with Al Haramain Travels.
+            </p>
+          </div>
         </div>
 
+        {/* Testimonials Grid */}
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.slice(0, 3).map((testimonial, i) => (
             <Card 

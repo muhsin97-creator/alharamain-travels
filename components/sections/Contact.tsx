@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Phone, Mail, MapPin, ChevronRight, Instagram, Facebook, MessageCircle } from "lucide-react";
+import { CircularImageFrame, GoldAccentBar, GoldLine, TrianglePattern, PlayIndicators } from "@/components/CircularImageFrame";
 import { contactInfo, umrahTrips } from "@/lib/data";
 
 export function Contact() {
@@ -11,9 +12,20 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-24 bg-[#2D2D2D] text-white relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-10 right-10 w-20 h-[1px] bg-primary opacity-40" />
-      <div className="absolute bottom-10 left-10 w-20 h-[1px] bg-primary opacity-40" />
+      {/* Decorative elements matching social media template (dark theme) */}
+      <GoldAccentBar position="top" />
+      <div className="absolute bottom-0 left-8 w-2 h-32 bg-primary" />
+      
+      {/* Gold lines */}
+      <GoldLine className="absolute top-24 left-16" />
+      <GoldLine className="absolute bottom-32 right-12" />
+      
+      {/* Triangle patterns */}
+      <TrianglePattern className="absolute top-1/4 right-8 opacity-40" direction="down" />
+      <TrianglePattern className="absolute bottom-1/3 left-8 opacity-40" direction="up" />
+      
+      {/* Play indicators */}
+      <PlayIndicators className="absolute top-1/3 left-1/4 opacity-30" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
@@ -28,6 +40,16 @@ export function Contact() {
               Have questions about our Umrah packages? Our friendly team is here to
               help you plan your perfect pilgrimage. Reach out to us through any of the channels below.
             </p>
+
+            {/* Circular Image */}
+            <div className="hidden md:flex justify-start mb-8">
+              <CircularImageFrame
+                src="https://images.unsplash.com/photo-1537031934600-096fbbb48a51?w=600&q=80"
+                alt="Kaaba and pilgrims"
+                size="md"
+                grayscale={true}
+              />
+            </div>
 
             {/* Contact Info */}
             <div className="space-y-5">
