@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { HeroHeader } from "@/components/header";
 import { Footer } from "@/components/sections/Footer";
 import { TripCard } from "@/components/TripCard";
@@ -157,33 +158,45 @@ export default async function TripDetailPage({ params }: PageProps) {
               )}
             </div>
 
-            {/* Rating Card */}
+            {/* Trip Image or Rating Card */}
             <div className="hidden lg:block">
-              <Card className="bg-white/10 border-white/20">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-2 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-6 w-6 fill-primary text-primary" />
-                    ))}
-                  </div>
-                  <div className="text-4xl font-bold text-white mb-2">4.9</div>
-                  <p className="text-white/60 mb-6">Based on pilgrim reviews</p>
-                  
-                  <div className="border-t border-white/10 pt-6">
-                    <h4 className="font-semibold text-white mb-4">Got a Question?</h4>
-                    <div className="space-y-3 text-sm">
-                      <div className="flex items-center gap-3 text-white/70">
-                        <Phone className="h-4 w-4 text-primary" />
-                        <span>{contactInfo.phone}</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-white/70">
-                        <Mail className="h-4 w-4 text-primary" />
-                        <span>{contactInfo.email}</span>
+              {trip.image ? (
+                <div className="relative w-full h-96 rounded-lg overflow-hidden shadow-2xl">
+                  <Image
+                    src={trip.image}
+                    alt={trip.name}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              ) : (
+                <Card className="bg-white/10 border-white/20">
+                  <CardContent className="p-8">
+                    <div className="flex items-center gap-2 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-6 w-6 fill-primary text-primary" />
+                      ))}
+                    </div>
+                    <div className="text-4xl font-bold text-white mb-2">4.9</div>
+                    <p className="text-white/60 mb-6">Based on pilgrim reviews</p>
+                    
+                    <div className="border-t border-white/10 pt-6">
+                      <h4 className="font-semibold text-white mb-4">Got a Question?</h4>
+                      <div className="space-y-3 text-sm">
+                        <div className="flex items-center gap-3 text-white/70">
+                          <Phone className="h-4 w-4 text-primary" />
+                          <span>{contactInfo.phone}</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-white/70">
+                          <Mail className="h-4 w-4 text-primary" />
+                          <span>{contactInfo.email}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              )}
             </div>
           </div>
         </div>

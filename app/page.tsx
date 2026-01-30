@@ -7,6 +7,7 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { CTA } from "@/components/sections/CTA";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
+import { Banners } from "@/components/sections/Banners";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 
@@ -16,6 +17,7 @@ export default function Home() {
       <HeroSection />
       <About />
       <UmrahTrips />
+      <Banners />
       <Services />
       <Testimonials />
       <CTA />

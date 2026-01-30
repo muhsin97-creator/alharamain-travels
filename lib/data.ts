@@ -44,6 +44,7 @@ export interface UmrahTrip {
   highlights: string[];
   ageRestriction: string;
   languages: string[];
+  image?: string;
 }
 
 export interface UmrahCompanionService {
@@ -262,6 +263,7 @@ Whether you're travelling solo or with your mates, this is your chance to surrou
     ],
     ageRestriction: "14+",
     languages: ["English"],
+    image: "/BANNER 3.png",
   },
   {
     slug: "budget-umrah",
@@ -310,6 +312,7 @@ With comfortable accommodation, essential travel services, and a structured itin
     ],
     ageRestriction: "All ages welcome",
     languages: ["English"],
+    image: "/BANNER 3.png",
   },
   {
     slug: "bridge-to-blessings-2",
@@ -359,6 +362,7 @@ This is not just an Umrah – it's a complete, guided experience where you'll sh
     ],
     ageRestriction: "All ages welcome",
     languages: ["English"],
+    image: "/Al Haramain Travels poster - bridge to blessings.jpg.png",
   },
   {
     slug: "yeah-the-boys-v",
@@ -427,6 +431,7 @@ Whether you're travelling solo or with your mates, this is your chance to surrou
     ],
     ageRestriction: "14+",
     languages: ["English"],
+    image: "/Al Haramain Travels poster YTB 4.png",
   },
   {
     slug: "ramadan-umrah-2026",
@@ -487,6 +492,7 @@ Our comprehensive package ensures you have everything you need to focus on your 
     ],
     ageRestriction: "All ages welcome",
     languages: ["English"],
+    image: "/BANEER.png",
   },
 ];
 

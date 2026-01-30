@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -19,6 +20,19 @@ export function TripCard({ trip, featured = false }: TripCardProps) {
           : "border-primary/20 hover:border-primary/50"
       } ${featured ? "lg:col-span-2 lg:row-span-2" : ""}`}
     >
+      {/* Trip Image */}
+      {trip.image && (
+        <div className={`relative w-full ${featured ? "h-64 lg:h-80" : "h-48"} overflow-hidden`}>
+          <Image
+            src={trip.image}
+            alt={trip.name}
+            fill
+            className="object-cover"
+            priority={featured}
+          />
+        </div>
+      )}
+      
       {/* Top Banner */}
       <div className={`bg-[#2D2D2D] p-6 relative ${featured ? "lg:p-8" : ""}`}>
         {/* Status Badge - Top Right */}
