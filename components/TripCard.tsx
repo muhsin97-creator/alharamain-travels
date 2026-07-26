@@ -34,7 +34,7 @@ export function TripCard({ trip, featured = false }: TripCardProps) {
       )}
       
       {/* Top Banner */}
-      <div className={`bg-[#2D2D2D] p-6 relative ${featured ? "lg:p-8" : ""}`}>
+      <div className={`bg-white border border-border/60 p-6 relative ${featured ? "lg:p-8" : ""}`}>
         {/* Status Badge - Top Right */}
         <div className="absolute top-4 right-4">
           {trip.expired ? (
@@ -60,7 +60,7 @@ export function TripCard({ trip, featured = false }: TripCardProps) {
           </Badge>
         </div>
 
-        <h3 className={`font-bold text-white mb-2 ${featured ? "text-2xl lg:text-3xl" : "text-xl"}`}>
+        <h3 className={`font-bold text-foreground mb-2 ${featured ? "text-2xl lg:text-3xl" : "text-xl"}`}>
           {trip.name}
         </h3>
         <div className={`font-bold text-gradient ${featured ? "text-3xl" : "text-2xl"}`}>

@@ -68,7 +68,7 @@ export default async function TripDetailPage({ params }: PageProps) {
       <HeroHeader />
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-[#2D2D2D] text-white overflow-hidden">
+      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-[#FBF7F0] text-foreground overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-8 left-8 flex gap-2 opacity-40">
           {[...Array(4)].map((_, i) => (
@@ -86,12 +86,12 @@ export default async function TripDetailPage({ params }: PageProps) {
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               {/* Breadcrumb */}
-              <nav className="flex items-center gap-2 text-sm text-white/60 mb-6">
+              <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
                 <Link href="/" className="hover:text-primary transition-colors">Home</Link>
                 <span>/</span>
                 <Link href="/services/umrah" className="hover:text-primary transition-colors">Umrah Services</Link>
                 <span>/</span>
-                <span className="text-white">{trip.name}</span>
+                <span className="text-foreground">{trip.name}</span>
               </nav>
 
               <div className="flex flex-wrap gap-2 mb-4">
@@ -118,7 +118,7 @@ export default async function TripDetailPage({ params }: PageProps) {
                 {trip.name}
               </h1>
 
-              <p className="text-white/70 text-lg mb-8 leading-relaxed">
+              <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
                 {trip.description}
               </p>
 
@@ -126,22 +126,22 @@ export default async function TripDetailPage({ params }: PageProps) {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
                 <div className="bg-white/5 rounded-xl p-4 text-center">
                   <div className="text-2xl font-bold text-gradient">{trip.price.replace("From ", "")}</div>
-                  <div className="text-white/60 text-sm">Starting Price</div>
+                  <div className="text-muted-foreground text-sm">Starting Price</div>
                 </div>
                 <div className="bg-white/5 rounded-xl p-4 text-center">
                   <Users className="h-6 w-6 text-primary mx-auto mb-1" />
-                  <div className="text-white font-semibold">{trip.capacity}</div>
-                  <div className="text-white/60 text-sm">Capacity</div>
+                  <div className="text-foreground font-semibold">{trip.capacity}</div>
+                  <div className="text-muted-foreground text-sm">Capacity</div>
                 </div>
                 <div className="bg-white/5 rounded-xl p-4 text-center">
                   <Clock className="h-6 w-6 text-primary mx-auto mb-1" />
-                  <div className="text-white font-semibold">{trip.duration}</div>
-                  <div className="text-white/60 text-sm">Duration</div>
+                  <div className="text-foreground font-semibold">{trip.duration}</div>
+                  <div className="text-muted-foreground text-sm">Duration</div>
                 </div>
                 <div className="bg-white/5 rounded-xl p-4 text-center">
                   <Globe className="h-6 w-6 text-primary mx-auto mb-1" />
-                  <div className="text-white font-semibold">{trip.languages.join(", ")}</div>
-                  <div className="text-white/60 text-sm">Language</div>
+                  <div className="text-foreground font-semibold">{trip.languages.join(", ")}</div>
+                  <div className="text-muted-foreground text-sm">Language</div>
                 </div>
               </div>
 
@@ -172,24 +172,24 @@ export default async function TripDetailPage({ params }: PageProps) {
                   />
                 </div>
               ) : (
-                <Card className="bg-white/10 border-white/20">
+                <Card className="bg-white border-border/60 shadow-sm">
                   <CardContent className="p-8">
                     <div className="flex items-center gap-2 mb-4">
                       {[...Array(5)].map((_, i) => (
                         <Star key={i} className="h-6 w-6 fill-primary text-primary" />
                       ))}
                     </div>
-                    <div className="text-4xl font-bold text-white mb-2">4.9</div>
-                    <p className="text-white/60 mb-6">Based on pilgrim reviews</p>
+                    <div className="text-4xl font-bold text-foreground mb-2">4.9</div>
+                    <p className="text-muted-foreground mb-6">Based on pilgrim reviews</p>
                     
-                    <div className="border-t border-white/10 pt-6">
-                      <h4 className="font-semibold text-white mb-4">Got a Question?</h4>
+                    <div className="border-t border-border/60 pt-6">
+                      <h4 className="font-semibold text-foreground mb-4">Got a Question?</h4>
                       <div className="space-y-3 text-sm">
-                        <div className="flex items-center gap-3 text-white/70">
+                        <div className="flex items-center gap-3 text-muted-foreground">
                           <Phone className="h-4 w-4 text-primary" />
                           <span>{contactInfo.phone}</span>
                         </div>
-                        <div className="flex items-center gap-3 text-white/70">
+                        <div className="flex items-center gap-3 text-muted-foreground">
                           <Mail className="h-4 w-4 text-primary" />
                           <span>{contactInfo.email}</span>
                         </div>

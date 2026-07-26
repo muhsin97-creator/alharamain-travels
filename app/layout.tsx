@@ -25,11 +25,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Al-Haramain Travels | Premium Umrah Packages from Australia",
+    default: "Umrah Packages Australia | Guided Umrah Trips – Al-Haramain Travels",
     template: "%s | Al-Haramain Travels",
   },
   description:
-    "Experience the spiritual journey of a lifetime with Al-Haramain Travels. Premium Umrah packages from Australia with 5-star hotels, expert guides, and exceptional service. Book your pilgrimage today.",
+    "Umrah packages from Australia with 5-star hotels near the Haram, guided Umrah trips with experienced Shaykhs, flights, visas and 24/7 support. Departures from Sydney & Melbourne. Register for our next Umrah trip today.",
   keywords: [
     "Umrah packages Australia",
     "Ramadan Umrah packages",
@@ -60,9 +60,9 @@ export const metadata: Metadata = {
     locale: "en_AU",
     url: siteUrl,
     siteName: "Al-Haramain Travels",
-    title: "Al-Haramain Travels | Premium Umrah Packages from Australia",
+    title: "Umrah Packages Australia | Guided Umrah Trips – Al-Haramain Travels",
     description:
-      "Experience the spiritual journey of a lifetime with premium Umrah packages. 5-star hotels, expert guides, and exceptional service.",
+      "Umrah packages from Australia with 5-star hotels near the Haram, guided groups, flights, visas and 24/7 support.",
     images: [
       {
         url: "/og-image.png",

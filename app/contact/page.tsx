@@ -343,7 +343,7 @@ export default function ContactPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-[#2D2D2D] text-white relative overflow-hidden">
+      <section className="py-24 bg-[#FBF7F0] text-foreground relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-10 left-10 w-20 h-[1px] bg-primary opacity-40" />
         <div className="absolute bottom-10 right-10 w-20 h-[1px] bg-primary opacity-40" />
@@ -360,7 +360,7 @@ export default function ContactPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Begin Your <span className="text-gradient">Journey?</span>
           </h2>
-          <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
             Browse our Umrah packages or get in touch with our team today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

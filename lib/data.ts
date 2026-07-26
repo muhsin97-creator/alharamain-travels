@@ -100,18 +100,18 @@ export const heroSlides = [
     link: "/umrah/yeah-the-boys-v",
   },
   {
-    title: "Ramadan Umrah 2026",
-    subtitle: "Umrah 2026",
+    title: "Ramadan Umrah 2027",
+    subtitle: "Ramadan Special",
     description:
-      "Experience the blessed month of Ramadan in the holiest places on Earth. Join us for an unforgettable spiritual journey during the most sacred time of the year.",
-    link: "/umrah/ramadan-umrah-2026",
+      "Experience the blessed month of Ramadan in the holiest places on Earth. Register your interest for our guided Ramadan Umrah package and journey with pilgrims from across Australia.",
+    link: "/umrah/ramadan-umrah-2027",
   },
   {
-    title: "Bridge to Blessings 2",
+    title: "Bridge to Blessings 3",
     subtitle: "Family Friendly",
     description:
-      "A unique family-friendly Umrah experience designed for brothers, sisters, families, couples, and solo travellers looking to experience a spiritually uplifting Umrah together.",
-    link: "/umrah/bridge-to-blessings-2",
+      "Our family-friendly guided Umrah trip returns. Designed for brothers, sisters, families, couples, and solo travellers seeking a spiritually uplifting Umrah together.",
+    link: "/umrah/bridge-to-blessings-3",
   },
 ];
 
@@ -448,6 +448,125 @@ This exclusive Ramadan Umrah 2026 trip brings together pilgrims from all over Au
 Imagine breaking your fast at the Haram, praying Taraweeh in Masjid al-Haram, and spending your nights in worship surrounded by millions of believers. This is a once-in-a-lifetime opportunity to experience Ramadan as it was meant to be experienced.
 
 Our comprehensive package ensures you have everything you need to focus on your worship while we handle all the logistics.`,
+    expired: true,
+    featured: false,
+    included: [
+      "Return flights from major Australian cities",
+      "Premium 5-star accommodation in Makkah and Madinah",
+      "Daily Suhoor and Iftar",
+      "All ground transportation",
+      "Umrah visa and health insurance",
+      "Guided Umrah experience",
+      "Ziyaarah tours",
+      "24/7 group support",
+      "Haramain Train tickets",
+    ],
+    excluded: [
+      "Personal expenses",
+      "Optional activities",
+      "Additional meals outside of Suhoor/Iftar",
+    ],
+    faqs: [
+      {
+        question: "Will we be there for the entire month of Ramadan?",
+        answer: "This trip covers 16 days during the blessed month, allowing you to experience the heart of Ramadan in the holy cities.",
+      },
+      {
+        question: "Is Iftar provided?",
+        answer: "Yes, daily Suhoor and Iftar are included in the package.",
+      },
+      {
+        question: "How close is the accommodation to the Haram?",
+        answer: "Our premium 5-star hotels are within walking distance to both Masjid al-Haram and Masjid an-Nabawi.",
+      },
+    ],
+    highlights: [
+      "Experience Ramadan in Makkah and Madinah",
+      "Break your fast at the Haram",
+      "Pray Taraweeh in Masjid al-Haram",
+      "Premium 5-star accommodation",
+      "All-inclusive Suhoor and Iftar",
+      "Spiritual guidance throughout",
+    ],
+    ageRestriction: "All ages welcome",
+    languages: ["English"],
+    image: "/BANEER.png",
+  },
+  {
+    slug: "bridge-to-blessings-3",
+    name: "Bridge to Blessings 3",
+    subtitle: "Family Friendly",
+    price: "Register Your Interest",
+    priceNum: 5800,
+    capacity: "45 People",
+    duration: "10 Days 10 Nights",
+    description:
+      "Our beloved family-friendly Umrah journey returns. Bridge to Blessings 3 welcomes brothers, sisters, families, couples and solo travellers from across Australia for a spiritually uplifting guided Umrah together.",
+    longDescription: `Following the incredible success of Bridge to Blessings 1 and 2, our beloved family-friendly Umrah journey returns!
+
+Bridge to Blessings 3 is designed for brothers, sisters, families, couples, and solo travellers looking to experience a spiritually uplifting Umrah together. This is not just an Umrah trip – it's a complete, guided experience where you'll share unforgettable moments of worship, reflection, and community.
+
+Whether you're travelling with your loved ones or meeting new companions along the way, Bridge to Blessings 3 is built to create lasting memories while reviving hearts and strengthening our connection with Allah in the company of a beautiful, diverse group.
+
+Register your interest today and our team will be in touch with dates, pricing and full package details as they are confirmed.`,
+    expired: false,
+    featured: true,
+    included: [
+      "Return flights",
+      "Premium 4-5 star accommodation",
+      "Daily breakfast",
+      "All ground transportation",
+      "Umrah visa and health insurance",
+      "Guided Umrah with experienced scholars",
+      "Ziyaarah tours",
+    ],
+    excluded: [
+      "Personal expenses",
+      "Optional activities",
+      "Travel insurance upgrades",
+    ],
+    faqs: [
+      {
+        question: "When will dates and pricing be confirmed?",
+        answer: "Full dates and pricing are being finalised now. Register your interest and our team will contact you with all the details as soon as they are released.",
+      },
+      {
+        question: "Can families with children attend?",
+        answer: "Absolutely! This trip is specifically designed to be family-friendly and welcoming to all ages.",
+      },
+      {
+        question: "Are there separate arrangements for sisters?",
+        answer: "Yes, we ensure appropriate accommodations and arrangements for all participants.",
+      },
+    ],
+    highlights: [
+      "Family-friendly environment",
+      "Diverse group experience",
+      "Guided spiritual journey",
+      "Premium accommodations",
+      "Community building",
+    ],
+    ageRestriction: "All ages welcome",
+    languages: ["English"],
+    image: "/Al Haramain Travels poster - bridge to blessings.jpg.png",
+  },
+  {
+    slug: "ramadan-umrah-2027",
+    name: "Ramadan Umrah 2027",
+    subtitle: "Ramadan Special",
+    price: "Register Your Interest",
+    priceNum: 6700,
+    capacity: "45 People",
+    duration: "16 Days 16 Nights",
+    description:
+      "Experience Ramadan 2027 in the holiest places on Earth. Join pilgrims from all over Australia for a guided Umrah during the blessed month – breaking your fast at the Haram and praying Taraweeh in Masjid al-Haram.",
+    longDescription: `Experience the blessed month of Ramadan in the holiest places on Earth!
+
+Following our unforgettable Ramadan 2026 journey, Ramadan Umrah 2027 brings together pilgrims from all over Australia for a spiritual, physical, and emotional journey like no other during the most sacred time of the year.
+
+Imagine breaking your fast at the Haram, praying Taraweeh in Masjid al-Haram, and spending your nights in worship surrounded by millions of believers. This is a once-in-a-lifetime opportunity to experience Ramadan as it was meant to be experienced.
+
+Places for Ramadan fill faster than any other trip of the year. Register your interest today and our team will be in touch with dates, pricing and full package details as they are confirmed.`,
     expired: false,
     featured: true,
     included: [
@@ -467,6 +586,10 @@ Our comprehensive package ensures you have everything you need to focus on your 
       "Additional meals outside of Suhoor/Iftar",
     ],
     faqs: [
+      {
+        question: "When will dates and pricing be confirmed?",
+        answer: "Full dates and pricing are being finalised now. Register your interest and our team will contact you with all the details as soon as they are released.",
+      },
       {
         question: "Will we be there for the entire month of Ramadan?",
         answer: "This trip covers 16 days during the blessed month, allowing you to experience the heart of Ramadan in the holy cities.",
@@ -810,6 +933,20 @@ export const tripPhotos: Record<string, { src: string; alt: string }[]> = {
     { src: "/trips/ytb-jabal-nour-view.jpg", alt: "The view over Makkah from Jabal al-Nour" },
     { src: "/trips/ytb-date-farm.jpg", alt: "Visiting a Madinah date farm on ziyarah" },
     { src: "/trips/ytb-nabawi-night.jpg", alt: "The courtyard of Masjid an-Nabawi at night" },
+  ],
+  "bridge-to-blessings-3": [
+    { src: "/trips/btb-clock-tower-day.jpg", alt: "The Abraj Al-Bait Clock Tower above Masjid al-Haram" },
+    { src: "/trips/btb-quba-masjid.jpg", alt: "Masjid Quba, the first masjid in Islam" },
+    { src: "/trips/btb-uhud-ziyarah.jpg", alt: "Ziyarah at Mount Uhud, Madinah" },
+    { src: "/trips/btb-nabawi-gates.jpg", alt: "The gates of Masjid an-Nabawi" },
+    { src: "/trips/btb-haram-dusk.jpg", alt: "The minarets of Masjid al-Haram at dusk" },
+    { src: "/trips/btb-nabawi-ceiling.jpg", alt: "The golden ceilings of Masjid an-Nabawi" },
+  ],
+  "ramadan-umrah-2027": [
+    { src: "/trips/ytb-kaaba-pilgrims.jpg", alt: "Our pilgrims before the Kaaba, Masjid al-Haram" },
+    { src: "/trips/btb-clock-tower-day.jpg", alt: "The Abraj Al-Bait Clock Tower above Masjid al-Haram" },
+    { src: "/trips/ytb-green-dome.jpg", alt: "The Green Dome, Masjid an-Nabawi" },
+    { src: "/trips/btb-nabawi-ceiling.jpg", alt: "The golden ceilings of Masjid an-Nabawi" },
   ],
   "bridge-to-blessings-2": [
     { src: "/trips/btb-clock-tower-day.jpg", alt: "The Abraj Al-Bait Clock Tower above Masjid al-Haram" },

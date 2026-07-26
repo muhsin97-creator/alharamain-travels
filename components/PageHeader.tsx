@@ -20,7 +20,7 @@ export function PageHeader({
   return (
     <section
       className={`relative py-24 md:py-32 overflow-hidden ${
-        dark ? "bg-[#2D2D2D] text-white" : "bg-background text-foreground"
+        dark ? "bg-[#FBF7F0] text-foreground" : "bg-background text-foreground"
       }`}
     >
       {/* Decorative elements */}

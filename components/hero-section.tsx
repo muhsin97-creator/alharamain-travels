@@ -29,19 +29,19 @@ export default function HeroSection() {
             <HeroHeader />
             <main className="overflow-x-hidden">
                 {/* Hero Section */}
-                <section className="relative min-h-screen bg-[#1a1a1a] flex items-center">
+                <section className="relative min-h-screen bg-[#FBF7F0] flex items-center">
                     {/* Background Image with Overlay */}
                     <div className="absolute inset-0">
                         <Image
-                            src="https://images.unsplash.com/photo-1580418827493-f2b22c0a76cb?w=1920&q=80"
+                            src="/gallery/nabawi-pilgrims.jpg"
                             alt="Kaaba"
                             fill
-                            className="object-cover opacity-30"
+                            className="object-cover opacity-60"
                             priority
                         />
                         {/* Gradient overlays */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/80 to-transparent" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/50" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-[#FBF7F0] via-[#FBF7F0]/80 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#FBF7F0] via-transparent to-[#FBF7F0]/50" />
                     </div>
 
                     {/* Geometric Decorations */}
@@ -95,7 +95,7 @@ export default function HeroSection() {
                                                         ? 'opacity-100 translate-y-0'
                                                         : 'opacity-0 translate-y-8 pointer-events-none'
                                                 }`}>
-                                                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight">
+                                                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] tracking-tight">
                                                     {slide.title.split(' ').map((word, i) => (
                                                         <span key={i} className={i === slide.title.split(' ').length - 1 ? "block text-gradient" : ""}>
                                                             {word}{' '}
@@ -107,7 +107,7 @@ export default function HeroSection() {
                                     </div>
 
                                     {/* Description */}
-                                    <p className="text-white/60 text-lg md:text-xl max-w-lg mb-10 leading-relaxed">
+                                    <p className="text-muted-foreground text-lg md:text-xl max-w-lg mb-10 leading-relaxed">
                                         {heroSlides[currentSlide]?.description.slice(0, 150)}...
                                     </p>
 
@@ -150,7 +150,7 @@ export default function HeroSection() {
                                                 aria-label={`Go to slide ${index + 1}`}
                                             />
                                         ))}
-                                        <span className="text-white/40 text-sm ml-4">
+                                        <span className="text-muted-foreground/80 text-sm ml-4">
                                             {String(currentSlide + 1).padStart(2, '0')} / {String(heroSlides.length).padStart(2, '0')}
                                         </span>
                                     </div>
@@ -164,23 +164,23 @@ export default function HeroSection() {
                                         <div className="absolute -inset-8 border border-primary/10 rotate-2" />
                                         
                                         {/* Stats Card */}
-                                        <div className="relative bg-[#2D2D2D]/80 backdrop-blur-xl p-8 border border-white/10">
+                                        <div className="relative bg-white/75 backdrop-blur-xl p-8 border border-black/10">
                                             <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-primary" />
                                             <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-primary" />
                                             
-                                            <h3 className="text-white text-xl font-semibold mb-6">Why Choose Us</h3>
+                                            <h3 className="text-foreground text-xl font-semibold mb-6">Why Choose Us</h3>
                                             
                                             <div className="grid grid-cols-2 gap-6">
                                                 {stats.map((stat, i) => (
                                                     <div key={i} className="text-center p-4 bg-white/5 rounded-lg">
                                                         <div className="text-3xl font-bold text-gradient mb-1">{stat.number}</div>
-                                                        <div className="text-white/50 text-sm">{stat.label}</div>
+                                                        <div className="text-muted-foreground text-sm">{stat.label}</div>
                                                     </div>
                                                 ))}
                                             </div>
 
                                             <div className="mt-6 pt-6 border-t border-white/10">
-                                                <div className="flex items-center gap-4 text-white/60 text-sm">
+                                                <div className="flex items-center gap-4 text-muted-foreground text-sm">
                                                     <div className="flex items-center gap-2">
                                                         <Plane className="h-4 w-4 text-primary" />
                                                         <span>Premium Flights</span>

@@ -34,7 +34,7 @@ export function UmrahTrips() {
               Upcoming Trips
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Upcoming <span className="text-gradient">Umrah Trips</span>
+              Upcoming <span className="text-gradient">Umrah Trips &amp; Packages</span>
             </h2>
             <p className="text-muted-foreground text-lg">
               Immerse yourself in the spiritual heart of Islam with our Umrah packages.

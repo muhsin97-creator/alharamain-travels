@@ -47,7 +47,7 @@ export function EnquiryForm({ tripName, subject }: EnquiryFormProps) {
   }
 
   return (
-    <section id="enquiry" className="py-24 bg-[#2D2D2D] text-white">
+    <section id="enquiry" className="py-24 bg-[#FBF7F0] text-foreground">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <Badge className="bg-primary/20 text-primary border-0 mb-4">
@@ -56,12 +56,12 @@ export function EnquiryForm({ tripName, subject }: EnquiryFormProps) {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Enquire About This <span className="text-gradient">Trip</span>
           </h2>
-          <p className="text-white/70">
+          <p className="text-muted-foreground">
             Fill out the form below and our team will get back to you as soon as possible.
           </p>
         </div>
 
-        <Card className="bg-white/5 border-white/10">
+        <Card className="bg-white border-border/60 shadow-sm">
           <CardContent className="p-8">
             {isSuccess ? (
               <div className="text-center py-8">
@@ -69,7 +69,7 @@ export function EnquiryForm({ tripName, subject }: EnquiryFormProps) {
                   <CheckCircle className="h-8 w-8 text-green-500" />
                 </div>
                 <h3 className="text-2xl font-bold mb-2">Enquiry Sent!</h3>
-                <p className="text-white/60 mb-6">
+                <p className="text-muted-foreground mb-6">
                   Thank you for your interest in {tripName}. Our team will contact you soon.
                 </p>
                 <Button onClick={reset} variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
@@ -93,7 +93,7 @@ export function EnquiryForm({ tripName, subject }: EnquiryFormProps) {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
+                      className="bg-white border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
                     />
                     <input
                       type="tel"
@@ -101,7 +101,7 @@ export function EnquiryForm({ tripName, subject }: EnquiryFormProps) {
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
+                      className="bg-white border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
                     />
                   </div>
                   <input
@@ -110,21 +110,21 @@ export function EnquiryForm({ tripName, subject }: EnquiryFormProps) {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
+                    className="w-full bg-white border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
                   />
                   <input
                     type="text"
                     placeholder="Subject"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
+                    className="w-full bg-white border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
                   />
                   <textarea
                     placeholder="Your Message"
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary resize-none transition-colors"
+                    className="w-full bg-white border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary resize-none transition-colors"
                   />
                   <Button
                     type="submit"
