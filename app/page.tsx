@@ -3,6 +3,7 @@ import HeroSection from "@/components/hero-section";
 import { Services } from "@/components/sections/Services";
 import { UmrahTrips } from "@/components/sections/UmrahTrips";
 import { About } from "@/components/sections/About";
+import { Gallery } from "@/components/sections/Gallery";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { CTA } from "@/components/sections/CTA";
 import { Contact } from "@/components/sections/Contact";
@@ -19,6 +20,7 @@ export default function Home() {
       <UmrahTrips />
       <Banners />
       <Services />
+      <Gallery />
       <Testimonials />
       <CTA />
       <Contact />

@@ -10,7 +10,6 @@ const menuItems = [
     { name: 'Home', href: '/' },
     { name: 'About us', href: '/about' },
     { name: 'Umrah Services', href: '/services/umrah' },
-    { name: 'Hajj Services', href: '/services/hajj' },
     { name: 'Blogs', href: '/blog' },
     { name: 'Contact', href: '/contact' },
 ]
@@ -91,8 +90,8 @@ export const HeroHeader = () => {
                                     variant="outline"
                                     size="sm"
                                     className="border-primary text-primary hover:bg-primary hover:text-white">
-                                    <Link href="/hajj-2026">
-                                        <span>Hajj 2026 Sign Up</span>
+                                    <Link href="/services/umrah">
+                                        <span>View Umrah Trips</span>
                                     </Link>
                                 </Button>
                                 <Button

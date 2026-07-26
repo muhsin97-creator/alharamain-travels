@@ -10,7 +10,7 @@ import { aboutContent, stats, whyChooseUs } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "About Us | Al-Haramain Travels",
-  description: "Learn about Al-Haramain Travels - Australia's trusted Umrah and Hajj travel agency. Discover our mission, values, and commitment to exceptional pilgrimage experiences.",
+  description: "Learn about Al-Haramain Travels - Australia's trusted Umrah travel agency. Discover our mission, values, and commitment to exceptional pilgrimage experiences.",
 };
 
 export default function AboutPage() {
@@ -237,7 +237,7 @@ export default function AboutPage() {
             Ready to Begin Your Journey?
           </h2>
           <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-            Let us help you plan the spiritual journey of a lifetime. Contact us today to learn more about our Umrah and Hajj packages.
+            Let us help you plan the spiritual journey of a lifetime. Contact us today to learn more about our Umrah packages.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

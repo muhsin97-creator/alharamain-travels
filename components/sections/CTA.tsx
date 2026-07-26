@@ -57,8 +57,8 @@ export function CTA() {
             size="lg"
             className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-10 py-6 text-lg font-semibold"
           >
-            <Link href="/hajj-2026">
-              Hajj 2026 Sign Up
+            <Link href="/contact">
+              Enquire Now
             </Link>
           </Button>
         </div>

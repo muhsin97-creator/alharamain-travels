@@ -86,8 +86,6 @@ export const navigationLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About us" },
   { href: "/services/umrah", label: "Umrah Services" },
-  { href: "/services/hajj", label: "Hajj Services" },
-  { href: "/hajj-2026", label: "Hajj 2026 Sign Up" },
   { href: "/blog", label: "Blogs" },
   { href: "/contact", label: "Contact" },
 ];
@@ -151,7 +149,7 @@ export const services: Service[] = [
   {
     icon: Calendar,
     title: "Visa Services",
-    description: "Fast-track Umrah & Hajj visa processing",
+    description: "Fast-track Umrah visa processing",
   },
   {
     icon: Users,
@@ -782,13 +780,11 @@ export const footerLinks = {
     { href: "/", label: "Home" },
     { href: "/about", label: "About us" },
     { href: "/services/umrah", label: "Umrah Services" },
-    { href: "/services/hajj", label: "Hajj Services" },
     { href: "/contact", label: "Contact" },
   ],
   help: [
     { href: "/blog", label: "Blog" },
     { href: "/contact", label: "FAQs" },
-    { href: "/hajj-2026", label: "Hajj 2026" },
   ],
   legal: [
     { href: "#", label: "Terms & Conditions" },
@@ -797,13 +793,60 @@ export const footerLinks = {
   ],
 };
 
-// Gallery images (placeholder paths - you'd replace with actual images)
+// Real photos from our past trips, shown on trip detail pages (keyed by trip slug)
+export const tripPhotos: Record<string, { src: string; alt: string }[]> = {
+  "yeah-the-boys-iv": [
+    { src: "/trips/ytb-kaaba-pilgrims.jpg", alt: "Our brothers before the Kaaba, Masjid al-Haram" },
+    { src: "/trips/ytb-nabawi-umbrellas.jpg", alt: "Beneath the canopies of Masjid an-Nabawi" },
+    { src: "/trips/ytb-green-dome.jpg", alt: "The Green Dome, Masjid an-Nabawi" },
+    { src: "/trips/ytb-jabal-nour-view.jpg", alt: "The view over Makkah from Jabal al-Nour" },
+    { src: "/trips/ytb-date-farm.jpg", alt: "Visiting a Madinah date farm on ziyarah" },
+    { src: "/trips/ytb-nabawi-night.jpg", alt: "The courtyard of Masjid an-Nabawi at night" },
+  ],
+  "yeah-the-boys-v": [
+    { src: "/trips/ytb-kaaba-pilgrims.jpg", alt: "Our brothers before the Kaaba, Masjid al-Haram" },
+    { src: "/trips/ytb-nabawi-umbrellas.jpg", alt: "Beneath the canopies of Masjid an-Nabawi" },
+    { src: "/trips/ytb-green-dome.jpg", alt: "The Green Dome, Masjid an-Nabawi" },
+    { src: "/trips/ytb-jabal-nour-view.jpg", alt: "The view over Makkah from Jabal al-Nour" },
+    { src: "/trips/ytb-date-farm.jpg", alt: "Visiting a Madinah date farm on ziyarah" },
+    { src: "/trips/ytb-nabawi-night.jpg", alt: "The courtyard of Masjid an-Nabawi at night" },
+  ],
+  "bridge-to-blessings-2": [
+    { src: "/trips/btb-clock-tower-day.jpg", alt: "The Abraj Al-Bait Clock Tower above Masjid al-Haram" },
+    { src: "/trips/btb-quba-masjid.jpg", alt: "Masjid Quba, the first masjid in Islam" },
+    { src: "/trips/btb-uhud-ziyarah.jpg", alt: "Ziyarah at Mount Uhud, Madinah" },
+    { src: "/trips/btb-nabawi-gates.jpg", alt: "The gates of Masjid an-Nabawi" },
+    { src: "/trips/btb-haram-dusk.jpg", alt: "The minarets of Masjid al-Haram at dusk" },
+    { src: "/trips/btb-nabawi-ceiling.jpg", alt: "The golden ceilings of Masjid an-Nabawi" },
+  ],
+  "budget-umrah": [
+    { src: "/trips/ytb-kaaba-pilgrims.jpg", alt: "Our pilgrims before the Kaaba, Masjid al-Haram" },
+    { src: "/trips/btb-haram-dusk.jpg", alt: "The minarets of Masjid al-Haram at dusk" },
+    { src: "/trips/ytb-nabawi-umbrellas.jpg", alt: "Beneath the canopies of Masjid an-Nabawi" },
+    { src: "/trips/btb-quba-masjid.jpg", alt: "Masjid Quba, the first masjid in Islam" },
+  ],
+  "ramadan-umrah-2026": [
+    { src: "/trips/ytb-kaaba-pilgrims.jpg", alt: "Our pilgrims before the Kaaba, Masjid al-Haram" },
+    { src: "/trips/btb-clock-tower-day.jpg", alt: "The Abraj Al-Bait Clock Tower above Masjid al-Haram" },
+    { src: "/trips/ytb-green-dome.jpg", alt: "The Green Dome, Masjid an-Nabawi" },
+    { src: "/trips/btb-nabawi-ceiling.jpg", alt: "The golden ceilings of Masjid an-Nabawi" },
+  ],
+};
+
+// Gallery images
 export const galleryImages = [
-  { src: "/gallery/kaaba-1.jpg", alt: "Clock Tower - Kaaba" },
-  { src: "/gallery/masjid-nabawi.jpg", alt: "Canopies - Masjid An-Nabawi" },
-  { src: "/gallery/kaaba-2.jpg", alt: "Kaaba" },
-  { src: "/gallery/kaaba-3.jpg", alt: "Kaaba" },
-  { src: "/gallery/masjid-nabawi-2.jpg", alt: "Masjid An-Nabawi" },
+  { src: "/gallery/kaaba.jpg", alt: "The Holy Kaaba, Masjid al-Haram, Makkah" },
+  { src: "/gallery/masjid-nabawi-green-dome.jpg", alt: "The Green Dome of Masjid an-Nabawi, Madinah" },
+  { src: "/gallery/masjid-al-haram-aerial.jpg", alt: "Aerial view of Masjid al-Haram, Makkah" },
+  { src: "/gallery/haram-colonnade.jpg", alt: "Golden lanterns along the colonnades of Masjid al-Haram" },
+  { src: "/gallery/makkah-sunset.jpg", alt: "Makkah at sunset beneath the Abraj Al-Bait towers" },
+  { src: "/gallery/nabawi-pilgrims.jpg", alt: "Pilgrims beneath the canopies of Masjid an-Nabawi" },
+  { src: "/gallery/madinah-minarets.jpg", alt: "Minarets of Madinah at golden hour" },
+  { src: "/gallery/nabawi-canopy-detail.jpg", alt: "The great canopies of Masjid an-Nabawi" },
+  { src: "/gallery/nabawi-sunset.jpg", alt: "Sunset over the courtyard of Masjid an-Nabawi" },
+  { src: "/gallery/clock-tower-dawn.jpg", alt: "The Abraj Al-Bait Clock Tower at dawn" },
+  { src: "/gallery/jabal-al-nour.jpg", alt: "Jabal al-Nour, home of the Cave of Hira, Makkah" },
+  { src: "/gallery/nabawi-minaret.jpg", alt: "A minaret of Masjid an-Nabawi against the sky" },
 ];
 
 // Testimonials
@@ -859,26 +902,6 @@ export const whyChooseUs = [
   },
 ];
 
-// Hajj Information
-export const hajjInfo = {
-  title: "Hajj 2026",
-  description: "Join us for the journey of a lifetime. Hajj 2026 registrations are now open. Secure your spot for this sacred pilgrimage.",
-  highlights: [
-    "Comprehensive Hajj packages",
-    "Experienced scholars and guides",
-    "Premium accommodation in Mina, Arafat, and Muzdalifah",
-    "All-inclusive meals and transportation",
-    "24/7 support throughout your journey",
-    "Pre-Hajj preparation sessions",
-  ],
-  process: [
-    { step: 1, title: "Register Interest", description: "Fill out our registration form to express your interest in Hajj 2026." },
-    { step: 2, title: "Consultation", description: "Our team will contact you to discuss packages and answer your questions." },
-    { step: 3, title: "Booking", description: "Secure your spot with a deposit and choose your preferred package." },
-    { step: 4, title: "Preparation", description: "Attend our pre-Hajj seminars and prepare for your journey." },
-    { step: 5, title: "Departure", description: "Embark on the journey of a lifetime with Al-Haramain Travels." },
-  ],
-};
 
 // Legacy exports for backward compatibility
 export interface Package {

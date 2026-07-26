@@ -25,14 +25,14 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Al-Haramain Travels | Premium Umrah & Hajj Packages from Australia",
+    default: "Al-Haramain Travels | Premium Umrah Packages from Australia",
     template: "%s | Al-Haramain Travels",
   },
   description:
-    "Experience the spiritual journey of a lifetime with Al-Haramain Travels. Premium Umrah and Hajj packages from Australia with 5-star hotels, expert guides, and exceptional service. Book your pilgrimage today.",
+    "Experience the spiritual journey of a lifetime with Al-Haramain Travels. Premium Umrah packages from Australia with 5-star hotels, expert guides, and exceptional service. Book your pilgrimage today.",
   keywords: [
     "Umrah packages Australia",
-    "Hajj packages Australia",
+    "Ramadan Umrah packages",
     "Islamic Travel",
     "Pilgrimage",
     "Makkah",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     "Saudi Arabia",
     "Travel Agency Australia",
     "Umrah 2025",
-    "Hajj 2026",
+    "Guided Umrah tours",
     "Ramadan Umrah",
     "Budget Umrah",
     "Premium Umrah",
@@ -60,23 +60,23 @@ export const metadata: Metadata = {
     locale: "en_AU",
     url: siteUrl,
     siteName: "Al-Haramain Travels",
-    title: "Al-Haramain Travels | Premium Umrah & Hajj Packages from Australia",
+    title: "Al-Haramain Travels | Premium Umrah Packages from Australia",
     description:
-      "Experience the spiritual journey of a lifetime with premium Umrah and Hajj packages. 5-star hotels, expert guides, and exceptional service.",
+      "Experience the spiritual journey of a lifetime with premium Umrah packages. 5-star hotels, expert guides, and exceptional service.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Al-Haramain Travels - Premium Umrah & Hajj Packages",
+        alt: "Al-Haramain Travels - Premium Umrah Packages",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Al-Haramain Travels | Premium Umrah & Hajj Packages",
+    title: "Al-Haramain Travels | Premium Umrah Packages",
     description:
-      "Experience the spiritual journey of a lifetime with premium Umrah and Hajj packages from Australia.",
+      "Experience the spiritual journey of a lifetime with premium Umrah packages from Australia.",
     images: ["/og-image.png"],
     creator: "@alharamaintravels",
   },
@@ -106,7 +106,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
   "name": "Al-Haramain Travels",
-  "description": "Premium Umrah and Hajj travel packages from Australia",
+  "description": "Premium Umrah travel packages from Australia",
   "url": siteUrl,
   "logo": `${siteUrl}/logo.png`,
   "image": `${siteUrl}/og-image.png`,

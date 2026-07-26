@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { umrahTrips, contactInfo } from "@/lib/data";
 import { EnquiryForm } from "@/components/EnquiryForm";
+import { TripGallery } from "@/components/TripGallery";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -294,6 +295,8 @@ export default async function TripDetailPage({ params }: PageProps) {
               </Accordion>
             </TabsContent>
           </Tabs>
+
+          <TripGallery slug={trip.slug} />
         </div>
       </section>
 

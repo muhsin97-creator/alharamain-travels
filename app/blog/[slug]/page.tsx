@@ -236,7 +236,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             Ready to Start Your Journey?
           </h2>
           <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-            Let us help you plan your Umrah or Hajj pilgrimage. Contact us today to learn more about our packages.
+            Let us help you plan your Umrah pilgrimage. Contact us today to learn more about our packages.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button

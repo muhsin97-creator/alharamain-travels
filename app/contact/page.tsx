@@ -73,7 +73,7 @@ export default function ContactPage() {
                 Contact Information
               </h2>
               <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-                Have questions about our Umrah or Hajj packages? Our friendly team is here to
+                Have questions about our Umrah packages? Our friendly team is here to
                 help you plan your perfect pilgrimage. Reach out to us through any of the channels below.
               </p>
 
@@ -250,7 +250,6 @@ export default function ContactPage() {
                                 {trip.name} - {trip.price}
                               </option>
                             ))}
-                            <option value="Hajj 2026">Hajj 2026</option>
                             <option value="Umrah Companion Services">Umrah Companion Services</option>
                             <option value="Custom Package">Custom Package</option>
                             <option value="General Enquiry">Other / General Enquiry</option>
@@ -321,7 +320,7 @@ export default function ContactPage() {
               },
               {
                 question: "Do you provide visa assistance?",
-                answer: "Yes, all our packages include Umrah/Hajj visa processing. We handle all the paperwork and ensure your visa is ready before departure."
+                answer: "Yes, all our packages include Umrah visa processing. We handle all the paperwork and ensure your visa is ready before departure."
               },
               {
                 question: "Can I customise my package?",
@@ -362,7 +361,7 @@ export default function ContactPage() {
             Ready to Begin Your <span className="text-gradient">Journey?</span>
           </h2>
           <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
-            Browse our Umrah packages or sign up for Hajj 2026 today.
+            Browse our Umrah packages or get in touch with our team today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -381,8 +380,8 @@ export default function ContactPage() {
               variant="outline"
               className="border-white text-black hover:bg-white/10 px-10"
             >
-              <Link href="/hajj-2026">
-                Hajj 2026 Sign Up
+              <Link href="/about">
+                About Al-Haramain
               </Link>
             </Button>
           </div>

@@ -11,7 +11,7 @@ import { blogPosts } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Blog | Al-Haramain Travels",
-  description: "Read our latest articles about Umrah, Hajj, and Islamic travel. Get tips, guides, and spiritual insights for your pilgrimage journey.",
+  description: "Read our latest articles about Umrah and Islamic travel. Get tips, guides, and spiritual insights for your pilgrimage journey.",
 };
 
 export default function BlogPage() {
@@ -155,7 +155,7 @@ export default function BlogPage() {
             Subscribe to Our <span className="text-gradient">Newsletter</span>
           </h2>
           <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
-            Get the latest updates on Umrah and Hajj trips, travel tips, and exclusive offers delivered to your inbox.
+            Get the latest updates on Umrah trips, travel tips, and exclusive offers delivered to your inbox.
           </p>
           <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input

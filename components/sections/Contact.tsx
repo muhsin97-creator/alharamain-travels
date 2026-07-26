@@ -223,7 +223,6 @@ export function Contact() {
                           {trip.name} - {trip.price}
                         </option>
                       ))}
-                      <option value="Hajj 2026" className="text-gray-900">Hajj 2026</option>
                       <option value="General Enquiry" className="text-gray-900">Other / General Enquiry</option>
                     </select>
                     <textarea

@@ -49,8 +49,8 @@ export function Services() {
                 </Link>
               </Button>
               <Button asChild variant="outline" className="border-white/30 text-black hover:bg-white/10">
-                <Link href="/services/hajj">
-                  Hajj Services
+                <Link href="/contact">
+                  Contact Us
                   <ChevronRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
