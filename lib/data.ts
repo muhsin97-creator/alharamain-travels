@@ -987,31 +987,33 @@ export const galleryImages = [
 ];
 
 // Testimonials
+// Real traveller feedback received via Instagram (lightly edited for spelling only).
+// Attribution uses first name + initial for privacy — recommend confirming consent before publishing.
 export const testimonials: Testimonial[] = [
   {
-    name: "Ahmed Hassan",
-    location: "Sydney, Australia",
-    text: "Exceptional service from start to finish. The hotel was steps away from Haram and the support team was available 24/7. Al Haramain made our family's first Umrah truly special.",
+    name: "A Yeah The Boys 3 traveller",
+    location: "Yeah The Boys 3",
+    text: "I was on Yeah The Boys 3 and alhamdulillah, it was the trip of a lifetime.",
   },
   {
-    name: "Fatima Ali",
-    location: "Melbourne, Australia",
-    text: "This was my first Umrah and Al-Haramain made it truly special. Every detail was perfectly arranged. The Shaykhs were knowledgeable and caring.",
+    name: "Ahmed A.",
+    location: "Yeah The Boys Umrah",
+    text: "May Allah reward you all immensely for the effort you put in to make life-changing experiences for so many brothers.",
   },
   {
-    name: "Mohammed Yusuf",
-    location: "Brisbane, Australia",
-    text: "The Yeah The Boys trip exceeded all expectations. Brotherhood, spirituality, and an unforgettable experience. Can't wait for the next one!",
+    name: "Liridon S.",
+    location: "Melbourne",
+    text: "I'm really looking forward to this, and inshaAllah I'll be recommending you to others in Melbourne.",
   },
   {
-    name: "Aisha Rahman",
-    location: "Perth, Australia",
-    text: "Bridge to Blessings was perfect for our family. The kids were well looked after and the spiritual guidance was invaluable. Highly recommend!",
+    name: "Joanne C.",
+    location: "Family Umrah",
+    text: "I ask Allah to bless you all for organising this. BarakAllahu feekum — alhamdulillah for everything!",
   },
   {
-    name: "Omar Khan",
-    location: "Adelaide, Australia",
-    text: "Professional, caring, and truly dedicated to making your Umrah journey special. The team went above and beyond at every step.",
+    name: "Radie",
+    location: "Umrah traveller",
+    text: "What an amazing service — exactly what I was looking for! Honestly, so grateful to Allah for it.",
   },
 ];
 
