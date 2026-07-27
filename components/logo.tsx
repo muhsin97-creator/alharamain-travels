@@ -6,8 +6,8 @@ export const Logo = ({ className }: { className?: string }) => {
         <Image
             src="/logo.png"
             alt="Al-Haramain Travels"
-            width={180}
-            height={60}
+            width={300}
+            height={100}
             className={cn('h-10 w-auto', className)}
         />
     )

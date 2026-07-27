@@ -29,13 +29,13 @@ export const HeroHeader = () => {
                 data-state={menuState && 'active'}
                 className="bg-background/80 fixed z-20 w-full border-b backdrop-blur-3xl">
                 <div className="mx-auto max-w-7xl px-6 transition-all duration-300">
-                    <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
+                    <div className="relative flex flex-wrap items-center justify-between gap-6 py-2 lg:gap-0 lg:py-2.5">
                         <div className="flex w-full items-center justify-between gap-12 lg:w-auto">
                             <Link
                                 href="/"
                                 aria-label="home"
                                 className="flex items-center space-x-2">
-                                <Logo />
+                                <Logo className="h-14 lg:h-[4.5rem]" />
                             </Link>
 
                             <button

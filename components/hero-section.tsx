@@ -150,7 +150,7 @@ export default function HeroSection() {
                                                 aria-label={`Go to slide ${index + 1}`}
                                             />
                                         ))}
-                                        <span className="text-muted-foreground/80 text-sm ml-4">
+                                        <span className="text-muted-foreground text-sm ml-4">
                                             {String(currentSlide + 1).padStart(2, '0')} / {String(heroSlides.length).padStart(2, '0')}
                                         </span>
                                     </div>
@@ -233,7 +233,7 @@ export default function HeroSection() {
                                                     className="h-22 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
                                                 />
                                             ) : (
-                                                <span className="text-lg font-semibold text-muted-foreground/60 whitespace-nowrap">
+                                                <span className="text-lg font-semibold text-muted-foreground whitespace-nowrap">
                                                     {partner.name}
                                                 </span>
                                             )}

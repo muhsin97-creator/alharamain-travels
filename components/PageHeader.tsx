@@ -66,7 +66,7 @@ export function PageHeader({
           <p
             className={`text-lg md:text-xl max-w-2xl leading-relaxed ${
               centered ? "mx-auto" : ""
-            } ${dark ? "text-white/70" : "text-muted-foreground"}`}
+            } text-muted-foreground`}
           >
             {description}
           </p>
