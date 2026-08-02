@@ -97,7 +97,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-[#FBF7F0]">
+      <section className="py-20 bg-[#2D2D2D]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
@@ -105,7 +105,7 @@ export default function AboutPage() {
                 <div className="text-4xl md:text-5xl font-bold text-gradient mb-2">
                   {stat.number}
                 </div>
-                <div className="text-muted-foreground text-sm md:text-base">{stat.label}</div>
+                <div className="text-white/60 text-sm md:text-base">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -188,7 +188,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-24 bg-[#FBF7F0] text-foreground relative overflow-hidden">
+      <section className="py-24 bg-[#2D2D2D] text-white relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-10 left-10 w-20 h-[1px] bg-primary opacity-40" />
         <div className="absolute bottom-10 right-10 w-20 h-[1px] bg-primary opacity-40" />
@@ -201,7 +201,7 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               What Sets Us <span className="text-gradient">Apart</span>
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-white/70 text-lg max-w-2xl mx-auto">
               Experience the Al-Haramain difference
             </p>
           </div>
@@ -216,7 +216,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                    <p className="text-white/70 leading-relaxed">{item.description}</p>
                   </div>
                 </div>
               );

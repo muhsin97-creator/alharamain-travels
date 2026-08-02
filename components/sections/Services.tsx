@@ -48,7 +48,7 @@ export function Services() {
     .filter((s): s is (typeof services)[number] => Boolean(s));
 
   return (
-    <section id="services" className="py-24 bg-[#FBF7F0] text-foreground relative overflow-hidden">
+    <section id="services" className="py-24 bg-[#2D2D2D] text-white relative overflow-hidden">
       {/* Decorative elements */}
       <GoldAccentBar position="top" />
       <div className="absolute bottom-0 right-8 w-24 h-16 bg-primary" />
@@ -75,7 +75,7 @@ export function Services() {
               Complete Travel{" "}
               <span className="text-gradient">Solutions</span>
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+            <p className="text-white/70 text-lg leading-relaxed mb-8">
               From visa processing to accommodation, we handle every detail of
               your sacred journey. Let us take care of the logistics while you
               focus on your spiritual connection.

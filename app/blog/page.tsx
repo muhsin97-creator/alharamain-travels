@@ -48,17 +48,17 @@ export default function BlogPage() {
               <Link href={`/blog/${sortedPosts[0].slug}`} className="block group">
                 <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-shadow duration-300">
                   <div className="grid md:grid-cols-2 gap-0">
-                    <div className="bg-[#FBF7F0] p-8 md:p-12 flex flex-col justify-center">
+                    <div className="bg-[#2D2D2D] p-8 md:p-12 flex flex-col justify-center">
                       <Badge className="bg-primary/20 text-primary border-0 w-fit mb-4">
                         Featured
                       </Badge>
-                      <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
+                      <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-primary transition-colors">
                         {sortedPosts[0].title}
                       </h2>
-                      <p className="text-muted-foreground mb-6 leading-relaxed">
+                      <p className="text-white/70 mb-6 leading-relaxed">
                         {sortedPosts[0].excerpt}
                       </p>
-                      <div className="flex flex-wrap items-center gap-4 text-muted-foreground text-sm">
+                      <div className="flex flex-wrap items-center gap-4 text-white/60 text-sm">
                         <div className="flex items-center gap-1.5">
                           <Calendar className="h-4 w-4" />
                           <span>{formatDate(sortedPosts[0].date)}</span>
@@ -67,7 +67,7 @@ export default function BlogPage() {
                           <Clock className="h-4 w-4" />
                           <span>{sortedPosts[0].readTime}</span>
                         </div>
-                        <Badge className="bg-primary/10 text-primary border-0">
+                        <Badge className="bg-white/10 text-white/80 border-0">
                           {sortedPosts[0].category}
                         </Badge>
                       </div>
@@ -142,7 +142,7 @@ export default function BlogPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-[#FBF7F0] text-foreground relative overflow-hidden">
+      <section className="py-24 bg-[#2D2D2D] text-white relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-10 left-10 w-20 h-[1px] bg-primary opacity-40" />
         <div className="absolute bottom-10 right-10 w-20 h-[1px] bg-primary opacity-40" />
@@ -154,14 +154,14 @@ export default function BlogPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Subscribe to Our <span className="text-gradient">Newsletter</span>
           </h2>
-          <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
             Get the latest updates on Umrah trips, travel tips, and exclusive offers delivered to your inbox.
           </p>
           <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 bg-white border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+              className="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
             />
             <Button type="submit" className="bg-primary hover:bg-primary/90">
               Subscribe

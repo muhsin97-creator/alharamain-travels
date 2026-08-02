@@ -20,7 +20,7 @@ export function PageHeader({
   return (
     <section
       className={`relative py-24 md:py-32 overflow-hidden ${
-        dark ? "bg-[#FBF7F0] text-foreground" : "bg-background text-foreground"
+        dark ? "bg-[#2D2D2D] text-white" : "bg-background text-foreground"
       }`}
     >
       {/* Decorative elements */}
@@ -66,7 +66,7 @@ export function PageHeader({
           <p
             className={`text-lg md:text-xl max-w-2xl leading-relaxed ${
               centered ? "mx-auto" : ""
-            } text-muted-foreground`}
+            } ${dark ? "text-white/70" : "text-muted-foreground"}`}
           >
             {description}
           </p>

@@ -70,7 +70,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <HeroHeader />
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-[#FBF7F0] text-foreground overflow-hidden">
+      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-[#2D2D2D] text-white overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-8 left-8 flex gap-2 opacity-40">
           {[...Array(4)].map((_, i) => (
@@ -86,12 +86,12 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+          <nav className="flex items-center gap-2 text-sm text-white/60 mb-6">
             <Link href="/" className="hover:text-primary transition-colors">Home</Link>
             <span>/</span>
             <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
             <span>/</span>
-            <span className="text-foreground line-clamp-1">{post.title}</span>
+            <span className="text-white line-clamp-1">{post.title}</span>
           </nav>
 
           <Badge className="bg-primary/20 text-primary border-0 mb-4">
@@ -102,7 +102,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             {post.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-6 text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-6 text-white/70">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                 <User className="h-5 w-5 text-white" />

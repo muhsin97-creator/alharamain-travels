@@ -102,7 +102,7 @@ export default function UmrahServicesPage() {
       )}
 
       {/* Umrah Companion Section */}
-      <section className="py-24 bg-[#FBF7F0] text-foreground relative overflow-hidden">
+      <section className="py-24 bg-[#2D2D2D] text-white relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-10 left-10 w-20 h-[1px] bg-primary opacity-40" />
         <div className="absolute bottom-10 right-10 w-20 h-[1px] bg-primary opacity-40" />
@@ -123,7 +123,7 @@ export default function UmrahServicesPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Umrah <span className="text-gradient">Companion</span>
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed">
+            <p className="text-white/70 text-lg leading-relaxed">
               At Al Haramain Travels, we understand that the journey of Umrah is deeply personal and spiritually significant. 
               Whether you&apos;re just going with your family, or a couple of friends having a quick Umrah Trip. 
               Our Umrah Companion services are designed to provide you with dedicated, personalised support throughout your pilgrimage, 
@@ -137,15 +137,15 @@ export default function UmrahServicesPage() {
               {umrahCompanionServices.map((service, i) => {
                 const Icon = service.icon;
                 return (
-                  <Card key={i} className="bg-white border-border/60 shadow-sm hover:shadow-md transition-colors">
+                  <Card key={i} className="bg-white/5 border-white/10 hover:bg-white/10 transition-colors">
                     <CardContent className="p-6">
                       <div className="flex gap-5">
                         <div className="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
                           <Icon className="h-7 w-7 text-primary" />
                         </div>
                         <div>
-                          <h4 className="text-lg font-semibold text-foreground mb-2">{service.title}</h4>
-                          <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+                          <h4 className="text-lg font-semibold text-white mb-2">{service.title}</h4>
+                          <p className="text-white/60 text-sm leading-relaxed">{service.description}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -245,8 +245,8 @@ export default function UmrahServicesPage() {
       {/* CTA Section */}
       <section className="py-24 bg-gold-gradient relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 border border-primary/20 rounded-full" />
-          <div className="absolute bottom-10 right-10 w-48 h-48 border border-primary/20 rounded-full" />
+          <div className="absolute top-10 left-10 w-32 h-32 border border-white rounded-full" />
+          <div className="absolute bottom-10 right-10 w-48 h-48 border border-white rounded-full" />
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">

@@ -40,7 +40,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 bg-[#FBF7F0] text-foreground relative overflow-hidden">
+    <section id="contact" className="py-24 bg-[#2D2D2D] text-white relative overflow-hidden">
       {/* Decorative elements matching social media template (dark theme) */}
       <GoldAccentBar position="top" />
       <div className="absolute bottom-0 left-8 w-2 h-32 bg-primary" />
@@ -65,7 +65,7 @@ export function Contact() {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Get in <span className="text-gradient">Touch</span>
             </h2>
-            <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+            <p className="text-white/70 text-lg mb-8 leading-relaxed">
               Have questions about our Umrah packages? Our friendly team is here to
               help you plan your perfect pilgrimage. Reach out to us through any of the channels below.
             </p>
@@ -87,7 +87,7 @@ export function Contact() {
                   <Phone className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <div className="text-muted-foreground text-sm">Phone</div>
+                  <div className="text-white/60 text-sm">Phone</div>
                   <div className="font-semibold">{contactInfo.phone}</div>
                 </div>
               </div>
@@ -97,7 +97,7 @@ export function Contact() {
                   <Mail className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <div className="text-muted-foreground text-sm">Email</div>
+                  <div className="text-white/60 text-sm">Email</div>
                   <div className="font-semibold">{contactInfo.email}</div>
                 </div>
               </div>
@@ -109,7 +109,7 @@ export function Contact() {
                     <MapPin className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <div className="text-muted-foreground text-sm">Office - {address.state}</div>
+                    <div className="text-white/60 text-sm">Office - {address.state}</div>
                     <div className="font-semibold">{address.location}</div>
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export function Contact() {
                 className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center hover:bg-primary transition-colors"
                 aria-label="Instagram"
               >
-                <Instagram className="h-5 w-5 text-primary" />
+                <Instagram className="h-5 w-5 text-white" />
               </a>
               <a
                 href={contactInfo.socials.facebook}
@@ -134,7 +134,7 @@ export function Contact() {
                 className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center hover:bg-primary transition-colors"
                 aria-label="Facebook"
               >
-                <Facebook className="h-5 w-5 text-primary" />
+                <Facebook className="h-5 w-5 text-white" />
               </a>
               <a
                 href={contactInfo.socials.whatsapp}
@@ -143,7 +143,7 @@ export function Contact() {
                 className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center hover:bg-primary transition-colors"
                 aria-label="WhatsApp"
               >
-                <MessageCircle className="h-5 w-5 text-primary" />
+                <MessageCircle className="h-5 w-5 text-white" />
               </a>
             </div>
 
@@ -156,7 +156,7 @@ export function Contact() {
           </div>
 
           {/* Contact Form */}
-          <Card className="bg-white border-border/60 shadow-sm">
+          <Card className="bg-white/5 border-white/10">
             <CardContent className="p-8">
               {isSuccess ? (
                 <div className="text-center py-8">
@@ -164,7 +164,7 @@ export function Contact() {
                     <CheckCircle className="h-8 w-8 text-green-500" />
                   </div>
                   <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
-                  <p className="text-muted-foreground mb-6">
+                  <p className="text-white/60 mb-6">
                     Thank you for reaching out. We&apos;ll get back to you as soon as possible.
                   </p>
                   <Button onClick={reset} variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
@@ -174,7 +174,7 @@ export function Contact() {
               ) : (
                 <>
                   <h3 className="text-2xl font-bold mb-2">Send us a Message</h3>
-                  <p className="text-muted-foreground text-sm mb-6">
+                  <p className="text-white/60 text-sm mb-6">
                     Fill out the form below and we&apos;ll get back to you as soon as possible.
                   </p>
 
@@ -193,7 +193,7 @@ export function Contact() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="bg-white border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                        className="bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
                       />
                       <input
                         type="tel"
@@ -201,7 +201,7 @@ export function Contact() {
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="bg-white border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                        className="bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
                       />
                     </div>
                     <input
@@ -210,10 +210,10 @@ export function Contact() {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-white border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
                     />
                     <select 
-                      className="w-full bg-white border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors"
+                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
                       value={formData.interest}
                       onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
                     >
@@ -230,7 +230,7 @@ export function Contact() {
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full bg-white border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary resize-none transition-colors"
+                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary resize-none transition-colors"
                     />
                     <Button 
                       type="submit"
