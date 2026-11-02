@@ -84,34 +84,103 @@ export interface Partner {
 // Navigation
 export const navigationLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About us" },
-  { href: "/services/umrah", label: "Umrah Services" },
-  { href: "/blog", label: "Blogs" },
+  { href: "/about", label: "About" },
+  { href: "/services/umrah", label: "Umrah Trips" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 
-// Hero slides content
+// How a booking works, start to finish (home + trips page)
+export const journeySteps = [
+  {
+    title: "Enquire",
+    description:
+      "Tell us which trip you are interested in. We call you back, answer your questions and hold your spot.",
+  },
+  {
+    title: "Secure your place",
+    description:
+      "Pay a deposit and settle the balance in instalments. The full amount is due four weeks before departure.",
+  },
+  {
+    title: "We prepare everything",
+    description:
+      "Flights, Umrah visa, insurance, hotels near the Haram and ground transport are all arranged for you.",
+  },
+  {
+    title: "Travel with your group",
+    description:
+      "Fly out with your Shaykh and group leaders, perform Umrah with guidance, and visit the sites of Makkah and Madinah together.",
+  },
+];
+
+// General questions (home + contact page)
+export const generalFaqs: FAQ[] = [
+  {
+    question: "How do I book an Umrah trip?",
+    answer:
+      "Choose a trip and send us an enquiry through the website, or call or WhatsApp us directly. Our team will confirm availability, answer your questions and guide you through the deposit and paperwork.",
+  },
+  {
+    question: "Can I pay in instalments?",
+    answer:
+      "Yes. You can pay in full or in instalments. The full balance must be cleared four weeks before departure.",
+  },
+  {
+    question: "Is the Umrah visa included?",
+    answer:
+      "Yes. Every package includes Umrah visa processing and the mandatory health insurance. We handle the paperwork and confirm your visa before you fly.",
+  },
+  {
+    question: "Which cities do you depart from?",
+    answer:
+      "Our groups usually depart from Sydney and Melbourne. Pilgrims from other cities can book connecting flights and join the group at the departure airport, or meet us in Saudi Arabia on a land-only package.",
+  },
+  {
+    question: "I am travelling alone. Is that okay?",
+    answer:
+      "Absolutely. Many of our pilgrims travel solo and leave with lifelong friendships. You are placed with the group from day one and never left to find your own way.",
+  },
+  {
+    question: "Can I customise a package or travel privately?",
+    answer:
+      "Yes. Our Umrah Companion service arranges private, guided Umrah trips for individuals, couples and families outside of our group departures.",
+  },
+  {
+    question: "What if I need to cancel?",
+    answer:
+      "Contact us as soon as possible. Cancellation terms depend on the package and how close to departure you are. Our team will explain your options and our refund policy before you book.",
+  },
+];
+
+// Hero trip spotlight (rotates on the home page)
 export const heroSlides = [
   {
-    title: "Yeah The Boys V Umrah Trip",
-    subtitle: "Umrah 2026",
+    title: "Yeah The Boys V",
+    subtitle: "Men's only",
     description:
-      "Embark on a spiritual journey like no other with our expertly curated Umrah packages. From seamless travel arrangements to comfortable accommodations near the holy sites, we take care of every detail so you can focus on your spiritual connection.",
+      "Our brotherhood trip. Flights, 5-star hotels by the Haram and a Shaykh with you every step.",
     link: "/umrah/yeah-the-boys-v",
+    image: "/trips/ytb-kaaba-pilgrims.jpg",
+    meta: "10 days, from $5,699",
   },
   {
     title: "Ramadan Umrah 2027",
-    subtitle: "Ramadan Special",
+    subtitle: "Ramadan special",
     description:
-      "Experience the blessed month of Ramadan in the holiest places on Earth. Register your interest for our guided Ramadan Umrah package and journey with pilgrims from across Australia.",
+      "Break your fast facing the Kaaba and pray Taraweeh in the Haram. Places go first.",
     link: "/umrah/ramadan-umrah-2027",
+    image: "/gallery/clock-tower-dawn.jpg",
+    meta: "16 days, register your interest",
   },
   {
     title: "Bridge to Blessings 3",
-    subtitle: "Family Friendly",
+    subtitle: "Family friendly",
     description:
-      "Our family-friendly guided Umrah trip returns. Designed for brothers, sisters, families, couples, and solo travellers seeking a spiritually uplifting Umrah together.",
+      "Our family-friendly guided Umrah returns for brothers, sisters, couples and solo travellers.",
     link: "/umrah/bridge-to-blessings-3",
+    image: "/trips/btb-nabawi-gates.jpg",
+    meta: "10 days, register your interest",
   },
 ];
 
@@ -208,7 +277,7 @@ export const umrahTrips: UmrahTrip[] = [
 
 Yeah the Boys IV is back, bigger, better, and more meaningful than ever. This exclusive men's-only Umrah trip brings together brothers from all over Australia to embark on a spiritual, physical, and emotional journey like no other.
 
-We combine the sacred pilgrimage of Umrah with a unique brotherhood experience designed to build lasting connections, challenge your mindset, and inspire positive change in your life. Expect a premium, structured itinerary with just the right balance of 'ibadah, learning, adventure, and bonding – all during the best time of the year.
+We combine the sacred pilgrimage of Umrah with a unique brotherhood experience designed to build lasting connections, challenge your mindset, and inspire positive change in your life. Expect a premium, structured itinerary with just the right balance of 'ibadah, learning, adventure, and bonding, , , all during the best time of the year.
 
 Whether you're travelling solo or with your mates, this is your chance to surround yourself with like-minded brothers, unplug from the dunya, and reconnect with your purpose.`,
     expired: true,
@@ -253,7 +322,7 @@ Whether you're travelling solo or with your mates, this is your chance to surrou
       },
     ],
     highlights: [
-      "Brotherhood Like No Other - This isn't just a trip – it's a life-changing experience with a group of brothers who push you to grow spiritually, mentally, and physically.",
+      "Brotherhood Like No Other - This isn't just a trip, , , it's a life-changing experience with a group of brothers who push you to grow spiritually, mentally, and physically.",
       "Stress-Free Travel - We handle the entire process from start to finish. You just turn up ready to benefit from the journey.",
       "Premium Experience - From the accommodation to the itinerary, we prioritise your comfort, safety, and spiritual well-being.",
       "Purpose-Driven - We're not just here to tick off rituals. We're here to elevate you, reset your mindset, and build real, lasting brotherhood.",
@@ -261,7 +330,7 @@ Whether you're travelling solo or with your mates, this is your chance to surrou
     ],
     ageRestriction: "14+",
     languages: ["English"],
-    image: "/BANNER 3.png",
+    image: "/trips/ytb-kaaba-pilgrims.jpg",
   },
   {
     slug: "budget-umrah",
@@ -272,8 +341,8 @@ Whether you're travelling solo or with your mates, this is your chance to surrou
     capacity: "45 People",
     duration: "10 Days 10 Nights",
     description:
-      "Our Budget Umrah – October 2025 trip is designed for families, brothers, and sisters looking for a spiritually uplifting journey at an affordable price.",
-    longDescription: `Our Budget Umrah – October 2025 trip is designed for families, brothers, and sisters looking for a spiritually uplifting journey at an affordable price. Whether you're travelling with loved ones or on your own, this package offers everything you need for a stress-free and budget-friendly Umrah experience.
+      "Our Budget Umrah, , , October 2025 trip is designed for families, brothers, and sisters looking for a spiritually uplifting journey at an affordable price.",
+    longDescription: `Our Budget Umrah, , , October 2025 trip is designed for families, brothers, and sisters looking for a spiritually uplifting journey at an affordable price. Whether you're travelling with loved ones or on your own, this package offers everything you need for a stress-free and budget-friendly Umrah experience.
 
 With comfortable accommodation, essential travel services, and a structured itinerary, you'll be able to focus on your worship while we take care of the logistics. Travel with a group of like-minded individuals, strengthen your connection with Allah, and make unforgettable memories without breaking the bank.`,
     expired: true,
@@ -310,7 +379,7 @@ With comfortable accommodation, essential travel services, and a structured itin
     ],
     ageRestriction: "All ages welcome",
     languages: ["English"],
-    image: "/BANNER 3.png",
+    image: "/trips/btb-haram-dusk.jpg",
   },
   {
     slug: "bridge-to-blessings-2",
@@ -324,7 +393,7 @@ With comfortable accommodation, essential travel services, and a structured itin
       "Following the incredible success of our previous family-friendly Umrah journey, this unique trip is designed for brothers, sisters, families, couples, and solo travellers looking to experience a spiritually uplifting Umrah together.",
     longDescription: `Following the incredible success of our previous family-friendly Umrah journey, this unique trip is designed for brothers, sisters, families, couples, and solo travellers looking to experience a spiritually uplifting Umrah together.
 
-This is not just an Umrah – it's a complete, guided experience where you'll share unforgettable moments of worship, reflection, and community during the most blessed time of the year. Whether you're coming with your loved ones or meeting new ones on the way, Bridge to Blessings 2 is built to create lasting memories while reviving hearts and strengthening our connection with Allah in the company of a beautiful, diverse group.`,
+This is not just an Umrah, , , it's a complete, guided experience where you'll share unforgettable moments of worship, reflection, and community during the most blessed time of the year. Whether you're coming with your loved ones or meeting new ones on the way, Bridge to Blessings 2 is built to create lasting memories while reviving hearts and strengthening our connection with Allah in the company of a beautiful, diverse group.`,
     expired: true,
     featured: false,
     included: [
@@ -360,7 +429,7 @@ This is not just an Umrah – it's a complete, guided experience where you'll sh
     ],
     ageRestriction: "All ages welcome",
     languages: ["English"],
-    image: "/Al Haramain Travels poster - bridge to blessings.jpg.png",
+    image: "/trips/btb-quba-masjid.jpg",
   },
   {
     slug: "yeah-the-boys-v",
@@ -376,7 +445,7 @@ This is not just an Umrah – it's a complete, guided experience where you'll sh
 
 Yeah the Boys V is back, bigger, better, and more meaningful than ever. This exclusive men's-only Umrah trip brings together brothers from all over Australia to embark on a spiritual, physical, and emotional journey like no other.
 
-We combine the sacred pilgrimage of Umrah with a unique brotherhood experience designed to build lasting connections, challenge your mindset, and inspire positive change in your life. Expect a premium, structured itinerary with just the right balance of 'ibadah, learning, adventure, and bonding – all during the best time of the year.
+We combine the sacred pilgrimage of Umrah with a unique brotherhood experience designed to build lasting connections, challenge your mindset, and inspire positive change in your life. Expect a premium, structured itinerary with just the right balance of 'ibadah, learning, adventure, and bonding, , , all during the best time of the year.
 
 Whether you're travelling solo or with your mates, this is your chance to surround yourself with like-minded brothers, unplug from the dunya, and reconnect with your purpose.`,
     expired: false,
@@ -421,7 +490,7 @@ Whether you're travelling solo or with your mates, this is your chance to surrou
       },
     ],
     highlights: [
-      "Brotherhood Like No Other - This isn't just a trip – it's a life-changing experience with a group of brothers who push you to grow spiritually, mentally, and physically.",
+      "Brotherhood Like No Other - This isn't just a trip, , , it's a life-changing experience with a group of brothers who push you to grow spiritually, mentally, and physically.",
       "Stress-Free Travel - We handle the entire process from start to finish. You just turn up ready to benefit from the journey.",
       "Premium Experience - From the accommodation to the itinerary, we prioritise your comfort, safety, and spiritual well-being.",
       "Purpose-Driven - We're not just here to tick off rituals. We're here to elevate you, reset your mindset, and build real, lasting brotherhood.",
@@ -429,7 +498,7 @@ Whether you're travelling solo or with your mates, this is your chance to surrou
     ],
     ageRestriction: "14+",
     languages: ["English"],
-    image: "/Al Haramain Travels poster YTB 4.png",
+    image: "/trips/ytb-nabawi-umbrellas.jpg",
   },
   {
     slug: "ramadan-umrah-2026",
@@ -490,7 +559,7 @@ Our comprehensive package ensures you have everything you need to focus on your 
     ],
     ageRestriction: "All ages welcome",
     languages: ["English"],
-    image: "/BANEER.png",
+    image: "/gallery/haram-colonnade.jpg",
   },
   {
     slug: "bridge-to-blessings-3",
@@ -504,7 +573,7 @@ Our comprehensive package ensures you have everything you need to focus on your 
       "Our beloved family-friendly Umrah journey returns. Bridge to Blessings 3 welcomes brothers, sisters, families, couples and solo travellers from across Australia for a spiritually uplifting guided Umrah together.",
     longDescription: `Following the incredible success of Bridge to Blessings 1 and 2, our beloved family-friendly Umrah journey returns!
 
-Bridge to Blessings 3 is designed for brothers, sisters, families, couples, and solo travellers looking to experience a spiritually uplifting Umrah together. This is not just an Umrah trip – it's a complete, guided experience where you'll share unforgettable moments of worship, reflection, and community.
+Bridge to Blessings 3 is designed for brothers, sisters, families, couples, and solo travellers looking to experience a spiritually uplifting Umrah together. This is not just an Umrah trip, , , it's a complete, guided experience where you'll share unforgettable moments of worship, reflection, and community.
 
 Whether you're travelling with your loved ones or meeting new companions along the way, Bridge to Blessings 3 is built to create lasting memories while reviving hearts and strengthening our connection with Allah in the company of a beautiful, diverse group.
 
@@ -548,7 +617,7 @@ Register your interest today and our team will be in touch with dates, pricing a
     ],
     ageRestriction: "All ages welcome",
     languages: ["English"],
-    image: "/Al Haramain Travels poster - bridge to blessings.jpg.png",
+    image: "/trips/btb-clock-tower-day.jpg",
   },
   {
     slug: "ramadan-umrah-2027",
@@ -559,7 +628,7 @@ Register your interest today and our team will be in touch with dates, pricing a
     capacity: "45 People",
     duration: "16 Days 16 Nights",
     description:
-      "Experience Ramadan 2027 in the holiest places on Earth. Join pilgrims from all over Australia for a guided Umrah during the blessed month – breaking your fast at the Haram and praying Taraweeh in Masjid al-Haram.",
+      "Experience Ramadan 2027 in the holiest places on Earth. Join pilgrims from all over Australia for a guided Umrah during the blessed month, , , breaking your fast at the Haram and praying Taraweeh in Masjid al-Haram.",
     longDescription: `Experience the blessed month of Ramadan in the holiest places on Earth!
 
 Following our unforgettable Ramadan 2026 journey, Ramadan Umrah 2027 brings together pilgrims from all over Australia for a spiritual, physical, and emotional journey like no other during the most sacred time of the year.
@@ -613,252 +682,7 @@ Places for Ramadan fill faster than any other trip of the year. Register your in
     ],
     ageRestriction: "All ages welcome",
     languages: ["English"],
-    image: "/BANEER.png",
-  },
-];
-
-// Blog Posts
-export const blogPosts: BlogPost[] = [
-  {
-    slug: "prepare-yourself-for-umrah",
-    title: "Prepare Yourself for Umrah",
-    excerpt: "A comprehensive guide to help you prepare spiritually, physically, and practically for your sacred journey to perform Umrah.",
-    content: `
-## Preparing for Your Umrah Journey
-
-Performing Umrah is one of the most spiritually rewarding experiences a Muslim can undertake. Proper preparation ensures you can focus entirely on your worship and connection with Allah. Here's a comprehensive guide to help you prepare.
-
-### Spiritual Preparation
-
-**1. Purify Your Intentions**
-Before anything else, ensure your intention (niyyah) is purely for the sake of Allah. Umrah should be undertaken seeking His pleasure and forgiveness, not for worldly recognition.
-
-**2. Increase Your Knowledge**
-- Learn about the rituals of Umrah in detail
-- Study the duas to be recited at each stage
-- Understand the significance of each ritual
-- Watch videos and read books about Umrah
-
-**3. Repentance and Forgiveness**
-- Seek forgiveness from Allah for past sins
-- Make amends with anyone you may have wronged
-- Settle any debts before departing
-- Write a will as recommended before any major journey
-
-### Physical Preparation
-
-**1. Health Check**
-- Visit your doctor for a general health check-up
-- Ensure all vaccinations are up to date
-- Get any necessary medications
-- Consider your fitness level – Umrah involves significant walking
-
-**2. Physical Training**
-- Start walking regularly to build stamina
-- Practice walking in your Ihram garments (for men)
-- Get comfortable with modest footwear
-- Build endurance for long standing periods
-
-### Practical Preparation
-
-**1. Documentation**
-- Ensure your passport is valid for at least 6 months
-- Obtain your Umrah visa through a registered agent
-- Make copies of all important documents
-- Store digital copies in cloud storage
-
-**2. Packing Essentials**
-- Ihram garments (white, unstitched cloth for men)
-- Comfortable, modest clothing
-- Comfortable walking shoes/sandals
-- Prayer mat and Quran
-- Medications and first aid kit
-- Sunscreen and lip balm
-- Small bag for carrying essentials during Tawaf
-
-**3. Financial Preparation**
-- Set a budget for your trip
-- Inform your bank of international travel
-- Carry some Saudi Riyals
-- Have backup payment methods
-
-### Learning the Rituals
-
-**The Steps of Umrah:**
-
-1. **Ihram** - Enter the state of Ihram before crossing the Miqat
-2. **Tawaf** - Circumambulate the Kaaba seven times
-3. **Sa'i** - Walk between Safa and Marwah seven times
-4. **Halq/Taqsir** - Shave or trim the hair
-
-### Important Duas to Learn
-
-Memorise or have written copies of:
-- Talbiyah
-- Duas for entering Masjid al-Haram
-- Duas during Tawaf
-- Duas at Maqam Ibrahim
-- Duas during Sa'i
-- General supplications
-
-### Tips for a Successful Umrah
-
-1. **Stay hydrated** - The climate in Saudi Arabia can be very hot
-2. **Pace yourself** - Don't rush through the rituals
-3. **Stay connected with your group** - Keep your phone charged
-4. **Be patient** - Crowds can be challenging, especially near the Kaaba
-5. **Respect others** - You'll be among millions of pilgrims
-6. **Make lots of dua** - This is a time when duas are readily accepted
-
-### After Your Umrah
-
-- Continue the spiritual momentum
-- Share your experience with others
-- Maintain the good habits you developed
-- Plan for your next visit, insha'Allah
-
-May Allah accept your Umrah and make it a means of purification and closeness to Him. Ameen.
-    `,
-    date: "2024-12-15",
-    author: "Al-Haramain Travels Team",
-    category: "Umrah Guide",
-    readTime: "10 min read",
-  },
-  {
-    slug: "benefits-of-umrah-in-ramadan",
-    title: "The Virtues of Performing Umrah in Ramadan",
-    excerpt: "Discover the immense spiritual rewards and blessings of performing Umrah during the holy month of Ramadan.",
-    content: `
-## The Virtues of Performing Umrah in Ramadan
-
-Performing Umrah during Ramadan holds a special place in Islam, with rewards that are multiplied manifold compared to other times of the year.
-
-### The Hadith
-
-The Prophet Muhammad (peace be upon him) said: "Umrah during Ramadan is equivalent to Hajj" or he said "equivalent to Hajj with me." (Bukhari and Muslim)
-
-This hadith highlights the immense reward of performing Umrah during this blessed month.
-
-### Why Ramadan is Special
-
-**1. Multiplied Rewards**
-Every good deed in Ramadan is multiplied in reward. Combining the already virtuous act of Umrah with the blessed month creates an exponential increase in rewards.
-
-**2. Spiritual Atmosphere**
-The entire Muslim world is focused on worship during Ramadan. Being in Makkah during this time means being surrounded by millions of believers all focused on pleasing Allah.
-
-**3. Breaking Fast at the Haram**
-Imagine breaking your fast with dates and Zamzam water while looking at the Kaaba. This experience is indescribable and deeply moving.
-
-**4. Taraweeh at Masjid al-Haram**
-Praying Taraweeh behind the Imams of the Haram, listening to the beautiful recitation, is a life-changing experience.
-
-### Practical Considerations
-
-While the rewards are immense, Ramadan Umrah requires additional preparation:
-
-- **Crowds**: Expect larger crowds than usual
-- **Weather**: Ramadan may fall in hot months
-- **Energy management**: Fasting while performing rituals requires careful planning
-- **Booking early**: Ramadan packages sell out quickly
-
-### Tips for Ramadan Umrah
-
-1. Book well in advance
-2. Stay hydrated during non-fasting hours
-3. Rest adequately between prayers
-4. Take advantage of the last ten nights
-5. Make lots of dua, especially at Iftar time
-
-May Allah grant us all the opportunity to perform Umrah in Ramadan. Ameen.
-    `,
-    date: "2024-11-20",
-    author: "Al-Haramain Travels Team",
-    category: "Spiritual Guidance",
-    readTime: "6 min read",
-  },
-  {
-    slug: "first-time-umrah-tips",
-    title: "First-Time Umrah: Essential Tips for New Pilgrims",
-    excerpt: "Going for Umrah for the first time? Here are essential tips to help make your journey smooth and spiritually fulfilling.",
-    content: `
-## First-Time Umrah: Essential Tips
-
-Congratulations on planning your first Umrah! Here's everything you need to know to make your journey successful.
-
-### Before You Go
-
-**Mental Preparation**
-- Understand that this is a spiritual journey, not a holiday
-- Set realistic expectations about crowds and challenges
-- Focus on the spiritual rewards awaiting you
-
-**Physical Preparation**
-- Start walking regularly to build stamina
-- Practice wearing your Ihram (for brothers)
-- Get comfortable with the heat if travelling in summer
-
-### At the Airport
-
-- Wear comfortable, loose clothing
-- Keep all documents easily accessible
-- Stay calm and patient – delays happen
-- Many pilgrims enter Ihram at the airport
-
-### In Saudi Arabia
-
-**Accommodation Tips**
-- Choose hotels close to the Haram if budget allows
-- Bring earplugs – the Adhan is loud and beautiful, but you need rest too
-- Keep your room key and hotel card with you always
-
-**At the Haram**
-- Learn the layout of Masjid al-Haram
-- Identify landmarks for meeting points
-- Keep your phone charged
-- Carry a small bag with essentials
-
-### During Tawaf
-
-- Stay in the outer circles if you're not comfortable with crowds
-- Walk at a steady pace
-- Focus on your duas, not the crowd
-- It's okay to take breaks if needed
-
-### During Sa'i
-
-- The path is air-conditioned and more spacious
-- There are wheelchairs available for those who need them
-- Stay hydrated with Zamzam water
-
-### Common Mistakes to Avoid
-
-1. Not learning the rituals properly beforehand
-2. Rushing through the worship
-3. Getting frustrated with crowds
-4. Not staying hydrated
-5. Overspending on unnecessary items
-6. Not making enough dua
-
-### What to Buy
-
-- Zamzam water (to bring home)
-- Dates from Madinah
-- Prayer beads (Misbaha)
-- Attar (Islamic perfume)
-- Books and Islamic items
-- Gifts for family
-
-### Final Advice
-
-Your first Umrah will be unforgettable. Don't stress about perfection – focus on sincerity. Allah knows your heart and your efforts.
-
-May Allah accept your Umrah and grant you many more opportunities to visit His house. Ameen.
-    `,
-    date: "2024-10-05",
-    author: "Al-Haramain Travels Team",
-    category: "Travel Tips",
-    readTime: "8 min read",
+    image: "/gallery/kaaba.jpg",
   },
 ];
 
@@ -883,8 +707,10 @@ export const stats: Stat[] = [
 // Contact Info
 export const contactInfo = {
   phone: "+61 477 549 505",
+  phoneHref: "tel:+61477549505",
   email: "contact@alharamaintravels.com.au",
   website: "alharamaintravels.com.au",
+  hours: "Mon to Fri, 9am to 6pm AEST",
   addresses: [
     { location: "Preston, Victoria 3072", state: "VIC" },
     { location: "Lakemba, New South Wales 2195", state: "NSW" },
@@ -900,19 +726,21 @@ export const contactInfo = {
 // Footer Links
 export const footerLinks = {
   quick: [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About us" },
-    { href: "/services/umrah", label: "Umrah Services" },
+    { href: "/about", label: "About" },
+    { href: "/services/umrah", label: "Umrah Trips" },
+    { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" },
   ],
-  help: [
-    { href: "/blog", label: "Blog" },
-    { href: "/contact", label: "FAQs" },
+  trips: [
+    { href: "/umrah/yeah-the-boys-v", label: "Yeah The Boys V" },
+    { href: "/umrah/ramadan-umrah-2027", label: "Ramadan Umrah 2027" },
+    { href: "/umrah/bridge-to-blessings-3", label: "Bridge to Blessings 3" },
+    { href: "/services/umrah#companion", label: "Umrah Companion" },
   ],
   legal: [
-    { href: "#", label: "Terms & Conditions" },
-    { href: "#", label: "Privacy Policy" },
-    { href: "#", label: "Refund Policy" },
+    { href: "/terms", label: "Terms & Conditions" },
+    { href: "/privacy", label: "Privacy Policy" },
+    { href: "/refund-policy", label: "Refund Policy" },
   ],
 };
 
@@ -988,7 +816,7 @@ export const galleryImages = [
 
 // Testimonials
 // Real traveller feedback received via Instagram (lightly edited for spelling only).
-// Attribution uses first name + initial for privacy — recommend confirming consent before publishing.
+// Attribution uses first name + initial for privacy, , , recommend confirming consent before publishing.
 export const testimonials: Testimonial[] = [
   {
     name: "A Yeah The Boys 3 traveller",
@@ -1008,12 +836,12 @@ export const testimonials: Testimonial[] = [
   {
     name: "Joanne C.",
     location: "Family Umrah",
-    text: "I ask Allah to bless you all for organising this. BarakAllahu feekum — alhamdulillah for everything!",
+    text: "I ask Allah to bless you all for organising this. BarakAllahu feekum, , , alhamdulillah for everything!",
   },
   {
     name: "Radie",
     location: "Umrah traveller",
-    text: "What an amazing service — exactly what I was looking for! Honestly, so grateful to Allah for it.",
+    text: "What an amazing service, , , exactly what I was looking for! Honestly, so grateful to Allah for it.",
   },
 ];
 
@@ -1022,7 +850,7 @@ export const whyChooseUs = [
   {
     icon: Star,
     title: "Brotherhood Like No Other",
-    description: "This isn't just a trip – it's a life-changing experience with brothers who push you to grow spiritually, mentally, and physically.",
+    description: "This isn't just a trip, , , it's a life-changing experience with brothers who push you to grow spiritually, mentally, and physically.",
   },
   {
     icon: Shield,
@@ -1041,59 +869,3 @@ export const whyChooseUs = [
   },
 ];
 
-
-// Legacy exports for backward compatibility
-export interface Package {
-  name: string;
-  price: string;
-  duration: string;
-  features: string[];
-  popular: boolean;
-}
-
-export const packages: Package[] = [
-  {
-    name: "Budget Umrah",
-    price: "$4,200",
-    duration: "10 Days",
-    features: [
-      "Return Flights",
-      "3-Star Hotel",
-      "Breakfast Included",
-      "Airport Transfers",
-      "Visa Processing",
-    ],
-    popular: false,
-  },
-  {
-    name: "Yeah The Boys V",
-    price: "$5,699",
-    duration: "10 Days",
-    features: [
-      "Return Flights",
-      "4-Star Hotel",
-      "All Meals",
-      "Private Transfers",
-      "Visa Processing",
-      "Guided Tours",
-      "Ziyarat Included",
-    ],
-    popular: true,
-  },
-  {
-    name: "Ramadan Umrah 2026",
-    price: "$6,700",
-    duration: "16 Days",
-    features: [
-      "Premium Flights",
-      "5-Star Hotel",
-      "All Meals",
-      "Private Vehicle",
-      "Visa Processing",
-      "Personal Guide",
-      "All Ziyarat",
-      "24/7 Support",
-    ],
-    popular: false,
-  },
-];

@@ -1,79 +1,65 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Heart, Users, ChevronRight } from "lucide-react";
-import { CircularImageFrame, GoldAccentBar, GoldLine, TrianglePattern, PlayIndicators } from "@/components/CircularImageFrame";
-import { aboutContent, stats } from "@/lib/data";
+import { Reveal } from "@/components/ui/reveal";
+import { aboutContent, journeySteps } from "@/lib/data";
 
+// UK .journey: tilted photo collage beside the about copy and four numbered steps.
 export function About() {
   return (
-    <section id="about" className="py-24 bg-white text-foreground relative overflow-hidden">
-      {/* Decorative elements matching social media template */}
-      <GoldAccentBar position="top" />
-      <div className="absolute bottom-0 right-8 w-24 h-16 bg-primary/20" />
-      
-      {/* Gold lines */}
-      <GoldLine className="absolute top-20 left-8" />
-      <GoldLine className="absolute bottom-32 right-16" />
-      
-      {/* Triangle patterns */}
-      <TrianglePattern className="absolute bottom-1/4 left-8 opacity-40" direction="up" />
-      
-      {/* Play indicators */}
-      <PlayIndicators className="absolute top-1/3 right-12 opacity-40" />
+    <section id="about" className="bg-background py-24 md:py-[96px]">
+      <div className="container-x grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+        <Reveal className="group relative mx-auto aspect-square w-full max-w-[560px]">
+          <Image
+            src="/trips/ytb-kaaba-pilgrims.jpg"
+            alt="Our brothers before the Kaaba, Masjid al-Haram"
+            width={1200}
+            height={800}
+            className="absolute left-[6%] top-0 z-[1] aspect-[3/2] w-[88%] -rotate-3 rounded-[10px] border-[6px] border-white object-cover shadow-[0_16px_40px_rgba(40,40,40,0.24)] transition-transform duration-500 group-hover:-rotate-1"
+          />
+          <Image
+            src="/trips/about-iftar.jpg"
+            alt="Al-Haramain pilgrims sharing a meal together"
+            width={600}
+            height={720}
+            className="absolute bottom-0 left-0 z-[2] aspect-[5/6] w-[40%] -rotate-[8deg] rounded-[10px] border-[6px] border-white object-cover [object-position:50%_38%] shadow-[0_16px_40px_rgba(40,40,40,0.24)] transition-transform duration-500 group-hover:-rotate-[5deg]"
+          />
+          <Image
+            src="/trips/about-group.jpg"
+            alt="Al-Haramain Umrah group in ihram"
+            width={960}
+            height={720}
+            className="absolute bottom-0 right-0 z-[3] aspect-[4/3] w-[66%] rotate-[4deg] rounded-[10px] border-[6px] border-white object-cover shadow-[0_16px_40px_rgba(40,40,40,0.24)] transition-transform duration-500 group-hover:rotate-2"
+          />
+        </Reveal>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Circular Image Frame - Left Side */}
-          <div className="relative flex justify-center lg:justify-start order-2 lg:order-1">
-            <CircularImageFrame
-              src="https://images.unsplash.com/photo-1580418827493-f2b22c0a76cb?w=800&q=80"
-              alt="Pilgrims at the Kaaba"
-              size="xl"
-              grayscale={true}
-            />
-            
-            {/* Decorative vertical line */}
-            <div className="absolute top-1/4 -right-4 lg:right-0 w-[1px] h-24 bg-primary/40 hidden lg:block" />
-          </div>
+        <Reveal delay={0.1}>
+          <p className="eyebrow">About us</p>
+          <h2 className="mt-3.5 font-display text-[clamp(1.9rem,3.6vw,2.8rem)] font-bold leading-[1.12] text-ink">
+            {aboutContent.title}
+          </h2>
+          <p className="mt-3.5 text-[1.04rem] leading-relaxed text-muted-foreground">
+            {aboutContent.paragraphs[0]} {aboutContent.paragraphs[1]}
+          </p>
 
-          {/* Content - Right Side */}
-          <div className="order-1 lg:order-2">
-            <Badge className="bg-primary/10 text-primary border-0 mb-4">
-              About Us
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              {aboutContent.title.split(" ")[0]}{" "}
-              <span className="text-gradient">{aboutContent.title.split(" ").slice(1).join(" ")}</span>
-            </h2>
-            
-            {aboutContent.paragraphs.slice(0, 2).map((paragraph, i) => (
-              <p key={i} className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                {paragraph}
-              </p>
-            ))}
-
-            <Button asChild variant="outline" className="mt-4 border-primary text-primary hover:bg-primary hover:text-white">
-              <Link href="/about">
-                Learn More About Us
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-10 pt-10 border-t border-border">
-              {stats.map((stat, i) => (
-                <div key={i} className="text-center sm:text-left">
-                  <div className="text-3xl md:text-4xl font-bold text-gradient">
-                    {stat.number}
-                  </div>
-                  <div className="text-muted-foreground text-sm mt-1">{stat.label}</div>
+          <ol className="mt-7 grid gap-5">
+            {journeySteps.map((step, i) => (
+              <li key={step.title} className="flex gap-[18px]">
+                <span className="grid size-11 flex-none place-items-center rounded-full bg-charcoal font-display font-bold text-primary">
+                  {i + 1}
+                </span>
+                <div>
+                  <h4 className="font-display text-[1.1rem] font-semibold text-ink">{step.title}</h4>
+                  <p className="mt-1 text-[0.96rem] leading-relaxed text-muted-foreground">{step.description}</p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
+              </li>
+            ))}
+          </ol>
+
+          <Button asChild variant="ghost" className="mt-8">
+            <Link href="/about">Read our story</Link>
+          </Button>
+        </Reveal>
       </div>
     </section>
   );

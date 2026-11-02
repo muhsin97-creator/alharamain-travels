@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
-import { umrahTrips, blogPosts } from '@/lib/data'
+import { umrahTrips } from '@/lib/data'
+import { getAllPosts } from '@/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://alharamaintravels.com.au'
@@ -36,6 +37,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly' as const,
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly' as const,
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly' as const,
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/refund-policy`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly' as const,
+      priority: 0.3,
+    },
   ]
 
   // Dynamic Umrah trip pages
@@ -46,14 +65,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: trip.featured ? 0.9 : 0.8,
   }))
 
-  // Dynamic blog pages
-  const blogPages = blogPosts.map((post) => ({
+  // Blog posts from content/blog/*.md (published only, newest first)
+  const blogPages = getAllPosts().map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(),
+    lastModified: new Date(post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }))
 
   return [...staticPages, ...tripPages, ...blogPages]
 }
-

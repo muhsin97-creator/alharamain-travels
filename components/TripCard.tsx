@@ -1,125 +1,99 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Users, Clock, ChevronRight } from "lucide-react";
 import { UmrahTrip } from "@/lib/data";
+import { cn } from "@/lib/utils";
 
 interface TripCardProps {
   trip: UmrahTrip;
+  /** Gold border and glow, like the UK "featured" package. */
   featured?: boolean;
+  className?: string;
 }
 
-export function TripCard({ trip, featured = false }: TripCardProps) {
+// UK .pkg card: white, 3:2 photo with gold tag, meta pills, price, full-width gold button.
+export function TripCard({ trip, featured = false, className }: TripCardProps) {
+  const isInterest = trip.price.toLowerCase().includes("interest");
+  const image = trip.image ?? "/gallery/kaaba.jpg";
+  const href = `/umrah/${trip.slug}`;
+
   return (
-    <Card
-      className={`relative overflow-hidden transition-all duration-300 hover:shadow-2xl group ${
-        trip.expired
-          ? "opacity-75"
-          : "border-primary/20 hover:border-primary/50"
-      } ${featured ? "lg:col-span-2 lg:row-span-2" : ""}`}
-    >
-      {/* Trip Image */}
-      {trip.image && (
-        <div className={`relative w-full ${featured ? "h-64 lg:h-80" : "h-48"} overflow-hidden`}>
-          <Image
-            src={trip.image}
-            alt={trip.name}
-            fill
-            className="object-cover"
-            priority={featured}
-          />
-        </div>
+    <article
+      className={cn(
+        "lift group flex flex-col overflow-hidden rounded-2xl border bg-card",
+        featured ? "border-primary shadow-[0_18px_50px_rgba(218,162,96,0.18)]" : "border-border",
+        trip.expired && "opacity-80 saturate-50",
+        className
       )}
-      
-      {/* Top Banner */}
-      <div className={`bg-[#2D2D2D] p-6 relative ${featured ? "lg:p-8" : ""}`}>
-        {/* Status Badge - Top Right */}
-        <div className="absolute top-4 right-4">
-          {trip.expired ? (
-            <Badge className="bg-red-500/90 text-white border-0">
-              Expired
-            </Badge>
-          ) : (
-            <Badge className="bg-green-500/90 text-white border-0">
-              Available
-            </Badge>
+    >
+      <Link href={href} className="relative block aspect-[3/2] overflow-hidden" aria-hidden="true" tabIndex={-1}>
+        <Image
+          src={image}
+          alt={trip.name}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+        />
+        <span
+          className={cn(
+            "absolute left-3.5 top-3.5 rounded-full px-3 py-1.5 font-display text-[0.72rem] font-semibold uppercase tracking-[0.08em]",
+            trip.expired ? "bg-white/90 text-charcoal" : "bg-primary text-white"
           )}
-        </div>
+        >
+          {trip.expired ? "Past trip" : trip.subtitle}
+        </span>
+      </Link>
 
-        {/* Tags Row - Featured + Subtitle */}
-        <div className="flex flex-wrap items-center gap-2 mb-4 pr-20">
-          {trip.featured && !trip.expired && (
-            <Badge className="bg-primary text-white border-0">
-              Featured
-            </Badge>
-          )}
-          <Badge className="bg-primary/20 text-primary border-0">
-            {trip.subtitle}
-          </Badge>
-        </div>
-
-        <h3 className={`font-bold text-white mb-2 ${featured ? "text-2xl lg:text-3xl" : "text-xl"}`}>
-          {trip.name}
+      <div className="flex flex-1 flex-col p-7">
+        <h3 className="font-display text-[1.3rem] font-semibold text-ink">
+          <Link href={href} className="transition-colors hover:text-gold-deep">
+            {trip.name}
+          </Link>
         </h3>
-        <div className={`font-bold text-gradient ${featured ? "text-3xl" : "text-2xl"}`}>
-          {trip.price}
-        </div>
-      </div>
+        {!trip.expired && (
+          <p className="mt-1 text-[0.9rem] text-muted-foreground">
+            {isInterest ? "Dates and pricing being finalised" : "Now booking"}
+          </p>
+        )}
 
-      <CardContent className={`p-6 ${featured ? "lg:p-8" : ""}`}>
-        {/* Trip Details */}
-        <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <Users className="h-4 w-4 text-primary" />
-            <span>{trip.capacity}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Clock className="h-4 w-4 text-primary" />
-            <span>{trip.duration}</span>
-          </div>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {[trip.capacity, trip.duration, trip.ageRestriction].map((m) => (
+            <span
+              key={m}
+              className="rounded-full bg-surface px-3 py-1.5 text-[0.78rem] font-medium text-[#5a554d]"
+            >
+              {m}
+            </span>
+          ))}
         </div>
 
-        {/* Description */}
-        <p className={`text-muted-foreground text-sm leading-relaxed mb-6 ${featured ? "line-clamp-4 lg:line-clamp-6" : "line-clamp-3"}`}>
+        <div className="mt-4 font-display text-[1.7rem] font-bold leading-none text-ink">
+          {isInterest ? (
+            <span className="text-[1.15rem] font-semibold text-muted-foreground">Register your interest</span>
+          ) : (
+            <>
+              <small className="mr-1.5 text-[0.95rem] font-semibold text-muted-foreground">From</small>
+              {trip.price.replace("From ", "")}
+              <span className="ml-1.5 text-[0.85rem] font-medium text-muted-foreground">/ person</span>
+            </>
+          )}
+        </div>
+
+        <p className="mb-5 mt-3.5 line-clamp-3 text-[0.95rem] leading-relaxed text-muted-foreground">
           {trip.description}
         </p>
 
-        {/* Highlights for featured cards */}
-        {featured && trip.highlights && (
-          <div className="hidden lg:block mb-6">
-            <ul className="space-y-2">
-              {trip.highlights.slice(0, 3).map((highlight, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                  <span>{highlight.split(" - ")[0]}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* CTA Button */}
-        <Button
-          asChild={!trip.expired}
-          className={`w-full ${
+        <Link
+          href={href}
+          className={cn(
+            "mt-auto inline-flex h-12 w-full items-center justify-center rounded-full font-display text-[0.98rem] font-semibold transition-[transform,box-shadow,background-color] duration-200 hover:-translate-y-0.5",
             trip.expired
-              ? "bg-muted text-muted-foreground cursor-not-allowed"
-              : "bg-primary hover:bg-primary/90"
-          }`}
-          disabled={trip.expired}
-        >
-          {trip.expired ? (
-            <span>Trip Ended</span>
-          ) : (
-            <Link href={`/umrah/${trip.slug}`}>
-              Explore
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Link>
+              ? "border-[1.5px] border-charcoal/25 text-charcoal hover:border-charcoal"
+              : "bg-primary text-white shadow-gold hover:bg-primary-hover hover:shadow-gold-lg"
           )}
-        </Button>
-      </CardContent>
-    </Card>
+        >
+          {trip.expired ? "See trip details" : "View this trip"}
+        </Link>
+      </div>
+    </article>
   );
 }

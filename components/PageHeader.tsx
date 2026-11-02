@@ -1,78 +1,84 @@
-import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
-interface PageHeaderProps {
-  badge?: string;
-  title: string;
-  titleHighlight?: string;
-  description?: string;
-  centered?: boolean;
-  dark?: boolean;
+interface Crumb {
+  href: string;
+  label: string;
 }
 
+interface PageHeaderProps {
+  title: React.ReactNode;
+  description?: string;
+  eyebrow?: string;
+  /** Background photograph (real trip/gallery photo). */
+  image?: string;
+  imageAlt?: string;
+  breadcrumbs?: Crumb[];
+  children?: React.ReactNode;
+  /** Shorter hero for utility pages. */
+  compact?: boolean;
+}
+
+// Inner-page hero in the UK hero style: full-bleed photo, dark scrim, white copy.
 export function PageHeader({
-  badge,
   title,
-  titleHighlight,
   description,
-  centered = true,
-  dark = true,
+  eyebrow,
+  image = "/gallery/haram-colonnade.jpg",
+  imageAlt = "",
+  breadcrumbs,
+  children,
+  compact = false,
 }: PageHeaderProps) {
   return (
-    <section
-      className={`relative py-24 md:py-32 overflow-hidden ${
-        dark ? "bg-[#2D2D2D] text-white" : "bg-background text-foreground"
-      }`}
-    >
-      {/* Decorative elements */}
-      <div className="absolute top-8 left-8 flex gap-2 opacity-40">
-        {[...Array(4)].map((_, i) => (
-          <div
-            key={i}
-            className="w-0 h-0 border-l-[6px] border-r-[6px] border-b-[10px] border-l-transparent border-r-transparent border-b-primary"
-          />
-        ))}
+    <section className="relative isolate overflow-hidden bg-charcoal text-white">
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src={image}
+          alt={imageAlt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="scrim-hero absolute inset-0" />
       </div>
-      <div className="absolute top-16 right-16 w-20 h-[1px] bg-primary opacity-40" />
-      <div className="absolute bottom-16 left-16 w-20 h-[1px] bg-primary opacity-40" />
-      <div className="absolute bottom-8 right-8 flex flex-col gap-2 opacity-40">
-        {[...Array(4)].map((_, i) => (
-          <div
-            key={i}
-            className="w-0 h-0 border-l-[6px] border-r-[6px] border-b-[10px] border-l-transparent border-r-transparent border-b-primary"
-          />
-        ))}
-      </div>
-      
-      {/* Gold corner accents */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-2 bg-primary" />
-      <div className="absolute bottom-0 right-8 w-24 h-16 bg-primary/20" />
 
-      <div className={`max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 ${centered ? "text-center" : ""}`}>
-        {badge && (
-          <Badge className="bg-primary/20 text-primary border-0 mb-4">
-            {badge}
-          </Badge>
+      <div className={`container-x ${compact ? "pb-16 pt-36 md:pb-20 md:pt-44" : "pb-20 pt-40 md:pb-28 md:pt-52"}`}>
+        {breadcrumbs && breadcrumbs.length > 0 && (
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex flex-wrap items-center gap-1.5 text-sm text-white/70">
+              {breadcrumbs.map((crumb, i) => {
+                const last = i === breadcrumbs.length - 1;
+                return (
+                  <li key={crumb.href} className="flex items-center gap-1.5">
+                    {last ? (
+                      <span className="text-white">{crumb.label}</span>
+                    ) : (
+                      <Link href={crumb.href} className="transition-colors hover:text-primary">
+                        {crumb.label}
+                      </Link>
+                    )}
+                    {!last && <ChevronRight className="size-3.5 opacity-60" />}
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
         )}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+
+        {eyebrow && <p className="eyebrow text-primary">{eyebrow}</p>}
+        <h1 className="mt-4 max-w-[720px] font-display text-4xl font-extrabold leading-[1.1] text-white [text-shadow:0_2px_30px_rgba(0,0,0,0.25)] md:text-5xl lg:text-6xl">
           {title}
-          {titleHighlight && (
-            <>
-              {" "}
-              <span className="text-gradient">{titleHighlight}</span>
-            </>
-          )}
         </h1>
         {description && (
-          <p
-            className={`text-lg md:text-xl max-w-2xl leading-relaxed ${
-              centered ? "mx-auto" : ""
-            } ${dark ? "text-white/70" : "text-muted-foreground"}`}
-          >
+          <p className="mt-6 max-w-[600px] text-lg leading-relaxed text-white/95 md:text-xl">
             {description}
           </p>
         )}
+        {children && <div className="mt-8">{children}</div>}
       </div>
     </section>
   );
 }
-

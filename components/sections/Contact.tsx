@@ -1,260 +1,157 @@
 'use client'
 
 import { useState } from "react"
-import Link from "next/link"
+import { Phone, Mail, MessageCircle, Check, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Phone, Mail, MapPin, ChevronRight, Instagram, Facebook, MessageCircle, CheckCircle, AlertCircle, Loader2 } from "lucide-react"
-import { CircularImageFrame, GoldAccentBar, GoldLine, TrianglePattern, PlayIndicators } from "@/components/CircularImageFrame"
+import { Field, Input, Select, Textarea } from "@/components/ui/field"
+import { Reveal } from "@/components/ui/reveal"
 import { useContactForm } from "@/lib/useContactForm"
 import { contactInfo, umrahTrips } from "@/lib/data"
 
+const emptyForm = { name: '', phone: '', email: '', interest: '', travellers: '1', when: '', message: '' }
+
+const assurances = [
+  "A real person responds, usually within one business day.",
+  "Your details are kept private and never shared.",
+  "No payment needed to enquire.",
+]
+
+// UK .lead section: charcoal split with a white form card. The home page's enquiry point.
 export function Contact() {
   const { isSubmitting, isSuccess, isError, errorMessage, submitForm, reset } = useContactForm()
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    interest: '',
-    message: ''
-  })
-
-  const availableTrips = umrahTrips.filter(trip => !trip.expired)
+  const [formData, setFormData] = useState(emptyForm)
+  const availableTrips = umrahTrips.filter((trip) => !trip.expired)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
     const success = await submitForm({
-      subject: `New Enquiry: ${formData.interest || 'General'}`,
-      name: formData.name,
-      phone: formData.phone,
-      email: formData.email,
-      interest: formData.interest,
-      message: formData.message
+      subject: `New enquiry: ${formData.interest || 'Not sure yet'}`,
+      ...formData,
     })
-
-    if (success) {
-      setFormData({ name: '', phone: '', email: '', interest: '', message: '' })
-    }
+    if (success) setFormData(emptyForm)
   }
 
+  const set = (key: keyof typeof emptyForm) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+    setFormData({ ...formData, [key]: e.target.value })
+
   return (
-    <section id="contact" className="py-24 bg-[#2D2D2D] text-white relative overflow-hidden">
-      {/* Decorative elements matching social media template (dark theme) */}
-      <GoldAccentBar position="top" />
-      <div className="absolute bottom-0 left-8 w-2 h-32 bg-primary" />
-      
-      {/* Gold lines */}
-      <GoldLine className="absolute top-24 left-16" />
-      <GoldLine className="absolute bottom-32 right-12" />
-      
-      {/* Triangle patterns */}
-      <TrianglePattern className="absolute top-1/4 right-8 opacity-40" direction="down" />
-      <TrianglePattern className="absolute bottom-1/3 left-8 opacity-40" direction="up" />
-      
-      {/* Play indicators */}
-      <PlayIndicators className="absolute top-1/3 left-1/4 opacity-30" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16">
-          <div>
-            <Badge className="bg-primary/20 text-primary border-0 mb-4">
-              Contact Us
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Get in <span className="text-gradient">Touch</span>
-            </h2>
-            <p className="text-white/70 text-lg mb-8 leading-relaxed">
-              Have questions about our Umrah packages? Our friendly team is here to
-              help you plan your perfect pilgrimage. Reach out to us through any of the channels below.
-            </p>
-
-            {/* Circular Image */}
-            <div className="hidden md:flex justify-start mb-8">
-              <CircularImageFrame
-                src="https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?w=600&q=80"
-                alt="Islamic architecture"
-                size="md"
-                grayscale={true}
-              />
-            </div>
-
-            {/* Contact Info */}
-            <div className="space-y-5">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Phone className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <div className="text-white/60 text-sm">Phone</div>
-                  <div className="font-semibold">{contactInfo.phone}</div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Mail className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <div className="text-white/60 text-sm">Email</div>
-                  <div className="font-semibold">{contactInfo.email}</div>
-                </div>
-              </div>
-
-              {/* Multiple Addresses */}
-              {contactInfo.addresses.map((address, i) => (
-                <div key={i} className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-white/60 text-sm">Office - {address.state}</div>
-                    <div className="font-semibold">{address.location}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Social Links */}
-            <div className="flex gap-4 mt-8">
-              <a
-                href={contactInfo.socials.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center hover:bg-primary transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5 text-white" />
-              </a>
-              <a
-                href={contactInfo.socials.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center hover:bg-primary transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5 text-white" />
-              </a>
-              <a
-                href={contactInfo.socials.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center hover:bg-primary transition-colors"
-                aria-label="WhatsApp"
-              >
-                <MessageCircle className="h-5 w-5 text-white" />
-              </a>
-            </div>
-
-            <Button asChild variant="outline" className="mt-8 border-primary text-primary hover:bg-primary hover:text-white">
-              <Link href="/contact">
-                View Full Contact Page
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+    <section id="enquire" className="bg-charcoal py-24 text-white md:py-[96px]">
+      <div className="container-x grid items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
+        <Reveal>
+          <p className="eyebrow text-primary">Book your trip</p>
+          <h2 className="mb-4 mt-3.5 font-display text-[clamp(2rem,3.8vw,2.9rem)] font-bold leading-[1.12] text-white">
+            Start your journey today
+          </h2>
+          <p className="max-w-[460px] text-[1.05rem] leading-relaxed text-white/85">
+            Leave your details and our team will be in touch with the right trip, dates and pricing
+            for you. No obligation, just a calm, helpful conversation when you are ready.
+          </p>
+          <ul className="mt-7 grid gap-3.5">
+            {assurances.map((line) => (
+              <li key={line} className="flex items-start gap-3 text-[0.95rem] text-white/90">
+                <Check className="mt-0.5 size-5 flex-none text-primary" />
+                {line}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3.5">
+            <a href={contactInfo.phoneHref} className="inline-flex items-center gap-2 font-display text-[0.92rem] font-semibold text-white/90 transition-colors hover:text-primary">
+              <Phone className="size-[18px] text-primary" /> {contactInfo.phone}
+            </a>
+            <a href={`mailto:${contactInfo.email}`} className="inline-flex items-center gap-2 font-display text-[0.92rem] font-semibold text-white/90 transition-colors hover:text-primary">
+              <Mail className="size-[18px] text-primary" /> {contactInfo.email}
+            </a>
+            <a href={contactInfo.socials.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-display text-[0.92rem] font-semibold text-white/90 transition-colors hover:text-primary">
+              <MessageCircle className="size-[18px] text-primary" /> WhatsApp us
+            </a>
           </div>
+        </Reveal>
 
-          {/* Contact Form */}
-          <Card className="bg-white/5 border-white/10">
-            <CardContent className="p-8">
-              {isSuccess ? (
-                <div className="text-center py-8">
-                  <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle className="h-8 w-8 text-green-500" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
-                  <p className="text-white/60 mb-6">
-                    Thank you for reaching out. We&apos;ll get back to you as soon as possible.
-                  </p>
-                  <Button onClick={reset} variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-                    Send Another Message
-                  </Button>
+        <Reveal delay={0.1}>
+          <div className="rounded-[20px] bg-white p-7 text-charcoal shadow-lift md:p-9">
+            {isSuccess ? (
+              <div className="py-8 text-center">
+                <div className="mx-auto mb-5 grid size-16 place-items-center rounded-full bg-gold-soft text-gold-deep">
+                  <Check className="size-8" strokeWidth={2.4} />
                 </div>
-              ) : (
-                <>
-                  <h3 className="text-2xl font-bold mb-2">Send us a Message</h3>
-                  <p className="text-white/60 text-sm mb-6">
-                    Fill out the form below and we&apos;ll get back to you as soon as possible.
-                  </p>
+                <h3 className="font-display text-[1.35rem] font-semibold text-ink">JazakAllahu Khair!</h3>
+                <p className="mx-auto mt-2 max-w-md text-muted-foreground">
+                  We have received your details and will be in touch soon, in sha Allah. May Allah make
+                  your journey easy and accepted.
+                </p>
+                <Button onClick={reset} variant="ghost" className="mt-7">
+                  Send another enquiry
+                </Button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <h3 className="font-display text-[1.35rem] font-semibold text-ink">Tell us about your trip</h3>
+                  <p className="mt-1 text-[0.94rem] text-muted-foreground">All fields with * are required.</p>
+                </div>
 
-                  {isError && (
-                    <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/20 rounded-lg p-3 mb-4">
-                      <AlertCircle className="h-5 w-5 text-red-500 flex-shrink-0" />
-                      <span className="text-red-400 text-sm">{errorMessage}</span>
-                    </div>
-                  )}
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Field label="Full name" htmlFor="lead-name" required>
+                    <Input id="lead-name" name="name" autoComplete="name" required value={formData.name} onChange={set('name')} />
+                  </Field>
+                  <Field label="Mobile" htmlFor="lead-phone" required>
+                    <Input id="lead-phone" name="phone" type="tel" autoComplete="tel" required value={formData.phone} onChange={set('phone')} />
+                  </Field>
+                </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <input
-                        type="text"
-                        placeholder="Name *"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
-                      />
-                      <input
-                        type="tel"
-                        placeholder="Number *"
-                        required
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
-                      />
-                    </div>
-                    <input
-                      type="email"
-                      placeholder="Email *"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
-                    />
-                    <select 
-                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
-                      value={formData.interest}
-                      onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                    >
-                      <option value="" disabled className="text-gray-900">Select Trip Interest</option>
-                      {availableTrips.map((trip, i) => (
-                        <option key={i} value={trip.name} className="text-gray-900">
-                          {trip.name} - {trip.price}
-                        </option>
+                <Field label="Email" htmlFor="lead-email" required>
+                  <Input id="lead-email" name="email" type="email" autoComplete="email" required value={formData.email} onChange={set('email')} />
+                </Field>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Field label="Trip of interest" htmlFor="lead-interest">
+                    <Select id="lead-interest" name="interest" value={formData.interest} onChange={set('interest')}>
+                      <option value="">Not sure yet, help me choose</option>
+                      {availableTrips.map((trip) => (
+                        <option key={trip.slug} value={trip.name}>{trip.name}</option>
                       ))}
-                      <option value="General Enquiry" className="text-gray-900">Other / General Enquiry</option>
-                    </select>
-                    <textarea
-                      placeholder="Your Message"
-                      rows={4}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary resize-none transition-colors"
-                    />
-                    <Button 
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-primary hover:bg-primary/90 text-white py-6 font-semibold disabled:opacity-50"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          Submit
-                          <ChevronRight className="ml-2 h-5 w-5" />
-                        </>
-                      )}
-                    </Button>
-                  </form>
-                </>
-              )}
-            </CardContent>
-          </Card>
-        </div>
+                      <option value="Umrah Companion (private trip)">Umrah Companion (private trip)</option>
+                    </Select>
+                  </Field>
+                  <Field label="Travellers" htmlFor="lead-travellers">
+                    <Select id="lead-travellers" name="travellers" value={formData.travellers} onChange={set('travellers')}>
+                      {['1', '2', '3-4', '5+', 'Group / family'].map((v) => (
+                        <option key={v} value={v}>{v}</option>
+                      ))}
+                    </Select>
+                  </Field>
+                </div>
+
+                <Field label="When would you like to travel?" htmlFor="lead-when">
+                  <Input id="lead-when" name="when" placeholder="e.g. Ramadan, December, flexible" value={formData.when} onChange={set('when')} />
+                </Field>
+
+                <Field label="Anything else?" htmlFor="lead-message">
+                  <Textarea id="lead-message" name="message" rows={3} placeholder="Optional. Tell us about your group or any questions." value={formData.message} onChange={set('message')} />
+                </Field>
+
+                <Button type="submit" size="lg" disabled={isSubmitting} className="mt-1.5 w-full">
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="size-5 animate-spin" /> Sending
+                    </>
+                  ) : (
+                    'Submit enquiry'
+                  )}
+                </Button>
+
+                {isError && (
+                  <p role="alert" className="text-center text-[0.85rem] text-destructive">
+                    {errorMessage} You can also WhatsApp us on {contactInfo.phone}.
+                  </p>
+                )}
+                <p className="text-center text-[0.8rem] text-muted-foreground">
+                  By submitting, you agree to be contacted by Al Haramain Travels about your enquiry.
+                </p>
+              </form>
+            )}
+          </div>
+        </Reveal>
       </div>
     </section>
   )

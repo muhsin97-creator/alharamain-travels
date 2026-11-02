@@ -1,178 +1,171 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
 import { HeroHeader } from "@/components/header";
 import { PageHeader } from "@/components/PageHeader";
+import { SectionHeading } from "@/components/SectionHeading";
+import { Reveal } from "@/components/ui/reveal";
+import { CTABand } from "@/components/sections/CTABand";
 import { Footer } from "@/components/sections/Footer";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ChevronRight, Calendar, Clock, User } from "lucide-react";
-import { blogPosts } from "@/lib/data";
+import { getAllPosts, formatDate, postImage, type BlogPost } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Blog | Al-Haramain Travels",
-  description: "Read our latest articles about Umrah and Islamic travel. Get tips, guides, and spiritual insights for your pilgrimage journey.",
+  title: "Umrah Guides & Travel Tips",
+  description:
+    "Umrah preparation guides, the virtues of Umrah in Ramadan and first-timer travel tips from the Al-Haramain Travels team, written for pilgrims travelling from Australia.",
+  alternates: { canonical: "/blog" },
 };
 
-export default function BlogPage() {
-  // Sort posts by date (newest first)
-  const sortedPosts = [...blogPosts].sort((a, b) => 
-    new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-AU", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
-
+// UK .post-meta: date, dot, read time
+function PostMeta({ post, className }: { post: BlogPost; className?: string }) {
   return (
-    <div className="min-h-screen bg-background">
-      <HeroHeader />
-      
-      <PageHeader
-        badge="Our Blog"
-        title="Insights &"
-        titleHighlight="Guidance"
-        description="Discover helpful guides, tips, and spiritual insights for your pilgrimage journey"
-      />
-
-      {/* Blog Grid */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Featured Post */}
-          {sortedPosts.length > 0 && (
-            <div className="mb-16">
-              <Link href={`/blog/${sortedPosts[0].slug}`} className="block group">
-                <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                  <div className="grid md:grid-cols-2 gap-0">
-                    <div className="bg-[#2D2D2D] p-8 md:p-12 flex flex-col justify-center">
-                      <Badge className="bg-primary/20 text-primary border-0 w-fit mb-4">
-                        Featured
-                      </Badge>
-                      <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-primary transition-colors">
-                        {sortedPosts[0].title}
-                      </h2>
-                      <p className="text-white/70 mb-6 leading-relaxed">
-                        {sortedPosts[0].excerpt}
-                      </p>
-                      <div className="flex flex-wrap items-center gap-4 text-white/60 text-sm">
-                        <div className="flex items-center gap-1.5">
-                          <Calendar className="h-4 w-4" />
-                          <span>{formatDate(sortedPosts[0].date)}</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <Clock className="h-4 w-4" />
-                          <span>{sortedPosts[0].readTime}</span>
-                        </div>
-                        <Badge className="bg-white/10 text-white/80 border-0">
-                          {sortedPosts[0].category}
-                        </Badge>
-                      </div>
-                    </div>
-                    <div className="bg-gradient-to-br from-primary/20 to-primary/5 aspect-square md:aspect-auto flex items-center justify-center">
-                      <div className="text-center p-8">
-                        <div className="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <span className="text-4xl">📖</span>
-                        </div>
-                        <span className="text-muted-foreground font-medium">Read Article</span>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              </Link>
-            </div>
-          )}
-
-          {/* Other Posts Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {sortedPosts.slice(1).map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="block group">
-                <Card className="h-full hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/30 overflow-hidden">
-                  {/* Card Header */}
-                  <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 flex items-center justify-center aspect-video">
-                    <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center">
-                      <span className="text-3xl">📖</span>
-                    </div>
-                  </div>
-                  
-                  <CardContent className="p-6">
-                    <Badge className="bg-primary/10 text-primary border-0 mb-3">
-                      {post.category}
-                    </Badge>
-                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center gap-4 text-muted-foreground text-sm">
-                      <div className="flex items-center gap-1.5">
-                        <Calendar className="h-4 w-4" />
-                        <span>{formatDate(post.date)}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Clock className="h-4 w-4" />
-                        <span>{post.readTime}</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
-
-          {/* No Posts Message */}
-          {sortedPosts.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-muted-foreground text-lg mb-6">
-                No blog posts available yet. Check back soon!
-              </p>
-              <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-                <Link href="/contact">
-                  Contact Us
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-[#2D2D2D] text-white relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-10 left-10 w-20 h-[1px] bg-primary opacity-40" />
-        <div className="absolute bottom-10 right-10 w-20 h-[1px] bg-primary opacity-40" />
-        
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Badge className="bg-primary/20 text-primary border-0 mb-4">
-            Stay Updated
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Subscribe to Our <span className="text-gradient">Newsletter</span>
-          </h2>
-          <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
-            Get the latest updates on Umrah trips, travel tips, and exclusive offers delivered to your inbox.
-          </p>
-          <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-primary transition-colors"
-            />
-            <Button type="submit" className="bg-primary hover:bg-primary/90">
-              Subscribe
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Button>
-          </form>
-        </div>
-      </section>
-
-      <Footer />
+    <div
+      className={`flex flex-wrap items-center gap-x-[18px] gap-y-2.5 text-[0.82rem] font-medium text-muted-foreground ${className ?? ""}`}
+    >
+      <time dateTime={post.date}>{formatDate(post.date)}</time>
+      <span aria-hidden="true" className="size-1 rounded-full bg-current opacity-50" />
+      <span>{post.readTime}</span>
     </div>
   );
 }
 
+// UK .pc-tag: gold uppercase category pill over the photo
+function CategoryTag({ category }: { category: string }) {
+  return (
+    <span className="absolute left-3.5 top-3.5 rounded-full bg-primary px-3 py-1.5 font-display text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-white">
+      {category}
+    </span>
+  );
+}
+
+// UK .post-card: white, 3:2 photo with gold tag, title, excerpt, meta row
+function PostCard({ post, sizes }: { post: BlogPost; sizes: string }) {
+  const href = `/blog/${post.slug}`;
+  return (
+    <article className="lift group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card hover:border-primary">
+      <Link href={href} className="relative block aspect-[3/2] overflow-hidden" aria-hidden="true" tabIndex={-1}>
+        <Image
+          src={postImage(post)}
+          alt={post.title}
+          fill
+          sizes={sizes}
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+        />
+        <CategoryTag category={post.category} />
+      </Link>
+      <div className="flex flex-1 flex-col p-6 pb-[26px]">
+        <h3 className="font-display text-[1.15rem] font-semibold leading-snug text-ink">
+          <Link href={href} className="transition-colors hover:text-gold-deep">
+            {post.title}
+          </Link>
+        </h3>
+        <p className="mb-[18px] mt-2 line-clamp-3 text-[0.95rem] leading-relaxed text-muted-foreground">
+          {post.excerpt}
+        </p>
+        <PostMeta post={post} className="mt-auto" />
+      </div>
+    </article>
+  );
+}
+
+export default function BlogPage() {
+  const posts = getAllPosts();
+  const [lead, ...rest] = posts;
+
+  return (
+    <div className="min-h-screen bg-background">
+      <HeroHeader />
+
+      <PageHeader
+        eyebrow="From the blog"
+        title={
+          <>
+            Guides for a <span className="text-primary">better Umrah</span>
+          </>
+        }
+        description="Practical preparation, spiritual reminders and travel tips from our team, written for pilgrims travelling from Australia."
+        image="/gallery/nabawi-canopy-detail.jpg"
+        imageAlt="The great canopies of Masjid an-Nabawi"
+        breadcrumbs={[
+          { href: "/", label: "Home" },
+          { href: "/blog", label: "Blog" },
+        ]}
+      />
+
+      <section className="bg-background py-24 md:py-[96px]">
+        <div className="container-x">
+          <SectionHeading
+            eyebrow="Latest articles"
+            title="Read before you travel"
+            intro="Everything we wish every pilgrim knew before their first Umrah, from visas and packing to the rites themselves."
+            align="center"
+          />
+
+          {lead && (
+            <Reveal>
+              <article className="lift group grid overflow-hidden rounded-2xl border border-border bg-card hover:border-primary lg:grid-cols-2">
+                <Link
+                  href={`/blog/${lead.slug}`}
+                  className="relative block aspect-[3/2] overflow-hidden lg:aspect-auto lg:min-h-[26rem]"
+                  aria-hidden="true"
+                  tabIndex={-1}
+                >
+                  <Image
+                    src={postImage(lead)}
+                    alt={lead.title}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+                  />
+                  <CategoryTag category={lead.category} />
+                </Link>
+                <div className="flex flex-col justify-center p-8 md:p-12">
+                  <p className="eyebrow">Latest guide</p>
+                  <h2 className="mt-3.5 font-display text-2xl font-semibold leading-[1.15] text-ink md:text-3xl lg:text-[2.2rem]">
+                    <Link href={`/blog/${lead.slug}`} className="transition-colors hover:text-gold-deep">
+                      {lead.title}
+                    </Link>
+                  </h2>
+                  <p className="mt-4 max-w-[60ch] text-base leading-relaxed text-muted-foreground md:text-[1.06rem]">
+                    {lead.excerpt}
+                  </p>
+                  <PostMeta post={lead} className="mt-6" />
+                  <Link
+                    href={`/blog/${lead.slug}`}
+                    className="mt-8 inline-flex items-center gap-1.5 font-display text-[0.95rem] font-semibold text-gold-deep underline-offset-4 transition-colors hover:text-primary hover:underline"
+                  >
+                    Read the guide
+                  </Link>
+                </div>
+              </article>
+            </Reveal>
+          )}
+
+          {rest.length > 0 && (
+            <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {rest.map((post, i) => (
+                <Reveal key={post.slug} delay={i * 0.06} className="h-full">
+                  <PostCard
+                    post={post}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </Reveal>
+              ))}
+            </div>
+          )}
+
+          {posts.length === 0 && (
+            <p className="mx-auto max-w-[65ch] text-center text-base leading-relaxed text-muted-foreground md:text-[1.06rem]">
+              Our first guides are on the way. In the meantime, our team is happy to answer any
+              question about preparing for Umrah.
+            </p>
+          )}
+        </div>
+      </section>
+
+      <CTABand />
+      <Footer />
+    </div>
+  );
+}

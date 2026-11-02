@@ -15,12 +15,15 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.555.0",
     "motion": "^12.23.24",
     "next": "^16.2.9",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "react-markdown": "^10.1.0",
     "react-use-measure": "^2.1.7",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {

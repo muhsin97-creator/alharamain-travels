@@ -1,112 +1,124 @@
 'use client'
+
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Logo } from '@/components/logo'
 import { Menu, X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import React from 'react'
+import { useMotionValueEvent, useScroll } from 'motion/react'
+import { Button } from '@/components/ui/button'
+import { navigationLinks } from '@/lib/data'
+import { cn } from '@/lib/utils'
 
-const menuItems = [
-    { name: 'Home', href: '/' },
-    { name: 'About us', href: '/about' },
-    { name: 'Umrah Services', href: '/services/umrah' },
-    { name: 'Blogs', href: '/blog' },
-    { name: 'Contact', href: '/contact' },
-]
-
+// Transparent over the photo hero, cream once scrolled (UK header behaviour).
 export const HeroHeader = () => {
-    const [menuState, setMenuState] = React.useState(false)
+    const [open, setOpen] = React.useState(false)
+    const [scrolled, setScrolled] = React.useState(false)
     const pathname = usePathname()
+    const { scrollY } = useScroll()
+
+    useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > 40))
 
     const isActive = (href: string) => {
         if (href === '/') return pathname === '/'
         return pathname.startsWith(href)
     }
 
+    React.useEffect(() => {
+        setOpen(false)
+    }, [pathname])
+
+    // Links read white on the hero and charcoal on cream
+    const linkTone = scrolled ? 'text-charcoal hover:text-primary' : 'text-white/90 hover:text-primary'
+
     return (
-        <header>
-            <nav
-                data-state={menuState && 'active'}
-                className="bg-background/80 fixed z-20 w-full border-b backdrop-blur-3xl">
-                <div className="mx-auto max-w-7xl px-6 transition-all duration-300">
-                    <div className="relative flex flex-wrap items-center justify-between gap-6 py-2 lg:gap-0 lg:py-2.5">
-                        <div className="flex w-full items-center justify-between gap-12 lg:w-auto">
-                            <Link
-                                href="/"
-                                aria-label="home"
-                                className="flex items-center space-x-2">
-                                <Logo className="h-14 lg:h-[4.5rem]" />
-                            </Link>
+        <header
+            className={cn(
+                'fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,padding] duration-300',
+                scrolled
+                    ? 'bg-background/95 py-2 shadow-[0_1px_0_var(--border)] backdrop-blur-md'
+                    : 'bg-transparent py-3'
+            )}>
+            <div className="container-x flex items-center justify-between">
+                <Link href="/" aria-label="Al-Haramain Travels home" className="relative z-50 flex shrink-0 items-center">
+                    <Image
+                        src={scrolled || open ? '/logo-color.svg' : '/logo-white.svg'}
+                        alt="Al-Haramain Travels"
+                        width={300}
+                        height={150}
+                        priority
+                        className={cn(
+                            'w-auto transition-[height] duration-300',
+                            scrolled ? 'h-16 lg:h-[4.5rem]' : 'h-20 lg:h-24'
+                        )}
+                    />
+                </Link>
 
-                            <button
-                                onClick={() => setMenuState(!menuState)}
-                                aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
-                                className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden">
-                                <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
-                                <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
-                            </button>
+                <nav className="hidden items-center gap-7 lg:flex" aria-label="Main">
+                    {navigationLinks.map((item) => (
+                        <Link
+                            key={item.href}
+                            href={item.href}
+                            className={cn(
+                                'font-display text-[0.95rem] font-medium transition-colors duration-200',
+                                linkTone,
+                                isActive(item.href) && 'text-primary'
+                            )}>
+                            {item.label}
+                        </Link>
+                    ))}
+                    <Button asChild>
+                        <Link href="/contact">Enquire now</Link>
+                    </Button>
+                </nav>
 
-                            <div className="hidden lg:block">
-                                <ul className="flex gap-8 text-sm">
-                                    {menuItems.map((item, index) => (
-                                        <li key={index}>
-                                            <Link
-                                                href={item.href}
-                                                className={`block font-medium duration-150 ${
-                                                    isActive(item.href)
-                                                        ? 'text-primary'
-                                                        : 'text-muted-foreground hover:text-primary'
-                                                }`}>
-                                                <span>{item.name}</span>
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
+                <button
+                    type="button"
+                    onClick={() => setOpen((v) => !v)}
+                    aria-expanded={open}
+                    aria-controls="mobile-menu"
+                    aria-label={open ? 'Close menu' : 'Open menu'}
+                    className={cn(
+                        'relative z-50 -mr-2 flex size-11 items-center justify-center rounded-full lg:hidden',
+                        open ? 'text-white' : scrolled ? 'text-charcoal' : 'text-white'
+                    )}>
+                    {open ? <X className="size-6" /> : <Menu className="size-6" />}
+                </button>
+            </div>
 
-                        <div className="bg-background in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent">
-                            <div className="lg:hidden">
-                                <ul className="space-y-6 text-base">
-                                    {menuItems.map((item, index) => (
-                                        <li key={index}>
-                                            <Link
-                                                href={item.href}
-                                                onClick={() => setMenuState(false)}
-                                                className={`block font-medium duration-150 ${
-                                                    isActive(item.href)
-                                                        ? 'text-primary'
-                                                        : 'text-muted-foreground hover:text-primary'
-                                                }`}>
-                                                <span>{item.name}</span>
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-                                <Button
-                                    asChild
-                                    variant="outline"
-                                    size="sm"
-                                    className="border-primary text-primary hover:bg-primary hover:text-white">
-                                    <Link href="/services/umrah">
-                                        <span>View Umrah Trips</span>
-                                    </Link>
-                                </Button>
-                                <Button
-                                    asChild
-                                    size="sm"
-                                    className="bg-primary hover:bg-primary/90">
-                                    <Link href="/contact">
-                                        <span>Contact us</span>
-                                    </Link>
-                                </Button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            {/* Mobile: charcoal panel sliding in from the right (UK .nav-links.open) */}
+            <div
+                id="mobile-menu"
+                className={cn(
+                    'fixed inset-y-0 right-0 z-40 flex w-[min(82vw,330px)] flex-col justify-center gap-6 bg-charcoal px-10 transition-transform duration-300 ease-out lg:hidden',
+                    open ? 'translate-x-0' : 'translate-x-full'
+                )}>
+                {navigationLinks.map((item) => (
+                    <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className={cn(
+                            'font-display text-lg font-medium text-white transition-colors hover:text-primary',
+                            isActive(item.href) && 'text-primary'
+                        )}>
+                        {item.label}
+                    </Link>
+                ))}
+                <Button asChild className="mt-2 w-fit">
+                    <Link href="/contact" onClick={() => setOpen(false)}>
+                        Enquire now
+                    </Link>
+                </Button>
+            </div>
+            {open && (
+                <button
+                    type="button"
+                    aria-label="Close menu"
+                    onClick={() => setOpen(false)}
+                    className="fixed inset-0 z-30 bg-black/40 lg:hidden"
+                />
+            )}
         </header>
     )
 }

@@ -1,45 +1,54 @@
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
+import { SectionHeading } from "@/components/SectionHeading";
+import { Reveal } from "@/components/ui/reveal";
 import { tripPhotos } from "@/lib/data";
+import { cn } from "@/lib/utils";
 
-export function TripGallery({ slug }: { slug: string }) {
+interface TripGalleryProps {
+  slug: string;
+  className?: string;
+}
+
+// Real photos from past trips. The first tile anchors the grid at 2x2; the rest fill around it.
+export function TripGallery({ slug, className }: TripGalleryProps) {
   const photos = tripPhotos[slug];
   if (!photos || photos.length === 0) return null;
 
   return (
-    <section className="py-16">
-      <div className="text-center mb-10">
-        <Badge className="bg-primary/10 text-primary border-0 mb-4">
-          From Our Trips
-        </Badge>
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-          Moments from <span className="text-gradient">the Journey</span>
-        </h2>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-3">
-          Real photos taken by our groups in Makkah and Madinah.
-        </p>
-      </div>
+    <div className={className}>
+      <SectionHeading
+        eyebrow="Gallery"
+        title="Moments from the journey"
+        intro="Real photos taken by our groups in Makkah and Madinah."
+        className="mb-8 [&_h2]:text-2xl md:[&_h2]:text-[1.9rem]"
+      />
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {photos.map((photo) => (
-          <div
-            key={photo.src}
-            className="group relative aspect-[4/3] overflow-hidden rounded-2xl ring-1 ring-border/50 hover:ring-primary/40 transition-all duration-300"
-          >
-            <Image
-              src={photo.src}
-              alt={photo.alt}
-              fill
-              sizes="(max-width: 768px) 50vw, 33vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <p className="absolute bottom-3 left-3 right-3 text-white text-xs md:text-sm font-medium opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-              {photo.alt}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
+      <Reveal className="grid auto-rows-[160px] grid-cols-2 gap-3 md:auto-rows-[200px] md:grid-cols-4 md:gap-4">
+        {photos.map((photo, i) => {
+          const lead = i === 0;
+          return (
+            <figure
+              key={photo.src}
+              className={cn(
+                "group relative m-0 overflow-hidden rounded-[18px] border border-border bg-surface transition-[border-color,box-shadow] duration-300 hover:border-primary hover:shadow-lift",
+                lead && "col-span-2 row-span-2"
+              )}
+            >
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                sizes={lead ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 50vw, 25vw"}
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+              />
+              <div className="scrim-b absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 p-4 text-xs font-medium text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 md:text-sm">
+                {photo.alt}
+              </figcaption>
+            </figure>
+          );
+        })}
+      </Reveal>
+    </div>
   );
 }

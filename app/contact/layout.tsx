@@ -1,11 +1,14 @@
-import { Metadata } from "next"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Contact Us",
-  description: "Get in touch with Al-Haramain Travels. Contact us for Umrah package enquiries, bookings, and support. We're here to help you plan your perfect pilgrimage.",
+  title: "Contact Us | Umrah Enquiries",
+  description:
+    "Get in touch with Al-Haramain Travels about guided Umrah trips from Australia. Call, WhatsApp or send an enquiry and our team will call you back within one business day.",
+  alternates: { canonical: "https://alharamaintravels.com.au/contact" },
   openGraph: {
-    title: "Contact Us | Al-Haramain Travels",
-    description: "Get in touch with Al-Haramain Travels for Umrah enquiries.",
+    title: "Contact Us | Umrah Enquiries | Al-Haramain Travels",
+    description:
+      "Call, WhatsApp or send an enquiry about our guided Umrah trips from Australia.",
   },
 }
 
@@ -16,4 +19,3 @@ export default function ContactLayout({
 }) {
   return children
 }
-

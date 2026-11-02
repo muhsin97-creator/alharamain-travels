@@ -1,70 +1,53 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Separator } from "@/components/ui/separator";
-import { Instagram, Facebook, MapPin, Phone, Mail, MessageCircle } from "lucide-react";
-import { footerLinks, contactInfo } from "@/lib/data";
+import { Instagram, Facebook, MessageCircle } from "lucide-react";
+import { footerLinks, contactInfo, aboutContent } from "@/lib/data";
 
+// UK footer: #1f1f1f, four columns, white logo, social circles
 export function Footer() {
+  const socials = [
+    { href: contactInfo.socials.instagram, label: "Instagram", Icon: Instagram },
+    { href: contactInfo.socials.facebook, label: "Facebook", Icon: Facebook },
+    { href: contactInfo.socials.whatsapp, label: "WhatsApp", Icon: MessageCircle },
+  ];
+
   return (
-    <footer className="bg-[#1a1a1a] text-white py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Logo & Description */}
-          <div className="sm:col-span-2 lg:col-span-1">
+    <footer className="bg-charcoal-deep pb-8 pt-[70px] text-[#cfc7bc]">
+      <div className="container-x">
+        <div className="grid gap-10 border-b border-white/10 pb-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
+          <div>
             <Image
-              src="/logo.png"
-              alt="Al-Haramain Travels"
-              width={180}
-              height={60}
-              className="h-12 w-auto mb-4 brightness-0 invert"
+              src="/logo-white.svg"
+              alt="Al Haramain Travels"
+              width={300}
+              height={150}
+              className="h-24 w-auto"
             />
-            <p className="text-white/60 text-sm leading-relaxed">
-              Al Haramain Travels was founded with a singular purpose: to facilitate 
-              and enhance the spiritual journeys of Umrah for Muslims around Australia 
-              and the world.
+            <p className="mt-5 max-w-[320px] text-[0.92rem] leading-relaxed opacity-80">
+              {aboutContent.paragraphs[0].split(". ")[0]}.
             </p>
-            {/* Social Links */}
-            <div className="flex gap-3 mt-6">
-              <a
-                href={contactInfo.socials.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href={contactInfo.socials.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href={contactInfo.socials.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
-                aria-label="WhatsApp"
-              >
-                <MessageCircle className="h-5 w-5" />
-              </a>
+            <div className="mt-5 flex gap-3">
+              {socials.map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="grid size-10 place-items-center rounded-full border border-white/20 text-white transition-colors hover:border-primary hover:bg-primary"
+                >
+                  <Icon className="size-[18px]" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-5 text-lg">Quick Links</h4>
-            <ul className="space-y-3 text-white/60">
+            <h4 className="mb-4 font-display text-base font-semibold text-white">Quick links</h4>
+            <ul className="space-y-2.5">
               {footerLinks.quick.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="hover:text-primary transition-colors text-sm"
-                  >
+                  <Link href={link.href} className="text-[0.92rem] opacity-80 transition-colors hover:text-primary hover:opacity-100">
                     {link.label}
                   </Link>
                 </li>
@@ -72,16 +55,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Help */}
           <div>
-            <h4 className="font-semibold mb-5 text-lg">Help</h4>
-            <ul className="space-y-3 text-white/60">
-              {footerLinks.help.map((link) => (
+            <h4 className="mb-4 font-display text-base font-semibold text-white">Trips</h4>
+            <ul className="space-y-2.5">
+              {footerLinks.trips.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="hover:text-primary transition-colors text-sm"
-                  >
+                  <Link href={link.href} className="text-[0.92rem] opacity-80 transition-colors hover:text-primary hover:opacity-100">
                     {link.label}
                   </Link>
                 </li>
@@ -89,46 +68,39 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Address */}
           <div>
-            <h4 className="font-semibold mb-5 text-lg">Address</h4>
-            <ul className="space-y-4 text-white/60">
-              {contactInfo.addresses.map((address, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">{address.location}</span>
+            <h4 className="mb-4 font-display text-base font-semibold text-white">Get in touch</h4>
+            <ul className="space-y-2.5 text-[0.92rem]">
+              <li>
+                <a href={contactInfo.phoneHref} className="opacity-80 transition-colors hover:text-primary hover:opacity-100">
+                  {contactInfo.phone}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${contactInfo.email}`} className="break-all opacity-80 transition-colors hover:text-primary hover:opacity-100">
+                  {contactInfo.email}
+                </a>
+              </li>
+              {contactInfo.addresses.map((address) => (
+                <li key={address.state} className="opacity-80">
+                  {address.location}
                 </li>
               ))}
-              <li className="flex items-center gap-3 pt-2">
-                <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                <span className="text-sm">{contactInfo.phone}</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-primary flex-shrink-0" />
-                <span className="text-sm">{contactInfo.email}</span>
-              </li>
             </ul>
           </div>
         </div>
 
-        <Separator className="bg-white/10 mb-8" />
-
-        {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/40 text-sm">
-            Copyright © {new Date().getFullYear()} Al Haramain Travels
-          </p>
-          <div className="flex gap-6 text-white/40 text-sm">
+        <div className="flex flex-col gap-3 pt-6 text-[0.84rem] opacity-70 md:flex-row md:items-center md:justify-between">
+          <p>&copy; {new Date().getFullYear()} Al Haramain Travels Australia. All rights reserved.</p>
+          <ul className="flex flex-wrap gap-x-5 gap-y-2">
             {footerLinks.legal.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="hover:text-primary transition-colors"
-              >
-                {link.label}
-              </Link>
+              <li key={link.href}>
+                <Link href={link.href} className="transition-colors hover:text-primary">
+                  {link.label}
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     </footer>

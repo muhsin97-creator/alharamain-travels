@@ -1,17 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Playfair_Display } from "next/font/google";
+import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
+import { contactInfo } from "@/lib/data";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600", "700"],
+  display: "swap",
 });
 
 const siteUrl = "https://alharamaintravels.com.au";
@@ -19,66 +22,47 @@ const siteUrl = "https://alharamaintravels.com.au";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#C4A052",
+  themeColor: "#1b1b1b",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Umrah Packages Australia | Guided Umrah Trips – Al-Haramain Travels",
+    default: "Umrah Packages Australia | Guided Umrah Trips | Al-Haramain Travels",
     template: "%s | Al-Haramain Travels",
   },
   description:
-    "Umrah packages from Australia with 5-star hotels near the Haram, guided Umrah trips with experienced Shaykhs, flights, visas and 24/7 support. Departures from Sydney & Melbourne. Register for our next Umrah trip today.",
+    "Guided Umrah packages from Australia with flights, visas, hotels near the Haram, experienced Shaykhs and 24/7 group support. Departures from Sydney and Melbourne. Enquire about our next Umrah trip.",
   keywords: [
     "Umrah packages Australia",
-    "Ramadan Umrah packages",
-    "Islamic Travel",
-    "Pilgrimage",
-    "Makkah",
-    "Medina",
-    "Saudi Arabia",
-    "Travel Agency Australia",
-    "Umrah 2025",
-    "Guided Umrah tours",
-    "Ramadan Umrah",
-    "Budget Umrah",
-    "Premium Umrah",
-    "Sydney Umrah",
-    "Melbourne Umrah",
+    "Umrah trips Australia",
+    "Ramadan Umrah 2027",
+    "guided Umrah tour",
+    "Umrah from Sydney",
+    "Umrah from Melbourne",
+    "Umrah travel agency Australia",
+    "Islamic travel Australia",
   ],
   authors: [{ name: "Al-Haramain Travels" }],
   creator: "Al-Haramain Travels",
   publisher: "Al-Haramain Travels",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
+  formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
     type: "website",
     locale: "en_AU",
     url: siteUrl,
     siteName: "Al-Haramain Travels",
-    title: "Umrah Packages Australia | Guided Umrah Trips – Al-Haramain Travels",
+    title: "Umrah Packages Australia | Guided Umrah Trips | Al-Haramain Travels",
     description:
-      "Umrah packages from Australia with 5-star hotels near the Haram, guided groups, flights, visas and 24/7 support.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Al-Haramain Travels - Premium Umrah Packages",
-      },
-    ],
+      "Guided Umrah packages from Australia with flights, visas, hotels near the Haram and experienced Shaykhs.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Al-Haramain Travels" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Al-Haramain Travels | Premium Umrah Packages",
+    title: "Al-Haramain Travels | Guided Umrah Trips from Australia",
     description:
-      "Experience the spiritual journey of a lifetime with premium Umrah packages from Australia.",
+      "Guided Umrah packages from Australia with flights, visas, hotels near the Haram and experienced Shaykhs.",
     images: ["/og-image.png"],
-    creator: "@alharamaintravels",
   },
   robots: {
     index: true,
@@ -91,61 +75,49 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    // Add your verification codes here when you have them
-    // google: "your-google-verification-code",
-    // yandex: "your-yandex-verification-code",
-  },
-  alternates: {
-    canonical: siteUrl,
-  },
+  alternates: { canonical: siteUrl },
   category: "travel",
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
-  "name": "Al-Haramain Travels",
-  "description": "Premium Umrah travel packages from Australia",
-  "url": siteUrl,
-  "logo": `${siteUrl}/logo.png`,
-  "image": `${siteUrl}/og-image.png`,
-  "telephone": "+61 451 001 786",
-  "email": "info@alharamaintravels.com.au",
-  "address": [
+  name: "Al-Haramain Travels",
+  description: "Guided Umrah trips and packages from Australia.",
+  url: siteUrl,
+  logo: `${siteUrl}/logo.png`,
+  image: `${siteUrl}/og-image.png`,
+  telephone: contactInfo.phone,
+  email: contactInfo.email,
+  address: [
     {
       "@type": "PostalAddress",
-      "addressLocality": "Sydney",
-      "addressRegion": "NSW",
-      "addressCountry": "AU"
+      addressLocality: "Preston",
+      addressRegion: "VIC",
+      postalCode: "3072",
+      addressCountry: "AU",
     },
     {
       "@type": "PostalAddress",
-      "addressLocality": "Melbourne",
-      "addressRegion": "VIC",
-      "addressCountry": "AU"
-    }
+      addressLocality: "Lakemba",
+      addressRegion: "NSW",
+      postalCode: "2195",
+      addressCountry: "AU",
+    },
   ],
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": -33.8688,
-    "longitude": 151.2093
-  },
-  "areaServed": {
-    "@type": "Country",
-    "name": "Australia"
-  },
-  "priceRange": "$$$",
-  "openingHoursSpecification": {
+  areaServed: { "@type": "Country", name: "Australia" },
+  priceRange: "$$$",
+  openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    "opens": "09:00",
-    "closes": "18:00"
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "18:00",
   },
-  "sameAs": [
-    "https://www.instagram.com/alharamain_travels/",
-    "https://www.facebook.com/alharamaintravelsau"
-  ]
+  sameAs: [
+    contactInfo.socials.instagram,
+    contactInfo.socials.facebook,
+    contactInfo.socials.tiktok,
+  ],
 };
 
 export default function RootLayout({
@@ -154,7 +126,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en-AU" className="scroll-smooth">
       <head>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
@@ -164,7 +136,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${dmSans.variable} ${playfair.variable} antialiased`}>
+      <body className={`${montserrat.variable} ${poppins.variable} antialiased`}>
         {children}
       </body>
     </html>

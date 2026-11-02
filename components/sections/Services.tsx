@@ -1,39 +1,23 @@
-import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
-import { CircularImageFrame, GoldAccentBar, GoldLine, TrianglePattern, DiamondPattern } from "@/components/CircularImageFrame";
+import { SectionHeading } from "@/components/SectionHeading";
+import { Reveal } from "@/components/ui/reveal";
 import { services } from "@/lib/data";
 
-// Bento layout: which services carry a real photo, and how each tile spans the grid
-const tileConfig: Record<
-  string,
-  { image?: string; alt?: string; span: string }
-> = {
+// UK .bento: two large photo tiles plus four white cards.
+const photoTiles: Record<string, { image: string; alt: string; tag: string }> = {
   "Group Tours": {
-    image: "/trips/ytb-nabawi-umbrellas.jpg",
-    alt: "Our group beneath the canopies of Masjid an-Nabawi",
-    span: "md:col-span-2 md:row-span-2",
+    image: "/services/group-ihram.jpg",
+    alt: "An Al-Haramain Travels group together in ihram before their Umrah",
+    tag: "Travel as one",
   },
   "Premium Hotels": {
-    image: "/trips/btb-clock-tower-day.jpg",
-    alt: "The Abraj Al-Bait Clock Tower above Masjid al-Haram",
-    span: "md:row-span-2",
+    image: "/services/hotel-suite.jpg",
+    alt: "Hotel suite overlooking Masjid al-Haram in Makkah",
+    tag: "Steps from the Haram",
   },
-  "Spiritual Guidance": {
-    image: "/trips/ytb-green-dome.jpg",
-    alt: "The Green Dome of Masjid an-Nabawi",
-    span: "md:col-span-2",
-  },
-  "Flight Bookings": { span: "" },
-  "Visa Services": { span: "" },
-  "Personalised Care": { span: "md:col-span-2" },
 };
 
-// Render order tuned for the bento arrangement
-const tileOrder = [
+const order = [
   "Group Tours",
   "Premium Hotels",
   "Flight Bookings",
@@ -43,123 +27,72 @@ const tileOrder = [
 ];
 
 export function Services() {
-  const ordered = tileOrder
+  const ordered = order
     .map((title) => services.find((s) => s.title === title))
     .filter((s): s is (typeof services)[number] => Boolean(s));
 
   return (
-    <section id="services" className="py-24 bg-[#2D2D2D] text-white relative overflow-hidden">
-      {/* Decorative elements */}
-      <GoldAccentBar position="top" />
-      <div className="absolute bottom-0 right-8 w-24 h-16 bg-primary" />
+    <section id="services" className="bg-surface py-24 md:py-[96px]">
+      <div className="container-x">
+        <Reveal>
+          <SectionHeading
+            align="center"
+            eyebrow="Complete travel solutions"
+            title="Everything handled, start to finish"
+            intro="A good Umrah package is not about extras you will never use. It is about the things that actually matter, and we take care of every one of them."
+          />
+        </Reveal>
 
-      {/* Gold lines */}
-      <GoldLine className="absolute top-20 right-8" />
-      <GoldLine className="absolute bottom-32 left-16" />
-
-      {/* Triangle patterns */}
-      <TrianglePattern className="absolute top-1/4 left-8 opacity-40" direction="up" />
-      <TrianglePattern className="absolute bottom-1/4 right-8 opacity-40" direction="down" />
-
-      {/* Diamond patterns */}
-      <DiamondPattern className="absolute top-1/3 right-1/4 opacity-30" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-          {/* Content - Left Side */}
-          <div>
-            <Badge className="bg-primary/20 text-primary border-0 mb-4">
-              Our Services
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Complete Travel{" "}
-              <span className="text-gradient">Solutions</span>
-            </h2>
-            <p className="text-white/70 text-lg leading-relaxed mb-8">
-              From visa processing to accommodation, we handle every detail of
-              your sacred journey. Let us take care of the logistics while you
-              focus on your spiritual connection.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild className="bg-primary hover:bg-primary/90">
-                <Link href="/services/umrah">
-                  Umrah Services
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-                <Link href="/contact">
-                  Contact Us
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-
-          {/* Circular Image Frame - Right Side */}
-          <div className="relative flex justify-center lg:justify-end">
-            <CircularImageFrame
-              src="/trips/btb-haram-dusk.jpg"
-              alt="The minarets of Masjid al-Haram at dusk"
-              size="lg"
-              grayscale={true}
-            />
-          </div>
-        </div>
-
-        {/* Bento Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 md:grid-flow-dense auto-rows-[190px] md:auto-rows-[200px] gap-5">
-          {ordered.map((service) => {
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-4 md:auto-rows-[176px]">
+          {ordered.map((service, i) => {
             const Icon = service.icon;
-            const tile = tileConfig[service.title] ?? { span: "" };
+            const photo = photoTiles[service.title];
 
-            if (tile.image) {
-              // Photo tile: real trip photo with overlay text
+            if (photo) {
               return (
-                <div
+                <Reveal
                   key={service.title}
-                  className={`group relative overflow-hidden rounded-2xl ring-1 ring-border/50 hover:ring-primary/50 transition-all duration-300 ${tile.span}`}
+                  delay={i * 0.06}
+                  className="group relative min-h-[320px] overflow-hidden rounded-[18px] sm:col-span-2 md:row-span-2"
                 >
                   <Image
-                    src={tile.image}
-                    alt={tile.alt ?? service.title}
+                    src={photo.image}
+                    alt={photo.alt}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 [transition-timing-function:cubic-bezier(.2,.7,.2,1)] group-hover:scale-[1.06]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <div className="w-11 h-11 bg-white/15 backdrop-blur-sm rounded-xl flex items-center justify-center mb-3 ring-1 ring-white/20">
-                      <Icon className="h-5 w-5 text-white" />
+                  <div className="scrim-b absolute inset-0 transition-colors duration-500" />
+                  <span className="absolute left-[18px] top-[18px] rounded-full bg-primary px-3 py-1.5 font-display text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-white">
+                    {photo.tag}
+                  </span>
+                  <div className="absolute inset-x-0 bottom-0 p-7 text-white">
+                    <div className="mb-4 grid size-[52px] place-items-center rounded-[14px] border border-white/25 bg-white/15 backdrop-blur-sm">
+                      <Icon className="size-[26px]" />
                     </div>
-                    <h3 className="text-xl font-semibold text-white mb-1">
-                      {service.title}
-                    </h3>
-                    <p className="text-white/85 text-sm leading-relaxed max-w-md">
+                    <h3 className="font-display text-[1.55rem] font-semibold text-white">{service.title}</h3>
+                    <p className="mt-2 max-w-[30ch] text-base text-white/90 transition-transform duration-500 group-hover:-translate-y-0.5">
                       {service.description}
                     </p>
                   </div>
-                </div>
+                </Reveal>
               );
             }
 
-            // Text tile
             return (
-              <Card
+              <Reveal
                 key={service.title}
-                className={`group bg-white border-border/60 shadow-sm hover:shadow-md transition-all duration-300 rounded-2xl ${tile.span}`}
+                delay={i * 0.06}
+                className="lift group flex flex-col justify-center rounded-[18px] border border-border bg-card px-6 py-7 hover:border-primary"
               >
-                <CardContent className="p-6 h-full flex flex-col justify-center">
-                  <div className="w-12 h-12 bg-primary/15 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
-                    <Icon className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">{service.description}</p>
-                </CardContent>
-              </Card>
+                <div className="mb-4 grid size-[50px] place-items-center rounded-[13px] bg-gold-soft text-gold-deep transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
+                  <Icon className="size-[26px]" />
+                </div>
+                <h3 className="font-display text-[1.12rem] font-semibold text-ink">{service.title}</h3>
+                <p className="mt-1.5 text-[0.94rem] leading-relaxed text-muted-foreground">
+                  {service.description}
+                </p>
+              </Reveal>
             );
           })}
         </div>

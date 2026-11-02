@@ -1,269 +1,266 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { CalendarDays, ChevronRight, Clock, UserRound } from "lucide-react";
 import { HeroHeader } from "@/components/header";
+import { SectionHeading } from "@/components/SectionHeading";
+import { Reveal } from "@/components/ui/reveal";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { CTABand } from "@/components/sections/CTABand";
 import { Footer } from "@/components/sections/Footer";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { 
-  ChevronRight, 
-  Calendar, 
-  Clock, 
-  User, 
-  ArrowLeft,
-  Share2,
-  Facebook,
-  Twitter,
-  Linkedin,
-} from "lucide-react";
-import { blogPosts } from "@/lib/data";
+import {
+  SITE_URL,
+  formatDate,
+  getAllPosts,
+  getPostBySlug,
+  postImage,
+  postUrl,
+  prepareMarkdown,
+  type BlogPost,
+} from "@/lib/blog";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return blogPosts.map((post) => ({
-    slug: post.slug,
-  }));
+  return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
-  
+  const post = getPostBySlug(slug);
+
   if (!post) {
-    return {
-      title: "Post Not Found | Al-Haramain Travels",
-    };
+    return { title: "Post not found" };
   }
 
+  const title = post.metaTitle ?? post.title;
+  const description = post.metaDescription ?? post.excerpt;
+
   return {
-    title: `${post.title} | Al-Haramain Travels Blog`,
-    description: post.excerpt,
+    title,
+    description,
+    keywords: post.keywords,
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      url: `/blog/${post.slug}`,
+      images: [postImage(post)],
+      publishedTime: post.date,
+      authors: [post.author],
+    },
   };
+}
+
+function jsonLd(data: object) {
+  return { __html: JSON.stringify(data).replace(/</g, "\\u003c") };
+}
+
+// UK .post-card used for "Keep reading"
+function PostCard({ post }: { post: BlogPost }) {
+  const href = `/blog/${post.slug}`;
+  return (
+    <article className="lift group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card hover:border-primary">
+      <Link href={href} className="relative block aspect-[3/2] overflow-hidden" aria-hidden="true" tabIndex={-1}>
+        <Image
+          src={postImage(post)}
+          alt={post.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+        />
+        <span className="absolute left-3.5 top-3.5 rounded-full bg-primary px-3 py-1.5 font-display text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-white">
+          {post.category}
+        </span>
+      </Link>
+      <div className="flex flex-1 flex-col p-6 pb-[26px]">
+        <h3 className="font-display text-[1.15rem] font-semibold leading-snug text-ink">
+          <Link href={href} className="transition-colors hover:text-gold-deep">
+            {post.title}
+          </Link>
+        </h3>
+        <p className="mb-[18px] mt-2 line-clamp-3 text-[0.95rem] leading-relaxed text-muted-foreground">
+          {post.excerpt}
+        </p>
+        <div className="mt-auto flex flex-wrap items-center gap-x-[18px] gap-y-2.5 text-[0.82rem] font-medium text-muted-foreground">
+          <time dateTime={post.date}>{formatDate(post.date)}</time>
+          <span aria-hidden="true" className="size-1 rounded-full bg-current opacity-50" />
+          <span>{post.readTime}</span>
+        </div>
+      </div>
+    </article>
+  );
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = getPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  const relatedPosts = blogPosts
-    .filter((p) => p.slug !== slug)
+  const image = postImage(post);
+  const url = postUrl(post.slug);
+  const others = getAllPosts()
+    .filter((p) => p.slug !== post.slug)
     .slice(0, 3);
+  const encodedUrl = encodeURIComponent(url);
+  const encodedTitle = encodeURIComponent(post.title);
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-AU", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+  const shareLinks = [
+    { label: "Facebook", href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}` },
+    { label: "X", href: `https://x.com/intent/post?url=${encodedUrl}&text=${encodedTitle}` },
+    { label: "WhatsApp", href: `https://wa.me/?text=${encodeURIComponent(`${post.title} ${url}`)}` },
+  ];
+
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.metaDescription ?? post.excerpt,
+    image: [`${SITE_URL}${image}`],
+    datePublished: post.date,
+    dateModified: post.date,
+    articleSection: post.category,
+    ...(post.keywords && post.keywords.length > 0 ? { keywords: post.keywords.join(", ") } : {}),
+    author: { "@type": "Organization", name: post.author, url: SITE_URL },
+    publisher: {
+      "@type": "Organization",
+      name: "Al-Haramain Travels",
+      url: SITE_URL,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo-white.png` },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: url },
+    ],
   };
 
   return (
     <div className="min-h-screen bg-background">
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(articleLd)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(breadcrumbLd)} />
+
       <HeroHeader />
 
-      {/* Hero Section */}
-      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-[#2D2D2D] text-white overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-8 left-8 flex gap-2 opacity-40">
-          {[...Array(4)].map((_, i) => (
-            <div
-              key={i}
-              className="w-0 h-0 border-l-[6px] border-r-[6px] border-b-[10px] border-l-transparent border-r-transparent border-b-primary"
-            />
-          ))}
+      {/* Hero: full-bleed photo, dark scrim, white copy */}
+      <section className="relative isolate overflow-hidden bg-charcoal text-white">
+        <div className="absolute inset-0 -z-10">
+          <Image src={image} alt="" fill priority sizes="100vw" className="object-cover" />
+          <div className="scrim-hero absolute inset-0" />
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#1c1c1c]/70 to-transparent" />
         </div>
-        <div className="absolute top-16 right-16 w-20 h-[1px] bg-primary opacity-40" />
-        <div className="absolute bottom-16 left-16 w-20 h-[1px] bg-primary opacity-40" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-2 bg-primary" />
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-white/60 mb-6">
-            <Link href="/" className="hover:text-primary transition-colors">Home</Link>
-            <span>/</span>
-            <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
-            <span>/</span>
-            <span className="text-white line-clamp-1">{post.title}</span>
+        <div className="container-x flex min-h-[30rem] flex-col justify-end pb-14 pt-40 md:min-h-[36rem] md:pb-20">
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex flex-wrap items-center gap-1.5 text-sm text-white/70">
+              <li className="flex items-center gap-1.5">
+                <Link href="/" className="transition-colors hover:text-primary">
+                  Home
+                </Link>
+                <ChevronRight className="size-3.5 opacity-60" />
+              </li>
+              <li className="flex items-center gap-1.5">
+                <Link href="/blog" className="transition-colors hover:text-primary">
+                  Blog
+                </Link>
+                <ChevronRight className="size-3.5 opacity-60" />
+              </li>
+              <li className="max-w-[18rem] truncate text-white sm:max-w-none">{post.title}</li>
+            </ol>
           </nav>
 
-          <Badge className="bg-primary/20 text-primary border-0 mb-4">
-            {post.category}
-          </Badge>
-
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <p className="eyebrow text-primary">{post.category}</p>
+          <h1 className="mt-4 max-w-3xl font-display text-4xl font-extrabold leading-[1.1] text-white [text-shadow:0_2px_30px_rgba(0,0,0,0.25)] md:text-5xl lg:text-6xl">
             {post.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-6 text-white/70">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                <User className="h-5 w-5 text-white" />
-              </div>
-              <span>{post.author}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Calendar className="h-5 w-5" />
-              <span>{formatDate(post.date)}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock className="h-5 w-5" />
-              <span>{post.readTime}</span>
-            </div>
+          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/85 md:text-base">
+            <span className="flex items-center gap-2 border-l border-white/25 pl-4">
+              <UserRound className="size-4 text-primary" />
+              {post.author}
+            </span>
+            <span className="flex items-center gap-2 border-l border-white/25 pl-4">
+              <CalendarDays className="size-4 text-primary" />
+              <time dateTime={post.date}>{formatDate(post.date)}</time>
+            </span>
+            <span className="flex items-center gap-2 border-l border-white/25 pl-4">
+              <Clock className="size-4 text-primary" />
+              {post.readTime}
+            </span>
           </div>
         </div>
       </section>
 
-      {/* Article Content */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <article className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-foreground prose-p:text-muted-foreground prose-p:leading-relaxed prose-strong:text-foreground prose-ul:text-muted-foreground prose-ol:text-muted-foreground prose-li:marker:text-primary">
-            <div 
-              dangerouslySetInnerHTML={{ 
-                __html: post.content
-                  .replace(/## /g, '<h2 class="text-2xl md:text-3xl mt-12 mb-6">')
-                  .replace(/### /g, '<h3 class="text-xl md:text-2xl mt-8 mb-4">')
-                  .replace(/#### /g, '<h4 class="text-lg md:text-xl mt-6 mb-3">')
-                  .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-                  .replace(/\n\n/g, '</p><p class="mb-4">')
-                  .replace(/- ([^\n]+)/g, '<li class="mb-2">$1</li>')
-                  .replace(/1\. ([^\n]+)/g, '<li class="mb-2">$1</li>')
-              }} 
-            />
-          </article>
+      {/* Article */}
+      <section className="bg-background py-24 md:py-[96px]">
+        <div className="container-x">
+          <Reveal className="mx-auto max-w-3xl">
+            <article className="prose-ah max-w-3xl">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{prepareMarkdown(post.content)}</ReactMarkdown>
+            </article>
 
-          {/* Share Section */}
-          <div className="mt-12 pt-8 border-t border-border">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <div className="flex items-center gap-4">
-                <span className="text-muted-foreground font-medium">Share this article:</span>
-                <div className="flex gap-2">
+            <div className="mt-14 flex flex-col gap-5 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="text-sm font-medium text-muted-foreground">Share</span>
+                {shareLinks.map((link) => (
                   <a
-                    href="#"
-                    className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
-                    aria-label="Share on Facebook"
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Share on ${link.label}`}
+                    className={buttonVariants({ variant: "ghost", size: "sm" })}
                   >
-                    <Facebook className="h-5 w-5" />
+                    {link.label}
                   </a>
-                  <a
-                    href="#"
-                    className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
-                    aria-label="Share on Twitter"
-                  >
-                    <Twitter className="h-5 w-5" />
-                  </a>
-                  <a
-                    href="#"
-                    className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
-                    aria-label="Share on LinkedIn"
-                  >
-                    <Linkedin className="h-5 w-5" />
-                  </a>
-                </div>
+                ))}
               </div>
-              <Button
-                asChild
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary hover:text-white"
-              >
-                <Link href="/blog">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Blog
-                </Link>
+              <Button asChild variant="ghost" className="sm:shrink-0">
+                <Link href="/blog">Read all articles</Link>
               </Button>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Related Posts */}
-      {relatedPosts.length > 0 && (
-        <section className="py-24 bg-muted/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <Badge className="bg-primary/10 text-primary border-0 mb-4">
-                Keep Reading
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                Related <span className="text-gradient">Articles</span>
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {relatedPosts.map((relatedPost) => (
-                <Link key={relatedPost.slug} href={`/blog/${relatedPost.slug}`} className="block group">
-                  <Card className="h-full hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/30 overflow-hidden">
-                    <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-6 flex items-center justify-center aspect-video">
-                      <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                        <span className="text-2xl">📖</span>
-                      </div>
-                    </div>
-                    <CardContent className="p-6">
-                      <Badge className="bg-primary/10 text-primary border-0 mb-3">
-                        {relatedPost.category}
-                      </Badge>
-                      <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                        {relatedPost.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm line-clamp-2">
-                        {relatedPost.excerpt}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
+      {/* Keep reading */}
+      {others.length > 0 && (
+        <section className="bg-surface py-24 md:py-[96px]">
+          <div className="container-x">
+            <SectionHeading
+              eyebrow="More guides"
+              title="Keep reading"
+              intro="More preparation guides and reminders from our team."
+              align="center"
+            />
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {others.map((other, i) => (
+                <Reveal key={other.slug} delay={i * 0.06} className="h-full">
+                  <PostCard post={other} />
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="py-24 bg-gold-gradient relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 border border-white rounded-full" />
-          <div className="absolute bottom-10 right-10 w-48 h-48 border border-white rounded-full" />
-        </div>
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Start Your Journey?
-          </h2>
-          <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-            Let us help you plan your Umrah pilgrimage. Contact us today to learn more about our packages.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              asChild
-              size="lg"
-              className="bg-white text-primary hover:bg-white/90 px-10"
-            >
-              <Link href="/services/umrah">
-                View Umrah Trips
-                <ChevronRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-10"
-            >
-              <Link href="/contact">
-                Contact Us
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
+      <CTABand />
       <Footer />
     </div>
   );
 }
-

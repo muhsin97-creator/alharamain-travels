@@ -1,263 +1,256 @@
+import type { Metadata } from "next";
 import Image from "next/image";
-import { Metadata } from "next";
+import { Award, BookOpen, Eye, Heart, Shield, Target, type LucideIcon } from "lucide-react";
 import { HeroHeader } from "@/components/header";
 import { PageHeader } from "@/components/PageHeader";
+import { SectionHeading } from "@/components/SectionHeading";
+import { Reveal } from "@/components/ui/reveal";
+import { CountUp } from "@/components/ui/count-up";
+import { CTABand } from "@/components/sections/CTABand";
 import { Footer } from "@/components/sections/Footer";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Heart, Users, BookOpen, Award, Target, Eye, Star, Shield } from "lucide-react";
-import { aboutContent, stats, whyChooseUs } from "@/lib/data";
+import { aboutContent, journeySteps, stats, whyChooseUs } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "About Us | Al-Haramain Travels",
-  description: "Learn about Al-Haramain Travels - Australia's trusted Umrah travel agency. Discover our mission, values, and commitment to exceptional pilgrimage experiences.",
+  title: "About Us",
+  description:
+    "Al-Haramain Travels was founded by two friends to make guided Umrah from Australia simple, affordable and spiritually rich. Read our story, our values and why pilgrims choose to travel with us.",
+  alternates: { canonical: "https://alharamaintravels.com.au/about" },
 };
 
-export default function AboutPage() {
+const siteUrl = "https://alharamaintravels.com.au";
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
+    { "@type": "ListItem", position: 2, name: "About", item: `${siteUrl}/about` },
+  ],
+};
+
+const valueIcons: Record<string, LucideIcon> = {
+  Excellence: Award,
+  Integrity: Shield,
+  Compassion: Heart,
+  Knowledge: BookOpen,
+};
+
+// Shared copy in lib/data.ts still carries a few dashes; this page renders them as commas.
+const tidy = (text: string) => text.replace(/\s*[\u2013\u2014]\s*/g, ", ");
+
+// UK .card .ic: 56px gold-soft square with a gold-deep icon
+function IconChip({ icon: Icon }: { icon: LucideIcon }) {
   return (
-    <div className="min-h-screen bg-background">
-      <HeroHeader />
-      
-      <PageHeader
-        badge="About Us"
-        title="Al Haramain"
-        titleHighlight="Travels"
-        description="Your trusted companion for sacred journeys to Makkah and Madinah"
-      />
-
-      {/* Our Story Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <Badge className="bg-primary/10 text-primary border-0 mb-4">
-                Our Story
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
-                Founded with a Singular Purpose
-              </h2>
-              
-              {aboutContent.paragraphs.map((paragraph, i) => (
-                <p key={i} className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-
-            <div className="relative">
-              {/* Main Image/Logo Area */}
-              <div className="aspect-square bg-gradient-to-br from-primary/20 to-primary/5 rounded-3xl flex items-center justify-center relative overflow-hidden">
-                <Image
-                  src="/logo-mark.png"
-                  alt="Al-Haramain Travels"
-                  width={280}
-                  height={280}
-                  className="opacity-90"
-                />
-                {/* Decorative ring */}
-                <div className="absolute inset-8 border border-primary/20 rounded-full" />
-                <div className="absolute inset-16 border border-primary/10 rounded-full" />
-              </div>
-
-              {/* Feature Cards */}
-              <Card className="absolute -bottom-6 -left-6 bg-white text-foreground shadow-2xl">
-                <CardContent className="p-5">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-                      <Users className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="font-semibold">Experienced Shaykhs</div>
-                      <div className="text-sm text-muted-foreground">
-                        Knowledgeable guides
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="absolute -top-4 -right-4 bg-white text-foreground shadow-2xl">
-                <CardContent className="p-5">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-                      <Heart className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="font-semibold">Passion & Care</div>
-                      <div className="text-sm text-muted-foreground">
-                        Your journey matters
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-20 bg-[#2D2D2D]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-gradient mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-white/60 text-sm md:text-base">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Vision Section */}
-      <section className="py-24 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Badge className="bg-primary/10 text-primary border-0 mb-4">
-              Our Purpose
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Mission & Vision
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-8">
-                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                  <Target className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {aboutContent.mission}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-8">
-                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                  <Eye className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {aboutContent.vision}
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Values Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Badge className="bg-primary/10 text-primary border-0 mb-4">
-              What We Stand For
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Our Core <span className="text-gradient">Values</span>
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              These principles guide everything we do at Al-Haramain Travels
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {aboutContent.values.map((value, i) => {
-              const icons = [Award, Shield, Heart, BookOpen];
-              const Icon = icons[i % icons.length];
-              return (
-                <Card key={i} className="group hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/30">
-                  <CardContent className="p-6 text-center">
-                    <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors">
-                      <Icon className="h-7 w-7 text-primary group-hover:text-white transition-colors" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
-                    <p className="text-muted-foreground text-sm">{value.description}</p>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us Section */}
-      <section className="py-24 bg-[#2D2D2D] text-white relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-10 left-10 w-20 h-[1px] bg-primary opacity-40" />
-        <div className="absolute bottom-10 right-10 w-20 h-[1px] bg-primary opacity-40" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Badge className="bg-primary/20 text-primary border-0 mb-4">
-              Why Choose Us
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              What Sets Us <span className="text-gradient">Apart</span>
-            </h2>
-            <p className="text-white/70 text-lg max-w-2xl mx-auto">
-              Experience the Al-Haramain difference
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {whyChooseUs.map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <div key={i} className="flex gap-5 p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
-                  <div className="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Icon className="h-7 w-7 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                    <p className="text-white/70 leading-relaxed">{item.description}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-gold-gradient relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 border border-white rounded-full" />
-          <div className="absolute bottom-10 right-10 w-48 h-48 border border-white rounded-full" />
-        </div>
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Begin Your Journey?
-          </h2>
-          <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-            Let us help you plan the spiritual journey of a lifetime. Contact us today to learn more about our Umrah packages.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/services/umrah"
-              className="inline-flex items-center justify-center bg-white text-primary hover:bg-white/90 px-8 py-3 rounded-lg font-semibold transition-colors"
-            >
-              View Our Trips
-            </a>
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-3 rounded-lg font-semibold transition-colors"
-            >
-              Contact Us
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
+    <div className="mb-5 grid size-14 place-items-center rounded-[14px] bg-gold-soft text-gold-deep">
+      <Icon className="size-7" aria-hidden="true" />
     </div>
   );
 }
 
+export default function AboutPage() {
+  return (
+    <div className="min-h-screen bg-background">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <HeroHeader />
+
+      <PageHeader
+        title={
+          <>
+            Two friends, one <span className="text-primary">purpose</span>
+          </>
+        }
+        description="Your trusted companion for sacred journeys to Makkah and Madinah, guided from Australia by people who have walked the path themselves."
+        image="/trips/ytb-nabawi-umbrellas.jpg"
+        imageAlt="Beneath the canopies of Masjid an-Nabawi"
+        breadcrumbs={[
+          { href: "/", label: "Home" },
+          { href: "/about", label: "About" },
+        ]}
+      />
+
+      {/* Our story: UK .journey split, 3-photo collage left, copy and steps right */}
+      <section className="bg-background py-24 md:py-[96px]">
+        <div className="container-x">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-[60px]">
+            <Reveal>
+              {/* UK .collage: tilted white-bordered prints that straighten slightly on hover */}
+              <div className="group relative mx-auto aspect-square w-full max-w-[560px]">
+                <div className="absolute left-[6%] top-0 z-[1] aspect-[3/2] w-[88%] -rotate-3 overflow-hidden rounded-[10px] border-[6px] border-white bg-surface shadow-[0_16px_40px_rgba(40,40,40,0.24)] transition-transform duration-[450ms] ease-out group-hover:-rotate-[1.5deg]">
+                  <Image
+                    src="/trips/ytb-kaaba-pilgrims.jpg"
+                    alt="Our pilgrims before the Kaaba, Masjid al-Haram"
+                    fill
+                    sizes="(max-width: 1024px) 88vw, 520px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="absolute bottom-0 left-0 z-[2] aspect-[5/6] w-[40%] -rotate-[8deg] overflow-hidden rounded-[10px] border-[6px] border-white bg-surface shadow-[0_16px_40px_rgba(40,40,40,0.24)] transition-transform duration-[450ms] ease-out group-hover:-rotate-[5deg]">
+                  <Image
+                    src="/trips/about-iftar.jpg"
+                    alt="Al Haramain pilgrims sharing a meal together"
+                    fill
+                    sizes="(max-width: 1024px) 40vw, 240px"
+                    className="object-cover object-[50%_38%]"
+                  />
+                </div>
+                <div className="absolute bottom-0 right-0 z-[3] aspect-[4/3] w-[66%] rotate-[4deg] overflow-hidden rounded-[10px] border-[6px] border-white bg-surface shadow-[0_16px_40px_rgba(40,40,40,0.24)] transition-transform duration-[450ms] ease-out group-hover:rotate-[2deg]">
+                  <Image
+                    src="/trips/about-group.jpg"
+                    alt="Al Haramain Umrah group in ihram"
+                    fill
+                    sizes="(max-width: 1024px) 66vw, 400px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <SectionHeading
+                eyebrow="Our story"
+                title="Founded to serve the pilgrim, not the itinerary"
+                className="mb-6"
+              />
+              <div className="space-y-4">
+                {aboutContent.paragraphs.map((paragraph) => (
+                  <p
+                    key={paragraph.slice(0, 32)}
+                    className="max-w-[65ch] text-[1.04rem] leading-relaxed text-muted-foreground"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+
+              {/* UK .steps: how a booking works */}
+              <ol className="mt-8 grid gap-[22px]">
+                {journeySteps.map((step, i) => (
+                  <li key={step.title} className="flex gap-[18px]">
+                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-charcoal font-display font-bold text-primary">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <h3 className="font-display text-[1.1rem] font-semibold text-ink">
+                        {step.title}
+                      </h3>
+                      <p className="mt-1 text-[0.96rem] leading-relaxed text-muted-foreground">
+                        {step.description}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* UK .trustbar: charcoal band, four centred stats */}
+      <section className="bg-charcoal text-white">
+        <Reveal className="container-x">
+          <div className="grid grid-cols-2 gap-x-5 gap-y-9 py-[46px] text-center md:grid-cols-4 md:gap-[30px]">
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <p className="font-display text-[2.3rem] font-bold leading-none text-primary">
+                  <CountUp value={stat.number} />
+                </p>
+                <p className="mt-2 text-[0.9rem] tracking-[0.02em] text-white/80">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      {/* Mission and vision: two white cards */}
+      <section className="bg-surface py-24 md:py-[96px]">
+        <div className="container-x">
+          <SectionHeading
+            eyebrow="Mission and vision"
+            title="Why we do what we do"
+            intro="Every trip we run comes back to two simple commitments: a seamless journey for the pilgrim, and a name Australian Muslims can trust."
+            align="center"
+          />
+          <Reveal>
+            <div className="grid gap-[26px] md:grid-cols-2">
+              <div className="lift rounded-2xl border border-border bg-card p-8">
+                <IconChip icon={Target} />
+                <h3 className="font-display text-[1.22rem] font-semibold text-ink">Our mission</h3>
+                <p className="mt-2.5 text-[0.98rem] leading-relaxed text-muted-foreground">
+                  {aboutContent.mission}
+                </p>
+              </div>
+              <div className="lift rounded-2xl border border-border bg-card p-8">
+                <IconChip icon={Eye} />
+                <h3 className="font-display text-[1.22rem] font-semibold text-ink">Our vision</h3>
+                <p className="mt-2.5 text-[0.98rem] leading-relaxed text-muted-foreground">
+                  {aboutContent.vision}
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Values: four white cards with gold-soft icon chips */}
+      <section className="bg-background py-24 md:py-[96px]">
+        <div className="container-x">
+          <SectionHeading
+            eyebrow="Our values"
+            title="What we stand for"
+            intro="Four principles guide every booking, every group and every conversation we have with a pilgrim."
+            align="center"
+          />
+          <Reveal>
+            <div className="grid gap-[26px] sm:grid-cols-2 lg:grid-cols-4">
+              {aboutContent.values.map((value) => {
+                const Icon = valueIcons[value.title] ?? Award;
+                return (
+                  <div key={value.title} className="lift rounded-2xl border border-border bg-card p-8">
+                    <IconChip icon={Icon} />
+                    <h3 className="font-display text-[1.22rem] font-semibold text-ink">
+                      {value.title}
+                    </h3>
+                    <p className="mt-2.5 text-[0.98rem] leading-relaxed text-muted-foreground">
+                      {value.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Why pilgrims choose us: white cards with gold-soft icon chips */}
+      <section className="bg-surface py-24 md:py-[96px]">
+        <div className="container-x">
+          <SectionHeading
+            eyebrow="Why travel with us"
+            title="Why pilgrims choose us"
+            intro="From the first phone call to the flight home, this is what travelling with Al Haramain Travels feels like."
+            align="center"
+          />
+          <Reveal>
+            <div className="grid gap-[26px] md:grid-cols-2">
+              {whyChooseUs.map((item) => (
+                <div key={item.title} className="lift rounded-2xl border border-border bg-card p-8">
+                  <IconChip icon={item.icon} />
+                  <h3 className="font-display text-[1.22rem] font-semibold text-ink">{item.title}</h3>
+                  <p className="mt-2.5 max-w-[55ch] text-[0.98rem] leading-relaxed text-muted-foreground">
+                    {tidy(item.description)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <CTABand />
+      <Footer />
+    </div>
+  );
+}
