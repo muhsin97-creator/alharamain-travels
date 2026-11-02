@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
+  CalendarDays,
   Check,
   ChevronRight,
   Clock,
@@ -104,10 +105,23 @@ export default async function TripDetailPage({ params }: PageProps) {
   });
 
   const facts = [
+    ...(trip.dates ? [{ label: "Dates", value: trip.dates, Icon: CalendarDays }] : []),
     { label: "Duration", value: trip.duration, Icon: Clock },
     { label: "Group size", value: trip.capacity, Icon: Users },
     { label: "Age", value: trip.ageRestriction, Icon: UserRound },
     { label: "Language", value: trip.languages.join(", "), Icon: Globe },
+  ];
+
+  // Extra rows for the booking panel when a trip has confirmed details
+  const bookingRows = [
+    ...(trip.deposit ? [{ label: "Deposit", value: trip.deposit }] : []),
+    ...(trip.landPrice ? [{ label: "Land package", value: `${trip.landPrice} / person` }] : []),
+    ...(trip.hotels
+      ? [
+          { label: "Makkah hotel", value: trip.hotels.makkah },
+          { label: "Madinah hotel", value: trip.hotels.madinah },
+        ]
+      : []),
   ];
 
   const moreTrips = umrahTrips.filter((t) => t.slug !== trip.slug && !t.expired).slice(0, 3);
@@ -360,7 +374,7 @@ export default async function TripDetailPage({ params }: PageProps) {
                 )}
 
                 <dl className="mt-6 divide-y divide-border border-y border-border text-sm">
-                  {facts.map(({ label, value }) => (
+                  {[...facts, ...bookingRows].map(({ label, value }) => (
                     <div key={label} className="flex items-center justify-between gap-4 py-3">
                       <dt className="text-muted-foreground">{label}</dt>
                       <dd className="text-right font-medium text-ink">{value}</dd>
@@ -385,8 +399,9 @@ export default async function TripDetailPage({ params }: PageProps) {
 
                 {status.active && (
                   <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                    Pay a deposit and settle the balance in instalments. The full amount is due four
-                    weeks before departure.
+                    {trip.deposit
+                      ? `Secure your place with a ${trip.deposit} deposit and settle the balance in instalments. The full amount is due four weeks before departure.`
+                      : "Pay a deposit and settle the balance in instalments. The full amount is due four weeks before departure."}
                   </p>
                 )}
 

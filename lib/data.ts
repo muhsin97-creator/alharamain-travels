@@ -45,6 +45,13 @@ export interface UmrahTrip {
   ageRestriction: string;
   languages: string[];
   image?: string;
+  /** Confirmed travel dates, e.g. "26 February to 11 March 2027" */
+  dates?: string;
+  /** Deposit required to secure a place, e.g. "$2,000" */
+  deposit?: string;
+  /** Land-only price for pilgrims arranging their own flights, e.g. "$3,999" */
+  landPrice?: string;
+  hotels?: { makkah: string; madinah: string };
 }
 
 export interface UmrahCompanionService {
@@ -171,7 +178,7 @@ export const heroSlides = [
       "Break your fast facing the Kaaba and pray Taraweeh in the Haram. Places go first.",
     link: "/umrah/ramadan-umrah-2027",
     image: "/gallery/clock-tower-dawn.jpg",
-    meta: "16 days, register your interest",
+    meta: "26 Feb to 11 Mar 2027, from $6,799",
   },
   {
     title: "Bridge to Blessings 3",
@@ -277,7 +284,7 @@ export const umrahTrips: UmrahTrip[] = [
 
 Yeah the Boys IV is back, bigger, better, and more meaningful than ever. This exclusive men's-only Umrah trip brings together brothers from all over Australia to embark on a spiritual, physical, and emotional journey like no other.
 
-We combine the sacred pilgrimage of Umrah with a unique brotherhood experience designed to build lasting connections, challenge your mindset, and inspire positive change in your life. Expect a premium, structured itinerary with just the right balance of 'ibadah, learning, adventure, and bonding, , , all during the best time of the year.
+We combine the sacred pilgrimage of Umrah with a unique brotherhood experience designed to build lasting connections, challenge your mindset, and inspire positive change in your life. Expect a premium, structured itinerary with just the right balance of 'ibadah, learning, adventure, and bonding, all during the best time of the year.
 
 Whether you're travelling solo or with your mates, this is your chance to surround yourself with like-minded brothers, unplug from the dunya, and reconnect with your purpose.`,
     expired: true,
@@ -322,7 +329,7 @@ Whether you're travelling solo or with your mates, this is your chance to surrou
       },
     ],
     highlights: [
-      "Brotherhood Like No Other - This isn't just a trip, , , it's a life-changing experience with a group of brothers who push you to grow spiritually, mentally, and physically.",
+      "Brotherhood Like No Other - This isn't just a trip, it's a life-changing experience with a group of brothers who push you to grow spiritually, mentally, and physically.",
       "Stress-Free Travel - We handle the entire process from start to finish. You just turn up ready to benefit from the journey.",
       "Premium Experience - From the accommodation to the itinerary, we prioritise your comfort, safety, and spiritual well-being.",
       "Purpose-Driven - We're not just here to tick off rituals. We're here to elevate you, reset your mindset, and build real, lasting brotherhood.",
@@ -341,8 +348,8 @@ Whether you're travelling solo or with your mates, this is your chance to surrou
     capacity: "45 People",
     duration: "10 Days 10 Nights",
     description:
-      "Our Budget Umrah, , , October 2025 trip is designed for families, brothers, and sisters looking for a spiritually uplifting journey at an affordable price.",
-    longDescription: `Our Budget Umrah, , , October 2025 trip is designed for families, brothers, and sisters looking for a spiritually uplifting journey at an affordable price. Whether you're travelling with loved ones or on your own, this package offers everything you need for a stress-free and budget-friendly Umrah experience.
+      "Our Budget Umrah, October 2025 trip is designed for families, brothers, and sisters looking for a spiritually uplifting journey at an affordable price.",
+    longDescription: `Our Budget Umrah, October 2025 trip is designed for families, brothers, and sisters looking for a spiritually uplifting journey at an affordable price. Whether you're travelling with loved ones or on your own, this package offers everything you need for a stress-free and budget-friendly Umrah experience.
 
 With comfortable accommodation, essential travel services, and a structured itinerary, you'll be able to focus on your worship while we take care of the logistics. Travel with a group of like-minded individuals, strengthen your connection with Allah, and make unforgettable memories without breaking the bank.`,
     expired: true,
@@ -393,7 +400,7 @@ With comfortable accommodation, essential travel services, and a structured itin
       "Following the incredible success of our previous family-friendly Umrah journey, this unique trip is designed for brothers, sisters, families, couples, and solo travellers looking to experience a spiritually uplifting Umrah together.",
     longDescription: `Following the incredible success of our previous family-friendly Umrah journey, this unique trip is designed for brothers, sisters, families, couples, and solo travellers looking to experience a spiritually uplifting Umrah together.
 
-This is not just an Umrah, , , it's a complete, guided experience where you'll share unforgettable moments of worship, reflection, and community during the most blessed time of the year. Whether you're coming with your loved ones or meeting new ones on the way, Bridge to Blessings 2 is built to create lasting memories while reviving hearts and strengthening our connection with Allah in the company of a beautiful, diverse group.`,
+This is not just an Umrah, it's a complete, guided experience where you'll share unforgettable moments of worship, reflection, and community during the most blessed time of the year. Whether you're coming with your loved ones or meeting new ones on the way, Bridge to Blessings 2 is built to create lasting memories while reviving hearts and strengthening our connection with Allah in the company of a beautiful, diverse group.`,
     expired: true,
     featured: false,
     included: [
@@ -445,7 +452,7 @@ This is not just an Umrah, , , it's a complete, guided experience where you'll s
 
 Yeah the Boys V is back, bigger, better, and more meaningful than ever. This exclusive men's-only Umrah trip brings together brothers from all over Australia to embark on a spiritual, physical, and emotional journey like no other.
 
-We combine the sacred pilgrimage of Umrah with a unique brotherhood experience designed to build lasting connections, challenge your mindset, and inspire positive change in your life. Expect a premium, structured itinerary with just the right balance of 'ibadah, learning, adventure, and bonding, , , all during the best time of the year.
+We combine the sacred pilgrimage of Umrah with a unique brotherhood experience designed to build lasting connections, challenge your mindset, and inspire positive change in your life. Expect a premium, structured itinerary with just the right balance of 'ibadah, learning, adventure, and bonding, all during the best time of the year.
 
 Whether you're travelling solo or with your mates, this is your chance to surround yourself with like-minded brothers, unplug from the dunya, and reconnect with your purpose.`,
     expired: false,
@@ -490,7 +497,7 @@ Whether you're travelling solo or with your mates, this is your chance to surrou
       },
     ],
     highlights: [
-      "Brotherhood Like No Other - This isn't just a trip, , , it's a life-changing experience with a group of brothers who push you to grow spiritually, mentally, and physically.",
+      "Brotherhood Like No Other - This isn't just a trip, it's a life-changing experience with a group of brothers who push you to grow spiritually, mentally, and physically.",
       "Stress-Free Travel - We handle the entire process from start to finish. You just turn up ready to benefit from the journey.",
       "Premium Experience - From the accommodation to the itinerary, we prioritise your comfort, safety, and spiritual well-being.",
       "Purpose-Driven - We're not just here to tick off rituals. We're here to elevate you, reset your mindset, and build real, lasting brotherhood.",
@@ -573,7 +580,7 @@ Our comprehensive package ensures you have everything you need to focus on your 
       "Our beloved family-friendly Umrah journey returns. Bridge to Blessings 3 welcomes brothers, sisters, families, couples and solo travellers from across Australia for a spiritually uplifting guided Umrah together.",
     longDescription: `Following the incredible success of Bridge to Blessings 1 and 2, our beloved family-friendly Umrah journey returns!
 
-Bridge to Blessings 3 is designed for brothers, sisters, families, couples, and solo travellers looking to experience a spiritually uplifting Umrah together. This is not just an Umrah trip, , , it's a complete, guided experience where you'll share unforgettable moments of worship, reflection, and community.
+Bridge to Blessings 3 is designed for brothers, sisters, families, couples, and solo travellers looking to experience a spiritually uplifting Umrah together. This is not just an Umrah trip, it's a complete, guided experience where you'll share unforgettable moments of worship, reflection, and community.
 
 Whether you're travelling with your loved ones or meeting new companions along the way, Bridge to Blessings 3 is built to create lasting memories while reviving hearts and strengthening our connection with Allah in the company of a beautiful, diverse group.
 
@@ -623,24 +630,31 @@ Register your interest today and our team will be in touch with dates, pricing a
     slug: "ramadan-umrah-2027",
     name: "Ramadan Umrah 2027",
     subtitle: "Ramadan Special",
-    price: "Register Your Interest",
-    priceNum: 6700,
+    price: "From $6,799.00",
+    priceNum: 6799,
+    deposit: "$2,000",
+    landPrice: "$3,999",
+    dates: "26 February to 11 March 2027",
+    hotels: { makkah: "Four Points by Sheraton", madinah: "Deyar Al Eiman" },
     capacity: "45 People",
-    duration: "16 Days 16 Nights",
+    duration: "14 Days 13 Nights",
     description:
-      "Experience Ramadan 2027 in the holiest places on Earth. Join pilgrims from all over Australia for a guided Umrah during the blessed month, , , breaking your fast at the Haram and praying Taraweeh in Masjid al-Haram.",
+      "Experience Ramadan 2027 in the holiest places on Earth. Join pilgrims from all over Australia for a guided Umrah during the blessed month, breaking your fast at the Haram and praying Taraweeh in Masjid al-Haram.",
     longDescription: `Experience the blessed month of Ramadan in the holiest places on Earth!
 
 Following our unforgettable Ramadan 2026 journey, Ramadan Umrah 2027 brings together pilgrims from all over Australia for a spiritual, physical, and emotional journey like no other during the most sacred time of the year.
 
 Imagine breaking your fast at the Haram, praying Taraweeh in Masjid al-Haram, and spending your nights in worship surrounded by millions of believers. This is a once-in-a-lifetime opportunity to experience Ramadan as it was meant to be experienced.
 
-Places for Ramadan fill faster than any other trip of the year. Register your interest today and our team will be in touch with dates, pricing and full package details as they are confirmed.`,
+Dates are confirmed: 26 February to 11 March 2027, departing Australia and returning after the final nights of Ramadan, in sha Allah. We stay at Four Points by Sheraton in Makkah and Deyar Al Eiman in Madinah.
+
+Places for Ramadan fill faster than any other trip of the year. Secure your spot with a $2,000 deposit and pay the balance in instalments. A land-only package is available for $3,999 if you prefer to arrange your own flights.`,
     expired: false,
     featured: true,
     included: [
       "Return flights from major Australian cities",
-      "Premium 5-star accommodation in Makkah and Madinah",
+      "Four Points by Sheraton, Makkah",
+      "Deyar Al Eiman, Madinah",
       "Daily Suhoor and Iftar",
       "All ground transportation",
       "Umrah visa and health insurance",
@@ -656,27 +670,31 @@ Places for Ramadan fill faster than any other trip of the year. Register your in
     ],
     faqs: [
       {
-        question: "When will dates and pricing be confirmed?",
-        answer: "Full dates and pricing are being finalised now. Register your interest and our team will contact you with all the details as soon as they are released.",
+        question: "How much is the deposit?",
+        answer: "A $2,000 deposit per person secures your place. The balance can be paid in instalments and must be cleared four weeks before departure.",
       },
       {
-        question: "Will we be there for the entire month of Ramadan?",
-        answer: "This trip covers 16 days during the blessed month, allowing you to experience the heart of Ramadan in the holy cities.",
+        question: "Is there a land-only option?",
+        answer: "Yes. The land package is $3,999 per person and includes everything in the full package except international flights. You arrange your own flights and meet the group in Saudi Arabia.",
+      },
+      {
+        question: "Which part of Ramadan does the trip cover?",
+        answer: "The trip runs from 26 February to 11 March 2027, which falls in the second half of Ramadan 1448 and includes the last ten nights, in sha Allah. Exact Islamic dates depend on the moon sighting.",
       },
       {
         question: "Is Iftar provided?",
         answer: "Yes, daily Suhoor and Iftar are included in the package.",
       },
       {
-        question: "How close is the accommodation to the Haram?",
-        answer: "Our premium 5-star hotels are within walking distance to both Masjid al-Haram and Masjid an-Nabawi.",
+        question: "Where will we stay?",
+        answer: "Our group stays at Four Points by Sheraton in Makkah and Deyar Al Eiman in Madinah. Ask our team about transport arrangements between the hotel and the Haram.",
       },
     ],
     highlights: [
-      "Experience Ramadan in Makkah and Madinah",
+      "Experience the last ten nights of Ramadan in Makkah and Madinah",
       "Break your fast at the Haram",
       "Pray Taraweeh in Masjid al-Haram",
-      "Premium 5-star accommodation",
+      "Four Points by Sheraton and Deyar Al Eiman",
       "All-inclusive Suhoor and Iftar",
       "Spiritual guidance throughout",
     ],
@@ -816,7 +834,7 @@ export const galleryImages = [
 
 // Testimonials
 // Real traveller feedback received via Instagram (lightly edited for spelling only).
-// Attribution uses first name + initial for privacy, , , recommend confirming consent before publishing.
+// Attribution uses first name + initial for privacy, recommend confirming consent before publishing.
 export const testimonials: Testimonial[] = [
   {
     name: "A Yeah The Boys 3 traveller",
@@ -836,12 +854,12 @@ export const testimonials: Testimonial[] = [
   {
     name: "Joanne C.",
     location: "Family Umrah",
-    text: "I ask Allah to bless you all for organising this. BarakAllahu feekum, , , alhamdulillah for everything!",
+    text: "I ask Allah to bless you all for organising this. BarakAllahu feekum, alhamdulillah for everything!",
   },
   {
     name: "Radie",
     location: "Umrah traveller",
-    text: "What an amazing service, , , exactly what I was looking for! Honestly, so grateful to Allah for it.",
+    text: "What an amazing service, exactly what I was looking for! Honestly, so grateful to Allah for it.",
   },
 ];
 
@@ -850,7 +868,7 @@ export const whyChooseUs = [
   {
     icon: Star,
     title: "Brotherhood Like No Other",
-    description: "This isn't just a trip, , , it's a life-changing experience with brothers who push you to grow spiritually, mentally, and physically.",
+    description: "This isn't just a trip, it's a life-changing experience with brothers who push you to grow spiritually, mentally, and physically.",
   },
   {
     icon: Shield,

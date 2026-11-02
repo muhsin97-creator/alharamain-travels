@@ -51,7 +51,7 @@ export function TripCard({ trip, featured = false, className }: TripCardProps) {
         </h3>
         {!trip.expired && (
           <p className="mt-1 text-[0.9rem] text-muted-foreground">
-            {isInterest ? "Dates and pricing being finalised" : "Now booking"}
+            {trip.dates ?? (isInterest ? "Dates and pricing being finalised" : "Now booking")}
           </p>
         )}
 
