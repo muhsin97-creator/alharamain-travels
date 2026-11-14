@@ -24,7 +24,7 @@ export function Hero() {
     }
 
     return (
-        <section className="relative flex min-h-[100dvh] items-center overflow-hidden bg-charcoal text-white">
+        <section className="relative isolate flex min-h-[100dvh] items-center overflow-hidden bg-charcoal text-white">
             <motion.div
                 className="absolute inset-0 -z-10"
                 initial={reduce ? false : { scale: 1.06 }}
