@@ -529,7 +529,7 @@ Our comprehensive package ensures you have everything you need to focus on your 
     included: [
       "Return flights from major Australian cities",
       "Premium 5-star accommodation in Makkah and Madinah",
-      "Daily Suhoor and Iftar",
+      "Daily Suhoor",
       "All ground transportation",
       "Umrah visa and health insurance",
       "Guided Umrah experience",
@@ -540,7 +540,7 @@ Our comprehensive package ensures you have everything you need to focus on your 
     excluded: [
       "Personal expenses",
       "Optional activities",
-      "Additional meals outside of Suhoor/Iftar",
+      "Iftar and other meals outside of Suhoor",
     ],
     faqs: [
       {
@@ -655,7 +655,7 @@ Places for Ramadan fill faster than any other trip of the year. Secure your spot
       "Return flights from major Australian cities",
       "Four Points by Sheraton, Makkah",
       "Deyar Al Eiman, Madinah",
-      "Daily Suhoor and Iftar",
+      "Daily Suhoor",
       "All ground transportation",
       "Umrah visa and health insurance",
       "Guided Umrah experience",
@@ -666,7 +666,7 @@ Places for Ramadan fill faster than any other trip of the year. Secure your spot
     excluded: [
       "Personal expenses",
       "Optional activities",
-      "Additional meals outside of Suhoor/Iftar",
+      "Iftar and other meals outside of Suhoor",
     ],
     faqs: [
       {
@@ -682,8 +682,8 @@ Places for Ramadan fill faster than any other trip of the year. Secure your spot
         answer: "The trip runs from 26 February to 11 March 2027, which falls in the second half of Ramadan 1448 and includes the last ten nights, in sha Allah. Exact Islamic dates depend on the moon sighting.",
       },
       {
-        question: "Is Iftar provided?",
-        answer: "Yes, daily Suhoor and Iftar are included in the package.",
+        question: "Are meals included?",
+        answer: "Daily Suhoor is included. Iftar is not included, so you are free to break your fast in the Haram or at any of the restaurants around the hotels.",
       },
       {
         question: "Where will we stay?",
@@ -695,7 +695,7 @@ Places for Ramadan fill faster than any other trip of the year. Secure your spot
       "Break your fast at the Haram",
       "Pray Taraweeh in Masjid al-Haram",
       "Four Points by Sheraton and Deyar Al Eiman",
-      "All-inclusive Suhoor and Iftar",
+      "Daily Suhoor included",
       "Spiritual guidance throughout",
     ],
     ageRestriction: "All ages welcome",
