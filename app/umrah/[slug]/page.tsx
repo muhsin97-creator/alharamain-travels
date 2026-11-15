@@ -28,7 +28,7 @@ import { umrahTrips, contactInfo, type UmrahTrip } from "@/lib/data";
 import { plainDashes } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 
-const SITE_URL = "https://alharamaintravels.com.au";
+import { SITE_URL } from "@/lib/site";
 const FALLBACK_IMAGE = "/gallery/kaaba.jpg";
 
 interface PageProps {

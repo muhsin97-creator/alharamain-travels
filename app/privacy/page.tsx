@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "How Al-Haramain Travels collects, uses, stores and shares your personal information when you enquire about or book an Umrah trip, in line with the Australian Privacy Act 1988.",
-  alternates: { canonical: "https://alharamaintravels.com.au/privacy" },
+  alternates: { canonical: "/privacy" },
   robots: { index: true, follow: true },
 };
 

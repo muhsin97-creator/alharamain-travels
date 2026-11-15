@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 import { contactInfo } from "@/lib/data";
 
 const montserrat = Montserrat({
@@ -17,7 +18,7 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const siteUrl = "https://alharamaintravels.com.au";
+const siteUrl = SITE_URL;
 
 export const viewport: Viewport = {
   width: "device-width",

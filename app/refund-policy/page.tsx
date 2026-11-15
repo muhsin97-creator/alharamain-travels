@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Refund and Cancellation Policy",
   description:
     "How cancellations and refunds work when you book an Umrah trip with Al-Haramain Travels: how to cancel, what deposits cover, visa and insurance costs, how refunds are paid and what happens if we cancel a trip.",
-  alternates: { canonical: "https://alharamaintravels.com.au/refund-policy" },
+  alternates: { canonical: "/refund-policy" },
   robots: { index: true, follow: true },
 };
 

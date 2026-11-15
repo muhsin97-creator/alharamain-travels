@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next'
 import { umrahTrips } from '@/lib/data'
 import { getAllPosts } from '@/lib/blog'
+import { SITE_URL } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://alharamaintravels.com.au'
+  const baseUrl = SITE_URL
 
   // Static pages
   const staticPages = [
@@ -68,7 +69,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Blog posts from content/blog/*.md (published only, newest first)
   const blogPages = getAllPosts().map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
+    lastModified: new Date(post.updated ?? post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }))

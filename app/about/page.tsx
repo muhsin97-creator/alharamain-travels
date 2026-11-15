@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site";
 import Image from "next/image";
 import { Award, BookOpen, Eye, Heart, Shield, Target, type LucideIcon } from "lucide-react";
 import { HeroHeader } from "@/components/header";
@@ -14,10 +15,10 @@ export const metadata: Metadata = {
   title: "About Us",
   description:
     "Al-Haramain Travels was founded by two friends to make guided Umrah from Australia simple, affordable and spiritually rich. Read our story, our values and why pilgrims choose to travel with us.",
-  alternates: { canonical: "https://alharamaintravels.com.au/about" },
+  alternates: { canonical: "/about" },
 };
 
-const siteUrl = "https://alharamaintravels.com.au";
+const siteUrl = SITE_URL;
 
 const breadcrumbLd = {
   "@context": "https://schema.org",

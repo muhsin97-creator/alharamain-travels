@@ -15,6 +15,7 @@ import {
   SITE_URL,
   formatDate,
   getAllPosts,
+  plainDashes,
   getPostBySlug,
   postImage,
   postUrl,
@@ -127,7 +128,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     description: post.metaDescription ?? post.excerpt,
     image: [`${SITE_URL}${image}`],
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updated ?? post.date,
     articleSection: post.category,
     ...(post.keywords && post.keywords.length > 0 ? { keywords: post.keywords.join(", ") } : {}),
     author: { "@type": "Organization", name: post.author, url: SITE_URL },
@@ -139,6 +140,19 @@ export default async function BlogPostPage({ params }: PageProps) {
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };
+
+  const faqLd =
+    post.faq && post.faq.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: post.faq.map((f) => ({
+            "@type": "Question",
+            name: plainDashes(f.q),
+            acceptedAnswer: { "@type": "Answer", text: plainDashes(f.a) },
+          })),
+        }
+      : null;
 
   const breadcrumbLd = {
     "@context": "https://schema.org",
@@ -154,6 +168,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     <div className="min-h-screen bg-background">
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(articleLd)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(breadcrumbLd)} />
+      {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(faqLd)} />}
 
       <HeroHeader />
 
@@ -212,6 +227,17 @@ export default async function BlogPostPage({ params }: PageProps) {
           <Reveal className="mx-auto max-w-3xl">
             <article className="prose-ah max-w-3xl">
               <ReactMarkdown remarkPlugins={[remarkGfm]}>{prepareMarkdown(post.content)}</ReactMarkdown>
+              {post.faq && post.faq.length > 0 && (
+                <section aria-labelledby="faq-heading">
+                  <h2 id="faq-heading">Frequently asked questions</h2>
+                  {post.faq.map((f) => (
+                    <div key={f.q}>
+                      <h3>{plainDashes(f.q)}</h3>
+                      <p>{plainDashes(f.a)}</p>
+                    </div>
+                  ))}
+                </section>
+              )}
             </article>
 
             <div className="mt-14 flex flex-col gap-5 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">

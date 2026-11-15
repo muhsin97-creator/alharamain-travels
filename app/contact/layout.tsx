@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "Contact Us | Umrah Enquiries",
   description:
     "Get in touch with Al-Haramain Travels about guided Umrah trips from Australia. Call, WhatsApp or send an enquiry and our team will call you back within one business day.",
-  alternates: { canonical: "https://alharamaintravels.com.au/contact" },
+  alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact Us | Umrah Enquiries | Al-Haramain Travels",
     description:

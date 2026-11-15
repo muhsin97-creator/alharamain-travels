@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Booking Terms & Conditions",
   description:
     "The terms that apply when you book an Umrah trip with Al-Haramain Travels: deposits and instalments, passports and visas, insurance, itinerary changes, conduct, liability and your rights under Australian Consumer Law.",
-  alternates: { canonical: "https://alharamaintravels.com.au/terms" },
+  alternates: { canonical: "/terms" },
   robots: { index: true, follow: true },
 };
 

@@ -11,6 +11,8 @@ export interface BlogPost {
   excerpt: string;
   content: string;
   date: string; // ISO yyyy-mm-dd
+  /** Last meaningful revision, yyyy-mm-dd (sitemap lastmod and Article dateModified) */
+  updated?: string;
   author: string;
   category: string;
   readTime: string;
@@ -19,10 +21,13 @@ export interface BlogPost {
   metaTitle?: string;
   metaDescription?: string;
   keywords?: string[];
+  /** Shown as a visible FAQ section and emitted as FAQPage structured data */
+  faq?: { q: string; a: string }[];
   draft?: boolean;
 }
 
-export const SITE_URL = "https://alharamaintravels.com.au";
+import { SITE_URL } from "./site";
+export { SITE_URL };
 
 const POSTS_DIR = path.join(process.cwd(), "content", "blog");
 
@@ -61,6 +66,10 @@ function parsePost(file: string): BlogPost | null {
     metaTitle: data.metaTitle ? String(data.metaTitle) : undefined,
     metaDescription: data.metaDescription ? String(data.metaDescription) : undefined,
     keywords: Array.isArray(data.keywords) ? data.keywords.map(String) : undefined,
+    updated: data.updated ? (data.updated instanceof Date ? data.updated.toISOString().slice(0, 10) : String(data.updated)) : undefined,
+    faq: Array.isArray(data.faq)
+      ? data.faq.filter((f: { q?: unknown; a?: unknown }) => f && f.q && f.a).map((f: { q: unknown; a: unknown }) => ({ q: String(f.q), a: String(f.a) }))
+      : undefined,
     draft: Boolean(data.draft),
   };
 }
