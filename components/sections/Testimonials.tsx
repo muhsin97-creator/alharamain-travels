@@ -1,9 +1,23 @@
 import { Star } from "lucide-react";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal } from "@/components/ui/reveal";
-import { testimonials } from "@/lib/data";
+import { VideoTestimonials } from "@/components/video/VideoTestimonials";
+import { testimonials, videoTestimonials } from "@/lib/data";
 
-// UK .tst-grid: three white cards with gold stars.
+const SITE_URL = "https://alharamaintravels.com.au";
+
+const videoJsonLd = videoTestimonials.map((v) => ({
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: `${v.name}: Umrah with Al-Haramain Travels`,
+  description: `${v.name} (${v.role}) on their Umrah trip with Al-Haramain Travels: "${v.quote}"`,
+  thumbnailUrl: `${SITE_URL}${v.poster}`,
+  contentUrl: `${SITE_URL}${v.src}`,
+  uploadDate: "2026-11-15",
+  duration: v.isoDuration,
+}));
+
+// Video testimonials on top, then the UK .tst-grid: three white cards with gold stars.
 export function Testimonials() {
   return (
     <section id="reviews" className="bg-surface py-24 md:py-[96px]">
@@ -13,8 +27,16 @@ export function Testimonials() {
             align="center"
             eyebrow="What our pilgrims say"
             title="Trusted by families across Australia"
+            intro="Filmed with our pilgrims in Makkah on the last day of their trip. Tap to watch."
+            className="mb-10"
           />
         </Reveal>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(videoJsonLd) }}
+        />
+        <VideoTestimonials videos={videoTestimonials} />
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.slice(0, 3).map((t, i) => (

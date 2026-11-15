@@ -863,6 +863,52 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
+// Video testimonials (edited from interviews filmed with our pilgrims in Makkah)
+export interface VideoTestimonial {
+  id: string;
+  name: string;
+  role: string;
+  quote: string;
+  src: string;
+  poster: string;
+  duration: string;
+  /** ISO 8601 duration for structured data */
+  isoDuration: string;
+}
+
+export const videoTestimonials: VideoTestimonial[] = [
+  {
+    id: "zaid",
+    name: "Zaid",
+    role: "First Umrah, Melbourne",
+    quote: "There's no way we're going back to Melbourne the same.",
+    src: "/videos/zaid.mp4",
+    poster: "/videos/zaid-poster.jpg",
+    duration: "0:58",
+    isoDuration: "PT58S",
+  },
+  {
+    id: "jake",
+    name: "Jake",
+    role: "First Umrah",
+    quote: "It just felt like I was meant to be there.",
+    src: "/videos/jake.mp4",
+    poster: "/videos/jake-poster.jpg",
+    duration: "0:46",
+    isoDuration: "PT46S",
+  },
+  {
+    id: "bilal",
+    name: "Bilal",
+    role: "First Umrah",
+    quote: "I don't think the English language has words for the emotions I felt.",
+    src: "/videos/bilal.mp4",
+    poster: "/videos/bilal-poster.jpg",
+    duration: "0:38",
+    isoDuration: "PT38S",
+  },
+];
+
 // Why Choose Us
 export const whyChooseUs = [
   {

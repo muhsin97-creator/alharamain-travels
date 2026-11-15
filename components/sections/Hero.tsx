@@ -1,10 +1,8 @@
-'use client'
-
 import Link from 'next/link'
-import Image from 'next/image'
-import { motion, useReducedMotion } from 'motion/react'
+import type { CSSProperties } from 'react'
 import { CheckCircle2, Building2, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { HeroVideo } from '@/components/video/HeroVideo'
 import { stats } from '@/lib/data'
 
 const trust = [
@@ -13,79 +11,56 @@ const trust = [
     { Icon: Star, label: 'Guided by experienced Shaykhs' },
 ]
 
-const ease = [0.16, 1, 0.3, 1] as const
+// Stagger for the CSS entrance (see .hero-rise in globals.css). CSS, not JS, so the
+// headline is never left invisible on a slow or throttled device.
+const rise = (i: number): CSSProperties => ({ animationDelay: `${0.15 + i * 0.09}s` })
 
-// Full-bleed photo hero mirroring the UK landing page, with a staggered entrance.
+// Full-bleed hero mirroring the UK landing page, over a muted reel of our trips.
 export function Hero() {
-    const reduce = useReducedMotion()
-    const item = {
-        hidden: reduce ? {} : { opacity: 0, y: 24 },
-        show: { opacity: 1, y: 0 },
-    }
-
     return (
         <section className="relative isolate flex min-h-[100dvh] items-center overflow-hidden bg-charcoal text-white">
-            <motion.div
-                className="absolute inset-0 -z-10"
-                initial={reduce ? false : { scale: 1.06 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 1.6, ease }}>
-                <Image
-                    src="/gallery/kaaba.jpg"
-                    alt="The Holy Kaaba in Masjid al-Haram, Makkah"
-                    fill
-                    priority
-                    sizes="100vw"
-                    className="object-cover"
-                />
+            <div className="hero-settle absolute inset-0 -z-10">
+                <HeroVideo />
                 <div className="scrim-hero absolute inset-0" />
-            </motion.div>
+                <div className="absolute inset-0 bg-[#1c1c1c]/45 md:bg-[#1c1c1c]/15" />
+            </div>
 
-            <motion.div
-                className="container-x max-w-none"
-                initial="hidden"
-                animate="show"
-                transition={{ staggerChildren: 0.09, delayChildren: 0.15 }}>
+            <div className="container-x max-w-none">
                 <div className="max-w-[720px] pb-24 pt-40 md:pb-28 md:pt-44">
-                    <motion.p variants={item} transition={{ duration: 0.7, ease }} className="eyebrow text-primary">
+                    <p className="hero-rise eyebrow text-primary" style={rise(0)}>
                         Umrah, from Australia
-                    </motion.p>
-                    <motion.h1
-                        variants={item}
-                        transition={{ duration: 0.7, ease }}
-                        className="mb-5 mt-4 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold leading-[1.08] text-white [text-shadow:0_2px_30px_rgba(0,0,0,0.25)]">
+                    </p>
+                    <h1
+                        className="hero-rise mb-5 mt-4 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold leading-[1.08] text-white [text-shadow:0_2px_30px_rgba(0,0,0,0.35)]"
+                        style={rise(1)}>
                         The journey of a lifetime,{' '}
                         <span className="text-primary">handled with care.</span>
-                    </motion.h1>
-                    <motion.p
-                        variants={item}
-                        transition={{ duration: 0.7, ease }}
-                        className="mb-8 max-w-[600px] text-[clamp(1.05rem,1.6vw,1.28rem)] leading-relaxed text-white/95">
+                    </h1>
+                    <p
+                        className="hero-rise mb-8 max-w-[600px] text-[clamp(1.05rem,1.6vw,1.28rem)] leading-relaxed text-white/95 [text-shadow:0_1px_16px_rgba(0,0,0,0.4)]"
+                        style={rise(2)}>
                         For so many of us, the Kaaba lives in our du&rsquo;a long before it lives in our eyes.
                         We look after the flights, visas, hotels and guidance on the ground, so your heart
                         is free to do what it came to do.
-                    </motion.p>
-                    <motion.div variants={item} transition={{ duration: 0.7, ease }} className="flex flex-wrap gap-3.5">
+                    </p>
+                    <div className="hero-rise flex flex-wrap gap-3.5" style={rise(3)}>
                         <Button asChild size="lg">
                             <Link href="/services/umrah">View Umrah trips</Link>
                         </Button>
                         <Button asChild size="lg" variant="outline-light">
                             <a href="#enquire">Enquire now</a>
                         </Button>
-                    </motion.div>
-                    <motion.ul
-                        variants={item}
-                        transition={{ duration: 0.7, ease }}
-                        className="mt-10 flex flex-wrap items-center gap-x-10 gap-y-5">
+                    </div>
+                    <ul className="hero-rise mt-10 flex flex-wrap items-center gap-x-10 gap-y-5" style={rise(4)}>
                         {trust.map(({ Icon, label }) => (
                             <li key={label} className="flex items-center gap-2.5 text-[0.92rem] font-medium text-white/90">
                                 <Icon className="size-[22px] text-primary" />
                                 {label}
                             </li>
                         ))}
-                    </motion.ul>
+                    </ul>
                 </div>
-            </motion.div>
+            </div>
         </section>
     )
 }
