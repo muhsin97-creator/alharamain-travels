@@ -109,6 +109,25 @@ for (const s of blogSlugs) {
   if (keyword && Array.isArray(other.keywords) && String(other.keywords[0] || '').toLowerCase() === keyword) fail(`primary keyword "${keyword}" is already targeted by content/blog/${s}.md (cannibalisation); pick another or update that post instead`);
 }
 
+// ---------- travel advisory (rule: ../alharamain-geo/ADVISORY.md) ----------
+const advFile = path.resolve('..', 'alharamain-geo', 'advisory.json');
+if (!fs.existsSync(advFile)) fail('alharamain-geo/advisory.json not found beside the repo; do the travel advisory check in ADVISORY.md first');
+else {
+  const adv = JSON.parse(fs.readFileSync(advFile, 'utf8')), a = adv.au || {};
+  const age = (Date.now() - new Date(adv.checked + 'T00:00:00Z').getTime()) / 864e5;
+  if (!(age <= 8)) fail(`travel advice was last checked on ${adv.checked}; open Smartraveller this run and update alharamain-geo/advisory.json`);
+  if (a.inForce) {
+    const phrase = String(a.phrase || a.level || '').toLowerCase();
+    const lower = body.toLowerCase();
+    if (!lower.includes('smartraveller.gov.au/destinations/middle-east/saudi-arabia')) fail('a travel advisory is in force: link the official page https://www.smartraveller.gov.au/destinations/middle-east/saudi-arabia in a dated advisory note (see ADVISORY.md)');
+    if (phrase && !lower.includes(phrase)) fail(`a travel advisory is in force: the note must state the advice in its own words ("${a.phrase || a.level}")`);
+    if (!/insur/i.test(body)) fail('a travel advisory is in force: say that travelling against official advice can affect travel insurance');
+    for (const u of ['book now', 'filling fast', 'fill fast', "don't miss", 'do not miss out', 'hurry', 'last chance', 'limited spots', 'perfectly safe', 'completely safe', 'nothing to worry'])
+      if (lower.includes(u)) fail(`"${u}": no urgency or safety reassurance while a travel advisory is in force`);
+    notes.push(`travel advisory in force (${a.level}, updated ${a.updated}); advisory note present`);
+  }
+}
+
 for (const n of notes) console.log('NOTE ' + n);
 for (const w of warns) console.log('WARN ' + w);
 for (const f of fails) console.log('FAIL ' + f);

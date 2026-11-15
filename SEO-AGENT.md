@@ -13,7 +13,7 @@ AI Overviews). The baseline on 14 Nov 2026 was 0 of 4 priority Australian terms 
 | Thing | Where |
 |---|---|
 | Site repo | `C:\Users\61422\Downloads\Coding Project\alharamain-travels` (GitHub `muhsin97-creator/alharamain-travels`, branch `main`) |
-| Deploy | Push to `main`. Vercel builds and publishes by itself in about 1 minute. There is no deploy command. |
+| Deploy | `git push origin main` keeps the history; it does NOT publish. Publish with `npx vercel deploy --prod --yes` from the repo (the Vercel project is not connected to GitHub; the repo is linked to it through the git-ignored `.vercel` folder). |
 | Live address | The value of `SITE_URL` in `lib/site.ts`. Today: `https://alharamain-travels-six.vercel.app` |
 | Posts | `content/blog/<slug>.md`, one Markdown file each. Format: `content/blog/README.md` |
 | Trips, prices, dates, hotels, phone | `lib/data.ts`. The only source for anything about our trips. Never state a price, date, hotel or inclusion that is not there. |
@@ -29,6 +29,12 @@ structured data point to. At the start of every run check it:
 `server hold`, change nothing. If the hold is gone, say so at the top of your report and stop there:
 switching the site back (Vercel domain, `NEXT_PUBLIC_SITE_URL`, redirects, `node tools/indexnow.mjs --all`)
 is a one-off job Muhsin should start, not something to do inside a weekly run.
+
+## Travel advisory rule (read first, every run)
+Read `C:/Users/61422/Downloads/Coding Project/alharamain-geo/ADVISORY.md` and do its check before choosing a topic. On 15 Nov 2026 Smartraveller advised
+"do not travel" to Saudi Arabia, including for religious purposes. While an advisory is in force every
+article carries a dated advisory note with the official link, no urgency and no safety reassurance, and
+the gate fails without it. This rule overrides anything below that conflicts with it.
 
 ## Who we are (use only these claims)
 
@@ -108,12 +114,13 @@ sentence, natural anchor text), so the new page is not an orphan.
    the new route listed under `/blog/[slug]`. A failed build is never pushed.
 2. `git add content/blog/<slug>.md` plus any post you linked from, and commit:
    `Blog: <headline>`. Never `git add -A`: commit only the files you changed.
-3. `git push origin main`. Publishing is hands-off (Muhsin asked for articles to be posted automatically every week); do not stop to ask.
-4. Wait for Vercel (check every 30 seconds, up to 6 minutes) until `<SITE_URL>/blog/<slug>` returns 200.
+3. `git push origin main`, then `npx vercel deploy --prod --yes` (from PowerShell). Publishing is hands-off
+   (Muhsin asked for articles to be posted automatically every week); do not stop to ask.
+4. Check every 30 seconds, up to 6 minutes, until `<SITE_URL>/blog/<slug>` returns 200.
    Then confirm on the live page: the H1, the FAQ heading, `"@type":"FAQPage"` in the HTML, the canonical
    tag pointing at the live URL, every internal link returns 200, and `/sitemap.xml` lists the new URL.
 5. If the build fails on Vercel or a check fails and you cannot fix it in one further commit:
-   `git revert --no-edit HEAD && git push origin main`, and report what broke.
+   `npx vercel rollback`, then `git revert --no-edit HEAD` and `git push origin main`, and report what broke.
 
 ### 6. Tell search engines, record rankings
 1. `node tools/indexnow.mjs` (submits blog URLs dated today to Bing, which also feeds Copilot and ChatGPT
