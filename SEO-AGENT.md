@@ -24,11 +24,32 @@ AI Overviews). The baseline on 14 Nov 2026 was 0 of 4 priority Australian terms 
 
 **The domain.** `alharamaintravels.com.au` has been suspended by the .au registry ("server hold") since
 10 Nov 2026, so the site lives on the vercel.app address and that is what canonicals, the sitemap and
-structured data point to. At the start of every run check it:
-`curl -s https://rdap.cctld.au/rdap/domain/alharamaintravels.com.au` and look at `status`. While it says
-`server hold`, change nothing. If the hold is gone, say so at the top of your report and stop there:
-switching the site back (Vercel domain, `NEXT_PUBLIC_SITE_URL`, redirects, `node tools/indexnow.mjs --all`)
-is a one-off job Muhsin should start, not something to do inside a weekly run.
+structured data point to. On 18 Nov 2026 Muhsin asked for the domain to be connected and made live, and
+it was attached to the Vercel project (apex, with www redirecting to it). Two things still stand between
+it and the site, and only Muhsin can do them: the registry hold (GoDaddy / auDA), and one DNS record at
+GoDaddy (A record, host `@`, value `216.198.79.1`; the existing `www` CNAME to the apex and the Google
+email MX records stay as they are).
+
+At the start of every run check both:
+1. `curl -s https://rdap.cctld.au/rdap/domain/alharamaintravels.com.au` and read `status`.
+2. `curl -s https://alharamaintravels.com.au/llms.txt` and see whether it starts with
+   `# Al-Haramain Travels (Australia)`.
+
+While the hold is listed or check 2 fails, change nothing and report which of the two is outstanding.
+When BOTH pass and `lib/site.ts` still names the vercel.app address, do the switch in this run, before
+the article (Muhsin authorised it on 18 Nov 2026):
+- In `lib/site.ts` change the default address to `https://alharamaintravels.com.au`; make the same change
+  to `SITE` in `tools/indexnow.mjs`. Change nothing else.
+- `npx next build`, commit `Site address: switch to alharamaintravels.com.au`, `git push origin main`,
+  `npx vercel deploy --prod --yes`.
+- Verify on https://alharamaintravels.com.au : home, `/services/umrah`, `/blog` and one post return 200;
+  canonical tags, `/sitemap.xml` and `/robots.txt` all name the .com.au address; the IndexNow key file
+  `/8bf5c7f952de0f9ccea21c0296522d53.txt` returns 200. If any check fails, revert the commit, redeploy and
+  report.
+- `node tools/indexnow.mjs --all`.
+- In `alharamain-geo/SEO-KEYWORDS.md` update the "Domain" row, and put "Site is live on
+  alharamaintravels.com.au" at the top of the report with a reminder to add the domain to Google Search
+  Console. The vercel.app address keeps working; its pages then point to the .com.au address as canonical.
 
 ## Travel advisory rule (read first, every run)
 Read `C:/Users/61422/Downloads/Coding Project/alharamain-geo/ADVISORY.md` and do its check before choosing a topic. On 15 Nov 2026 Smartraveller advised
