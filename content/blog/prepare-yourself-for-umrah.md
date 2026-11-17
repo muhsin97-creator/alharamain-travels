@@ -53,7 +53,7 @@ Before anything else, ensure your intention (niyyah) is purely for the sake of A
 **1. Documentation**
 
 - Ensure your passport is valid for at least 6 months
-- Obtain your Umrah visa through a registered agent
+- Obtain your Umrah visa through a registered agent (our guide to the [Umrah visa for Australians](/blog/umrah-visa-for-australians) explains each route)
 - Make copies of all important documents
 - Store digital copies in cloud storage
 
