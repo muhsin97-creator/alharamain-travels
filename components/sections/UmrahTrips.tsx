@@ -43,7 +43,7 @@ export function UmrahTrips() {
 
         <Reveal delay={0.2} className="mt-7 text-center">
           <p className="text-[0.86rem] text-muted-foreground">
-            Prices are per person. Final inclusions, hotels and dates are confirmed when you enquire.
+            Dates and pricing are being finalised. Register your interest and we will send them to you first.
           </p>
           <Button asChild variant="ghost" className="mt-6">
             <Link href="/services/umrah">View all trips</Link>

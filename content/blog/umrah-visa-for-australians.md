@@ -116,6 +116,6 @@ The Ministry sets the closing dates for each Umrah season. If you are planning l
 
 Every Al-Haramain Travels package includes Umrah visa processing and the mandatory health insurance that comes with the visa. You send us your passport details, we lodge the application, and we confirm your visa before you fly. Travel insurance is separate and is yours to arrange.
 
-For example, our [Ramadan Umrah 2027](/umrah/ramadan-umrah-2027) group, from $6,799 per person, lists the Umrah visa and health insurance among its inclusions, and its land-only option covers the same items apart from international flights. You can see every current group on our [Umrah trips page](/services/umrah).
+For example, our [Ramadan Umrah 2027](/umrah/ramadan-umrah-2027) group, with dates and pricing being finalised, lists the Umrah visa and health insurance among its inclusions, and its land-only option covers the same items apart from international flights. You can see every current group on our [Umrah trips page](/services/umrah).
 
 If you would like to talk through which visa route fits your situation, or what the current travel advice means for a trip you are considering, [contact our team](/contact). We will tell you what we know and what we do not.

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
 import { ScrollProgress } from "@/components/ui/motion-extras";
+import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { SITE_URL } from "@/lib/site";
 import { contactInfo } from "@/lib/data";
 
@@ -141,6 +142,7 @@ export default function RootLayout({
       <body className={`${montserrat.variable} ${poppins.variable} antialiased`}>
         <ScrollProgress />
         {children}
+        <NewsletterPopup />
       </body>
     </html>
   );

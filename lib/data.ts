@@ -169,7 +169,7 @@ export const heroSlides = [
       "Our brotherhood trip. Flights, 5-star hotels by the Haram and a Shaykh with you every step.",
     link: "/umrah/yeah-the-boys-v",
     image: "/trips/ytb-kaaba-pilgrims.jpg",
-    meta: "10 days, from $5,699",
+    meta: "10 days, dates and pricing being finalised",
   },
   {
     title: "Ramadan Umrah 2027",
@@ -178,7 +178,7 @@ export const heroSlides = [
       "Break your fast facing the Kaaba and pray Taraweeh in the Haram. Places go first.",
     link: "/umrah/ramadan-umrah-2027",
     image: "/gallery/clock-tower-dawn.jpg",
-    meta: "26 Feb to 11 Mar 2027, from $6,799",
+    meta: "Dates and pricing being finalised",
   },
   {
     title: "Bridge to Blessings 3",
@@ -187,7 +187,7 @@ export const heroSlides = [
       "Our family-friendly guided Umrah returns for brothers, sisters, couples and solo travellers.",
     link: "/umrah/bridge-to-blessings-3",
     image: "/trips/btb-nabawi-gates.jpg",
-    meta: "10 days, register your interest",
+    meta: "10 days, dates and pricing being finalised",
   },
 ];
 
@@ -442,8 +442,8 @@ This is not just an Umrah, it's a complete, guided experience where you'll share
     slug: "yeah-the-boys-v",
     name: "Yeah The Boys V",
     subtitle: "Men's Only",
-    price: "From $5,699.00",
-    priceNum: 5699,
+    price: "Register Your Interest",
+    priceNum: 0,
     capacity: "45 People",
     duration: "10 Days 10 Nights",
     description:
@@ -454,7 +454,9 @@ Yeah the Boys V is back, bigger, better, and more meaningful than ever. This exc
 
 We combine the sacred pilgrimage of Umrah with a unique brotherhood experience designed to build lasting connections, challenge your mindset, and inspire positive change in your life. Expect a premium, structured itinerary with just the right balance of 'ibadah, learning, adventure, and bonding, all during the best time of the year.
 
-Whether you're travelling solo or with your mates, this is your chance to surround yourself with like-minded brothers, unplug from the dunya, and reconnect with your purpose.`,
+Whether you're travelling solo or with your mates, this is your chance to surround yourself with like-minded brothers, unplug from the dunya, and reconnect with your purpose.
+
+Dates and pricing are being finalised. Register your interest and our team will be in touch with the full details as soon as they are confirmed.`,
     expired: false,
     featured: true,
     included: [
@@ -475,6 +477,10 @@ Whether you're travelling solo or with your mates, this is your chance to surrou
       "Personal expenses (shopping, souvenirs, snacks)",
     ],
     faqs: [
+      {
+        question: "When will dates and pricing be confirmed?",
+        answer: "Dates and pricing are being finalised now. Register your interest and our team will contact you with all the details as soon as they are released.",
+      },
       {
         question: "I'm not from Australia, can I attend this trip?",
         answer: "Absolutely, if you're from UK, Europe, USA, Canada and New Zealand, you can book our land package and meet the group in Saudi Arabia.",
@@ -573,7 +579,7 @@ Our comprehensive package ensures you have everything you need to focus on your 
     name: "Bridge to Blessings 3",
     subtitle: "Family Friendly",
     price: "Register Your Interest",
-    priceNum: 5800,
+    priceNum: 0,
     capacity: "45 People",
     duration: "10 Days 10 Nights",
     description:
@@ -630,11 +636,8 @@ Register your interest today and our team will be in touch with dates, pricing a
     slug: "ramadan-umrah-2027",
     name: "Ramadan Umrah 2027",
     subtitle: "Ramadan Special",
-    price: "From $6,799.00",
-    priceNum: 6799,
-    deposit: "$2,000",
-    landPrice: "$3,999",
-    dates: "26 February to 11 March 2027",
+    price: "Register Your Interest",
+    priceNum: 0,
     hotels: { makkah: "Four Points by Sheraton", madinah: "Deyar Al Eiman" },
     capacity: "45 People",
     duration: "14 Days 13 Nights",
@@ -646,9 +649,9 @@ Following our unforgettable Ramadan 2026 journey, Ramadan Umrah 2027 brings toge
 
 Imagine breaking your fast at the Haram, praying Taraweeh in Masjid al-Haram, and spending your nights in worship surrounded by millions of believers. This is a once-in-a-lifetime opportunity to experience Ramadan as it was meant to be experienced.
 
-Dates are confirmed: 26 February to 11 March 2027, departing Australia and returning after the final nights of Ramadan, in sha Allah. We stay at Four Points by Sheraton in Makkah and Deyar Al Eiman in Madinah.
+We stay at Four Points by Sheraton in Makkah and Deyar Al Eiman in Madinah. Dates and pricing are being finalised, with a land-only option for pilgrims who prefer to arrange their own flights.
 
-Places for Ramadan fill faster than any other trip of the year. Secure your spot with a $2,000 deposit and pay the balance in instalments. A land-only package is available for $3,999 if you prefer to arrange your own flights.`,
+Places for Ramadan fill faster than any other trip of the year. Register your interest now and our team will contact you first with dates, pricing and how to secure your place.`,
     expired: false,
     featured: true,
     included: [
@@ -670,16 +673,16 @@ Places for Ramadan fill faster than any other trip of the year. Secure your spot
     ],
     faqs: [
       {
-        question: "How much is the deposit?",
-        answer: "A $2,000 deposit per person secures your place. The balance can be paid in instalments and must be cleared four weeks before departure.",
+        question: "When will dates and pricing be confirmed?",
+        answer: "Dates and pricing are being finalised now. Register your interest and our team will contact you with the dates, price and deposit as soon as they are released.",
       },
       {
         question: "Is there a land-only option?",
-        answer: "Yes. The land package is $3,999 per person and includes everything in the full package except international flights. You arrange your own flights and meet the group in Saudi Arabia.",
+        answer: "Yes. A land package will be available that includes everything in the full package except international flights. You arrange your own flights and meet the group in Saudi Arabia. Pricing is being finalised.",
       },
       {
         question: "Which part of Ramadan does the trip cover?",
-        answer: "The trip runs from 26 February to 11 March 2027, which falls in the second half of Ramadan 1448 and includes the last ten nights, in sha Allah. Exact Islamic dates depend on the moon sighting.",
+        answer: "The trip is planned around the second half of Ramadan 1448 (early 2027), including the last ten nights, in sha Allah. Exact dates are being finalised and Islamic dates depend on the moon sighting.",
       },
       {
         question: "Are meals included?",

@@ -130,7 +130,7 @@ export default async function TripDetailPage({ params }: PageProps) {
   const priceValue = hasPrice
     ? trip.price.replace("From ", "")
     : status.interest
-      ? "To be announced"
+      ? "Being finalised"
       : "Past trip";
 
   const tripLd = {
