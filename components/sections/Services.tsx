@@ -53,6 +53,7 @@ export function Services() {
                 <Reveal
                   key={service.title}
                   delay={i * 0.06}
+                  variant="mask"
                   className="group relative min-h-[320px] overflow-hidden rounded-[18px] sm:col-span-2 md:row-span-2"
                 >
                   <Image

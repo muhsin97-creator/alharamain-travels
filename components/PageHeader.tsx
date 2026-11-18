@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { ParallaxLayer } from "@/components/ui/motion-extras";
 
 interface Crumb {
   href: string;
@@ -33,7 +34,7 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <section className="relative isolate overflow-hidden bg-charcoal text-white">
-      <div className="absolute inset-0 -z-10">
+      <ParallaxLayer strength={8}>
         <Image
           src={image}
           alt={imageAlt}
@@ -43,7 +44,7 @@ export function PageHeader({
           className="object-cover"
         />
         <div className="scrim-hero absolute inset-0" />
-      </div>
+      </ParallaxLayer>
 
       <div className={`container-x ${compact ? "pb-16 pt-36 md:pb-20 md:pt-44" : "pb-20 pt-40 md:pb-28 md:pt-52"}`}>
         {breadcrumbs && breadcrumbs.length > 0 && (

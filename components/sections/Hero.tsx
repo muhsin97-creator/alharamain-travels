@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react'
 import { CheckCircle2, Building2, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { HeroVideo } from '@/components/video/HeroVideo'
+import { HeroScrollFade } from '@/components/ui/motion-extras'
 import { stats } from '@/lib/data'
 
 const trust = [
@@ -25,7 +26,7 @@ export function Hero() {
                 <div className="absolute inset-0 bg-[#1c1c1c]/45 md:bg-[#1c1c1c]/15" />
             </div>
 
-            <div className="container-x max-w-none">
+            <HeroScrollFade className="container-x max-w-none">
                 <div className="max-w-[720px] pb-24 pt-40 md:pb-28 md:pt-44">
                     <p className="hero-rise eyebrow text-primary" style={rise(0)}>
                         Umrah, from Australia
@@ -60,7 +61,7 @@ export function Hero() {
                         ))}
                     </ul>
                 </div>
-            </div>
+            </HeroScrollFade>
         </section>
     )
 }

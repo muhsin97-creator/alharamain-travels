@@ -14,10 +14,27 @@ import { cn } from '@/lib/utils'
 export const HeroHeader = () => {
     const [open, setOpen] = React.useState(false)
     const [scrolled, setScrolled] = React.useState(false)
+    const [tucked, setTucked] = React.useState(false)
     const pathname = usePathname()
     const { scrollY } = useScroll()
 
-    useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > 40))
+    // Where the last tuck/untuck happened. Comparing against this (not the previous frame)
+    // lets slow trackpad scrolling, which moves a pixel or two per frame, still register.
+    const anchor = React.useRef(0)
+    useMotionValueEvent(scrollY, 'change', (y) => {
+        setScrolled(y > 40)
+        // hide after the hero while reading down, bring back on any upward scroll
+        if (y < 480) {
+            setTucked(false)
+            anchor.current = y
+        } else if (y > anchor.current + 40) {
+            setTucked(true)
+            anchor.current = y
+        } else if (y < anchor.current - 16) {
+            setTucked(false)
+            anchor.current = y
+        }
+    })
 
     const isActive = (href: string) => {
         if (href === '/') return pathname === '/'
@@ -34,7 +51,8 @@ export const HeroHeader = () => {
     return (
         <header
             className={cn(
-                'fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,padding] duration-300',
+                'fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,padding,transform] duration-300 ease-out',
+                tucked && !open && '-translate-y-full',
                 scrolled
                     ? 'bg-background/95 py-2 shadow-[0_1px_0_var(--border)] backdrop-blur-md'
                     : 'bg-transparent py-3'

@@ -1,18 +1,15 @@
 import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
+import { ParallaxLayer } from "@/components/ui/motion-extras";
 
 // UK .quote: dark photo band with a verse from the Qur'an.
 export function QuoteBand() {
   return (
     <section className="relative isolate overflow-hidden bg-charcoal text-center text-white">
-      <Image
-        src="/gallery/makkah-sunset.jpg"
-        alt=""
-        fill
-        sizes="100vw"
-        className="-z-10 object-cover"
-      />
-      <div className="absolute inset-0 -z-10 bg-[#1c1c1c]/80" />
+      <ParallaxLayer>
+        <Image src="/gallery/makkah-sunset.jpg" alt="" fill sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-[#1c1c1c]/80" />
+      </ParallaxLayer>
       <Reveal className="container-x py-[110px]">
         <blockquote className="mx-auto max-w-[860px] font-display text-[clamp(1.5rem,3.2vw,2.4rem)] font-semibold leading-[1.3]">
           &ldquo;And proclaim to the people the <span className="text-primary">Hajj</span>; they will
