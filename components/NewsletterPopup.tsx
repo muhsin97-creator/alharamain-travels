@@ -191,7 +191,7 @@ export function NewsletterPopup() {
                                         </p>
                                     )}
                                     <p className="text-center text-[0.78rem] text-muted-foreground">
-                                        One email a week. Unsubscribe any time.{' '}
+                                        Unsubscribe any time.{' '}
                                         <Link href="/privacy" className="underline underline-offset-2 hover:text-ink">
                                             Privacy
                                         </Link>
