@@ -88,6 +88,8 @@ The Ministry says a permit is required to perform Umrah and to pray in the Rawda
 
 Two practical points from our groups. Set up the Nusuk app and log in before you leave Australia, while you still have your usual phone number and a steady connection. And book the Rawdah as soon as your dates are fixed, because you cannot edit a Rawdah time: the Ministry says you cancel it in the app and book again.
 
+For what happens once you are inside the Haram with your permit, see our guide on [how to perform Umrah step by step](/blog/first-time-umrah-tips).
+
 ## What else do Australians need before flying?
 
 **Passport.** Smartraveller reminds travellers that many countries require at least six months of validity, including for transit. Check the expiry date now, not the week before the visa application.
