@@ -117,4 +117,4 @@ None of this stops you learning the rites now, at home, so that you are ready wh
 
 On an Al-Haramain Travels trip, the Shaykh or Ustadh leading the group teaches the steps before departure and again before the miqat, then performs the first Umrah with the group, so nobody is working it out alone in the crowd.
 
-You can see how our [guided Umrah trips](/services/umrah) run, or read about [Ramadan Umrah 2027](/umrah/ramadan-umrah-2027), where dates and pricing are still being finalised. If you have questions about your first Umrah, [talk to our team](/contact) in Preston or Lakemba.
+You can see how our [guided Umrah trips](/services/umrah) run, or read about [Ramadan Umrah 2027](/umrah/ramadan-umrah-2027), where dates and pricing are still being finalised. Our guide to the [virtues of Umrah in Ramadan](/blog/benefits-of-umrah-in-ramadan) explains the reward and what the month is like. If you have questions about your first Umrah, [talk to our team](/contact) in Preston or Lakemba.
